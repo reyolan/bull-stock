@@ -27,6 +27,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -35,6 +36,16 @@ group :development do
 
   # Eager loading checker
   gem 'bullet'
+
+  # Linter
+  gem 'rubocop', '~> 1.30', require: false
+  gem 'rubocop-rails', require: false
+
+  # .html.erb beautifier
+  gem 'htmlbeautifier'
+
+  # language server for ruby intellisense
+  gem 'solargraph'
 end
 
 group :test do
@@ -55,6 +66,7 @@ gem 'net-pop'
 # Vite Frontend Tool
 gem 'vite_rails'
 
-
+# authentication
+gem 'devise'
 
 
