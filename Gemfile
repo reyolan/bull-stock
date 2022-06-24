@@ -69,4 +69,5 @@ gem 'vite_rails'
 # authentication
 gem 'devise'
 
-
+# iex ruby client
+gem 'iex-ruby-client'
