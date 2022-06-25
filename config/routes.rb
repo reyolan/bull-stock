@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :pending_traders, only: :index
     resources :approved_traders, only: :create
     resources :traders
-    resources :transactions, only: :index
+    resources :transactions
   end
 
   scope module: 'traders' do
