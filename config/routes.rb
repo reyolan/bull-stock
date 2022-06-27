@@ -6,13 +6,15 @@ Rails.application.routes.draw do
     resources :pending_traders, only: :index
     resources :approved_traders, only: :create
     resources :traders
-    resources :transactions, only: :index
+    resources :transactions, only: :index, as: 'admin_transactions'
   end
 
   scope module: 'traders' do
-    resources :stocks, only: %i[new create update destroy]
+    resources :stocks, except: :index
     get 'portfolio', to: 'stocks#index'
-    resources :transactions, only: :index
+    resources :transactions, as: 'trader_transactions'
+    resources :search_stocks, only: %i[new create]
+    get 'search_stocks/:symbol', to: 'search_stocks#show'
   end
 
   root 'static_pages#home'
