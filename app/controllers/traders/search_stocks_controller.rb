@@ -9,5 +9,7 @@ class Traders::SearchStocksController < ApplicationController
 
   def show
     @quote = @client.quote(params[:symbol])
+  rescue IEX::Errors::SymbolNotFoundError
+    redirect_back(fallback_location: new_search_stock_url, danger: 'Stock not found.')
   end
 end
