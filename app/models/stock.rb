@@ -1,6 +1,7 @@
 class Stock < ApplicationRecord
   belongs_to :user
   validates :quantity, numericality: { greater_than: 0 }
+  before_create :total_amount
 
   # soft delete the stock
   # use Discard gem
@@ -10,7 +11,7 @@ class Stock < ApplicationRecord
     if subtracted_quantity.zero?
       destroy
     else
-      amount = total_amount(quantity: sold_stock_params[:quantity], unit_price:)
+      amount = new_total_amount(quantity: sold_stock_params[:quantity], unit_price:)
       quantity = subtract_quantity(sold_stock_params[:quantity])
       update(quantity:, amount:)
     end
@@ -21,7 +22,7 @@ class Stock < ApplicationRecord
     quantity = add_quantity(bought_stock_params[:quantity])
     unit_price = average_price_per_share(new_quantity: bought_stock_params[:quantity],
                                          new_price_per_share: bought_stock_params[:unit_price])
-    amount = total_amount(quantity: bought_stock_params[:quantity], unit_price: bought_stock_params[:unit_price])
+    amount = new_total_amount(quantity: bought_stock_params[:quantity], unit_price: bought_stock_params[:unit_price])
     update(quantity:, unit_price:, amount:)
   end
 
@@ -35,8 +36,12 @@ class Stock < ApplicationRecord
     quantity - sold_quantity
   end
 
-  def total_amount(quantity:, unit_price:)
+  def new_total_amount(quantity:, unit_price:)
     quantity * unit_price
+  end
+
+  def total_amount
+    self.amount = quantity * unit_price
   end
 
   def average_price_per_share(new_quantity:, new_price_per_share:)

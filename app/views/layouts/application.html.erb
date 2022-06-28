@@ -14,7 +14,7 @@
     <%= render 'layouts/header'%>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <p><%= flash[:danger] %></p>
+    <p><%= flash[:danger] || flash[:success] %></p>
     <%= yield %>
   </body>
 </html>

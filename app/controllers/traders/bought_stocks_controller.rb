@@ -9,7 +9,7 @@ class Traders::BoughtStocksController < ApplicationController
   end
 
   def update
-    stock = current_user.stocks.find(params[:id])
+    stock = current_user.stocks.find_by(symbol: params[:symbol])
     if stock.add_share(bought_stock_params)
       redirect_to portfolio_url, success: "Successfully bought #{stock.quantity} shares of #{stock.company_name}."
     else

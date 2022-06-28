@@ -1,5 +1,9 @@
 module Traders::SearchStocksHelper
-  def new_stock_url_method(stock)
-    stock.new_record? ? { url: bought_stocks_url, method: :post } : { url: bought_stock_url, method: :patch }
+  def check_if_new_url(stock)
+    stock.new_record? ? bought_stocks_path : bought_stock_path
+  end
+
+  def check_if_new_method(stock)
+    stock.new_record? ? :post : :patch
   end
 end

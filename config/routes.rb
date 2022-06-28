@@ -11,8 +11,12 @@ Rails.application.routes.draw do
 
   scope module: 'traders' do
     resources :stocks, except: :index
-    resources :bought_stocks, only: %i[create update]
+
+    resources :bought_stocks, only: :create
+    patch 'bought_stocks/:symbol', to: 'bought_stocks#update', as: 'bought_stock'
+
     resources :sold_stocks, only: %i[create]
+
     get 'portfolio', to: 'stocks#index'
     resources :transactions, as: 'trader_transactions'
     resources :search_stocks, only: %i[new create]
