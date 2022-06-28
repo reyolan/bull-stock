@@ -18,7 +18,6 @@ class Stock < ApplicationRecord
 
   def add_share(bought_stock_params)
     # for update only
-    debugger
     quantity = add_quantity(bought_stock_params[:quantity])
     unit_price = average_price_per_share(new_quantity: bought_stock_params[:quantity],
                                          new_price_per_share: bought_stock_params[:unit_price])

@@ -1,13 +1,20 @@
 class Traders::BoughtStocksController < ApplicationController
   def create
-    # add quantity
-    # if new_record redirect to this route, if not new_record don sa isang route
+    stock = current_user.stocks.build(bought_stock_params)
+    if stock.save
+      redirect_to portfolio_url, success: "Successfully bought #{stock.quantity} shares of #{stock.company_name}."
+    else
+      render 'traders/search_stocks/show'
+    end
   end
 
   def update
     stock = current_user.stocks.find(params[:id])
-    stock.update(sold_stock_params)
-    redirect_to portfolio_url, success: "Successfully bought #{stock.quantity} shares of #{stock.company_name}."
+    if stock.add_share(bought_stock_params)
+      redirect_to portfolio_url, success: "Successfully bought #{stock.quantity} shares of #{stock.company_name}."
+    else
+      render 'traders/search_stocks/show'
+    end
   end
 
   def destroy
@@ -15,7 +22,8 @@ class Traders::BoughtStocksController < ApplicationController
   end
 
   private
-  def stock_params
-    params.require(:stock).permit(:symbol, :company_name, :quantity)
+
+  def bought_stock_params
+    params.require(:bought_stock).permit(:symbol, :company_name, :quantity, :unit_price, :amount)
   end
 end

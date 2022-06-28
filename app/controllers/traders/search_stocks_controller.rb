@@ -9,7 +9,8 @@ class Traders::SearchStocksController < ApplicationController
 
   def show
     @quote = @client.quote(params[:symbol])
-    @stock = current_user.stocks.build
+    # find if meron existing record yung @stock, if alaws, ibuild lang
+    @stock = current_user.find_by(symbol: params[:symbol]) || current_user.stocks.build
   rescue IEX::Errors::SymbolNotFoundError
     redirect_back(fallback_location: new_search_stock_url, danger: 'Stock not found.')
   end

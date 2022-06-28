@@ -3,11 +3,12 @@
 <p>Price: <%= @quote.latest_price %></p>
 <h2> Purchase a share </h2>
 <%#= if current_user.approved? %>
-<%= form_with model: @stock do |f| %>
+<%= form_with model: @stock, new_stock_url_method(@stock) do |f| %>
   <%= f.hidden_field :symbol, value: @quote.symbol %>
   <%= f.hidden_field :company_name, value: @quote.company_name %>
+  <%= f.hidden_field :unit_price, value: @quote.latest_price %>
   <%= f.number_field :quantity, step: 0.1 %>
-  <%= f.submit "Purchase Stock"%>
+  <%= f.submit "Purchase Stock" %>
 <% end %>
 <%# else %>
 <p class='bg-red-400 rounded-md p-4 text-xl font-bold'> Please wait for admin approval to purchase a stock. </p>
