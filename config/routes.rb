@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get 'portfolio', to: 'stocks#index'
     resources :transactions, as: 'trader_transactions'
     resources :search_stocks, only: %i[new create]
-    get 'search_stocks/:symbol', to: 'search_stocks#show'
+    get 'search_stocks/:symbol', to: 'search_stocks#show', as: 'search_stock'
   end
 
   root 'static_pages#home'
