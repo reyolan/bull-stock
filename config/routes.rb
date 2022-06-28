@@ -15,7 +15,8 @@ Rails.application.routes.draw do
     resources :bought_stocks, only: :create
     patch 'bought_stocks/:symbol', to: 'bought_stocks#update', as: 'bought_stock'
 
-    resources :sold_stocks, only: %i[create]
+    resources :sold_stocks, only: :create
+    get 'sold_stocks/:symbol', to: 'sold_stocks#new', as: 'new_sold_stock'
 
     get 'portfolio', to: 'stocks#index'
     resources :transactions, as: 'trader_transactions'

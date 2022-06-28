@@ -1,5 +1,7 @@
 class Traders::SoldStocksController < ApplicationController
+  before_action :request_iex_resource, only: :nex
   def new
+    @quote = client.quote(params[:symbol])
   end
 
   def create
@@ -14,6 +16,6 @@ class Traders::SoldStocksController < ApplicationController
   private
 
   def sold_stock_params
-    params.require(:sold_stock).permit(:quantity)
+    params.require(:sold_stock).permit(:quantity, :symbol, :unit_price)
   end
 end

@@ -18,11 +18,13 @@ class Stock < ApplicationRecord
   end
 
   def add_share(bought_stock_params)
-    # for update only
-    quantity = add_quantity(bought_stock_params[:quantity])
-    unit_price = average_price_per_share(new_quantity: bought_stock_params[:quantity],
-                                         new_price_per_share: bought_stock_params[:unit_price])
-    amount = new_total_amount(quantity: bought_stock_params[:quantity], unit_price: bought_stock_params[:unit_price])
+    params_bought_quantity = bought_stock_params[:quantity].to_d
+    params_unit_price = bought_stock_params[:unit_price].to_d
+    quantity = add_quantity(params_bought_quantity)
+    unit_price = average_price_per_share(new_quantity: params_bought_quantity,
+                                         new_price_per_share: params_unit_price,
+                                         total_quantity: quantity)
+    amount = new_total_amount(quantity:, unit_price: params_unit_price)
     update(quantity:, unit_price:, amount:)
   end
 
@@ -44,11 +46,9 @@ class Stock < ApplicationRecord
     self.amount = quantity * unit_price
   end
 
-  def average_price_per_share(new_quantity:, new_price_per_share:)
-    # get the existing price per share, multiply it with the existing number of shares
-    # then add the newly bought share (number of share * price per share)
+  def average_price_per_share(new_quantity:, new_price_per_share:, total_quantity:)
     old_price_per_share = unit_price
     old_quantity = quantity
-    ((old_price_per_share * old_quantity) + (new_price_per_share * new_quantity)) / new_quantity
+    ((old_price_per_share * old_quantity) + (new_price_per_share * new_quantity)) / total_quantity
   end
 end

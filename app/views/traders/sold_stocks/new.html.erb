@@ -1,0 +1,9 @@
+<h1> <%= @quote.symbol %> </h1>
+<p>Company Name: <%= @quote.company_name %></p>
+<p>Price: <%= @quote.latest_price %></p>
+<%= form_with scope: :sold_stock, url: sold_stocks_url, method: :post do |f| %>
+  <%= f.hidden_field :symbol, value: @quote.symbol %>
+  <%= f.hidden_field :unit_price, value: @quote.latest_price %>
+  <%= f.number_field :quantity, step: 0.1 %>
+  <%= f.submit "Sell a Share" %>
+<% end %>
