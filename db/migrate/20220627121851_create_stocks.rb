@@ -5,6 +5,7 @@ class CreateStocks < ActiveRecord::Migration[6.1]
       t.string :symbol
       t.string :company_name
       t.decimal :quantity
+      t.decimal :unit_price
       t.decimal :amount
 
       t.timestamps

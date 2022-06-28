@@ -1,3 +1,14 @@
 <h1> <%= @quote.symbol %> </h1>
 <p>Company Name: <%= @quote.company_name %></p>
 <p>Price: <%= @quote.latest_price %></p>
+<h2> Purchase a share </h2>
+<%#= if current_user.approved? %>
+<%= form_with model: @stock do |f| %>
+  <%= f.hidden_field :symbol, value: @quote.symbol %>
+  <%= f.hidden_field :company_name, value: @quote.company_name %>
+  <%= f.number_field :quantity, step: 0.1 %>
+  <%= f.submit "Purchase Stock"%>
+<% end %>
+<%# else %>
+<p class='bg-red-400 rounded-md p-4 text-xl font-bold'> Please wait for admin approval to purchase a stock. </p>
+<%# end %>

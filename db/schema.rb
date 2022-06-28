@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2022_06_27_121851) do
     t.string "symbol"
     t.string "company_name"
     t.decimal "quantity"
+    t.decimal "unit_price"
     t.decimal "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

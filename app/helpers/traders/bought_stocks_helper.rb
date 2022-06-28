@@ -1,0 +1,2 @@
+module Traders::BoughtStocksHelper
+end
