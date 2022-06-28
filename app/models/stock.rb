@@ -6,20 +6,22 @@ class Stock < ApplicationRecord
   # soft delete the stock
   # use Discard gem
 
-  def subtract_share(sold_stock_params)
-    subtracted_quantity = quantity - sold_stock_params[:quantity]
+  def sell_share(sold_stock)
+    params_sold_quantity = sold_stock[:quantity].to_d
+    params_unit_price = sold_stock[:unit_price].to_d
+    subtracted_quantity = quantity - params_sold_quantity
     if subtracted_quantity.zero?
       destroy
     else
-      amount = new_total_amount(quantity: sold_stock_params[:quantity], unit_price:)
-      quantity = subtract_quantity(sold_stock_params[:quantity])
+      quantity = subtract_quantity(params_sold_quantity)
+      amount = new_total_amount(quantity:, unit_price: params_unit_price)
       update(quantity:, amount:)
     end
   end
 
-  def add_share(bought_stock_params)
-    params_bought_quantity = bought_stock_params[:quantity].to_d
-    params_unit_price = bought_stock_params[:unit_price].to_d
+  def buy_share(bought_stock)
+    params_bought_quantity = bought_stock[:quantity].to_d
+    params_unit_price = bought_stock[:unit_price].to_d
     quantity = add_quantity(params_bought_quantity)
     unit_price = average_price_per_share(new_quantity: params_bought_quantity,
                                          new_price_per_share: params_unit_price,

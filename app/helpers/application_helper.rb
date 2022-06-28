@@ -7,4 +7,8 @@ module ApplicationHelper
   def get_email_username(email)
     email.split('@')[0]
   end
+  
+  def format_auxiliary_verb(count)
+    count == 1 ? 'is' : 'are'
+  end
 end

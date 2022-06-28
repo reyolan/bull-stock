@@ -1,15 +1,17 @@
 class Traders::SoldStocksController < ApplicationController
-  before_action :request_iex_resource, only: :new
+  before_action :request_iex_resource
   def new
     @quote = @client.quote(params[:symbol])
+    @stock = current_user.stocks.find_by(symbol: params[:symbol])
   end
 
   def create
-    stock = current_user.stocks.find_by(symbol: params[:symbol])
-    if stock.add_share(sold_stock_params)
-      redirect_to portfolio_url, success: "Successfully sold #{stock.quantity} shares of #{stock.company_name}."
+    @stock = current_user.stocks.find_by(symbol: params[:sold_stock][:symbol])
+    if @stock.sell_share(sold_stock_params)
+      redirect_to portfolio_url, success: "Successfully sold shares of #{@stock.company_name}."
     else
-      render 'traders/search_stocks/show'
+      @quote = @client.quote(params[:sold_stock][:symbol])
+      render :new
     end
   end
 

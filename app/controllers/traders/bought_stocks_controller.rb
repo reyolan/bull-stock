@@ -2,7 +2,7 @@ class Traders::BoughtStocksController < ApplicationController
   def create
     stock = current_user.stocks.build(bought_stock_params)
     if stock.save
-      redirect_to portfolio_url, success: "Successfully bought #{stock.quantity} shares of #{stock.company_name}."
+      redirect_to portfolio_url, success: "Successfully bought shares of #{stock.company_name}."
     else
       render 'traders/search_stocks/show'
     end
@@ -10,8 +10,8 @@ class Traders::BoughtStocksController < ApplicationController
 
   def update
     stock = current_user.stocks.find_by(symbol: params[:symbol])
-    if stock.add_share(bought_stock_params)
-      redirect_to portfolio_url, success: "Successfully bought #{stock.quantity} shares of #{stock.company_name}."
+    if stock.buy_share(bought_stock_params)
+      redirect_to portfolio_url, success: "Successfully bought shares of #{stock.company_name}."
     else
       render 'traders/search_stocks/show'
     end

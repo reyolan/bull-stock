@@ -11,10 +11,12 @@
     <%= vite_typescript_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <%= render 'layouts/header'%>
+    <%= render 'layouts/header' %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <p><%= flash[:danger] || flash[:success] %></p>
-    <%= yield %>
+    <div class="bg-slate-200 min-h-[calc(100%-64px)] p-4 ">
+      <%= yield %>
+    </div>
   </body>
 </html>

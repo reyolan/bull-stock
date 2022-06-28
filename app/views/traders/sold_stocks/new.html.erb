@@ -1,6 +1,9 @@
+<%= render 'shared/error_message', object: @stock %>
 <h1> <%= @quote.symbol %> </h1>
 <p>Company Name: <%= @quote.company_name %></p>
-<p>Price: <%= @quote.latest_price %></p>
+<p>Price: $<%= @quote.latest_price %></p>
+<p>Number of Shares: <%= @stock.quantity %> </p>
+<p>Your Unit Price: $<%= @stock.unit_price.round(2) %> </p>
 <%= form_with scope: :sold_stock, url: sold_stocks_url, method: :post do |f| %>
   <%= f.hidden_field :symbol, value: @quote.symbol %>
   <%= f.hidden_field :unit_price, value: @quote.latest_price %>
