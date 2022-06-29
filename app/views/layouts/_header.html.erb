@@ -8,8 +8,13 @@
   <% end %>
   <span id="hamburger" class="sm:hidden text-white text-lg font-bold">&#9776;</span>
   <ul id="list" class="hidden gap-0 bg-blue-600 flex flex-col absolute top-0 right-0 mt-16 px-4 py-2 text-right sm:mr-0 sm:text-left sm:mt-0 sm:flex-row sm:gap-4 sm:flex sm:static">
-    <li><%= link_to "Home", root_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
     <% if user_signed_in? %>
+      <% if current_user.admin? %>
+        <li><%= link_to "Home", traders_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
+        <li><%= link_to "Pending Traders", pending_traders_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
+      <% else %>
+        <li><%= link_to "Home", root_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
+      <% end %>
       <li><%= link_to "Settings", edit_user_registration_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
       <li><%= link_to "Log out", destroy_user_session_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
     <% else %>

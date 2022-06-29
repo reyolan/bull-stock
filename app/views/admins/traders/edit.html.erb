@@ -1,0 +1,47 @@
+<% if @trader.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@trader.errors.count, "error") %> prohibited this trader from being saved:</h2>
+    <ul>
+      <% @trader.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<h2>Edit <%= @trader.email%></h2>
+<%= form_for(@trader, url: user_registration_path, html: { method: :put }) do |f| %>
+  <table>
+    <tbody>
+      <tr>
+        <td>Email</td>
+        <td>
+          <div class="field">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: @trader.email%>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Account Confirmation</td>
+        <td><%= @trader.confirmed? ? "Account Confirmed" : "Pending Email Confirmation" %></td>
+      </tr>
+      <tr>
+        <td>Account Confirmation</td>
+        <td><%= @trader.confirmed? ? @trader.confirmed_at.strftime('%a, %b %d, %Y'): "Pending Email Confirmation" %></td>
+      </tr>
+      <tr>
+        <td>Account Approval</td>
+        <td><%= check_box_tag(@trader.approved, {checked: @trader.approved}) %>
+          <%= label_tag(@trader.approved, "Mark as approved?") %></td>
+      </tr>
+      <tr>
+        <td>Actions</td>
+        <td>
+          <div class="actions">
+            <%= f.submit "Submit" %>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+<%= link_to "Back", :back %>

@@ -1,0 +1,18 @@
+<h1>Welcome, Admin <%= current_user.email%>!</h1>
+<span>Traders waiting for account approval</span>
+<table>
+  <thread>
+    <tr>
+      <th>Email</th>
+      <th>Action</th>
+      <tr>
+      </thread>
+      <tbody>
+        <% @pending_traders.each do |t| %>
+          <tr>
+            <td><%=t.email%></td>
+            <td> <%= link_to "show", trader_path(t.id) %> | <%= link_to "edit", edit_trader_path(t.id) %> </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
