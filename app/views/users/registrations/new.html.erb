@@ -4,7 +4,7 @@
   <h1 class="font-bold text-4xl mb-4 text-center">Sign up</h2>
   <div>
     <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded-md w-full' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded-md w-full focus:border-green-600 focus:ring-green-600' %>
   </div>
   <div class="mt-2">
     <%= f.label :password do %>
@@ -13,11 +13,11 @@
         <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %>
     <% end %>
-    <%= f.password_field :password, autocomplete: "new-password", class: 'rounded-md w-full' %>
+    <%= f.password_field :password, autocomplete: "new-password", class: 'rounded-md w-full focus:border-green-600 focus:ring-green-600' %>
   </div>
   <div class="mt-2">
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'rounded-md w-full' %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'rounded-md w-full focus:border-green-600 focus:ring-green-600' %>
   </div>
   <div class="actions">
     <%= f.submit "Sign up", class: 'bg-green-500 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-green-600 mt-4 w-full' %>

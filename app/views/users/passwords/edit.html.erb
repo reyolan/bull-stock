@@ -10,11 +10,11 @@
         <em>(<%= @minimum_password_length %> characters minimum)</em><br />
       <% end %>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'rounded-md w-full' %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'rounded-md w-full focus:border-green-600 focus:ring-green-600' %>
   </div>
   <div class="mt-2">
     <%= f.label :password_confirmation, "Confirm new password" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'rounded-md w-full' %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'rounded-md w-full focus:border-green-600 focus:ring-green-600' %>
   </div>
   <div class="actions">
     <%= f.submit "Change my password", class: 'bg-green-500 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-green-600 mt-4 w-full' %>

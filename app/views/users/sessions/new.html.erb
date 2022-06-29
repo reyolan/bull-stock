@@ -4,11 +4,11 @@
   <h2 class="font-bold text-4xl mb-4 text-center">Login</h2>
   <div>
     <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded-md w-full' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded-md w-full focus:border-green-600 focus:ring-green-600' %>
   </div>
   <div class="mt-2">
     <%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "current-password", class: 'rounded-md w-full' %>
+    <%= f.password_field :password, autocomplete: "current-password", class: 'rounded-md w-full focus:border-green-600 focus:ring-green-600' %>
   </div>
   <% if devise_mapping.rememberable? %>
     <div class="mt-2 flex justify-between">

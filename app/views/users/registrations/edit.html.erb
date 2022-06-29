@@ -5,7 +5,7 @@
     <h2 class="font-bold text-3xl border-b-2 border-black">Change Account Details</h2>
     <div class="mt-4">
       <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded-md w-full' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded-md w-full focus:border-green-600 focus:ring-green-600'%>
     </div>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p class="text-orange-500 font-medium">Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
@@ -14,18 +14,18 @@
       <%= f.label :current_password do %>
         Current Password <i>(needed to confirm your changes)</i><br />
       <% end %>
-      <%= f.password_field :current_password, autocomplete: "current-password", class: 'rounded-md w-full' %>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: 'rounded-md w-full focus:border-green-600 focus:ring-green-600' %>
     </div>
     <div class="mt-2">
       <%= f.label :password, "New Password" %> <i>(leave blank if you don't want to change password)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: 'rounded-md w-full' %>
+      <%= f.password_field :password, autocomplete: "new-password", class: 'rounded-md w-full focus:border-green-600 focus:ring-green-600' %>
       <% if @minimum_password_length %>
         <em><%= @minimum_password_length %> characters minimum</em>
       <% end %>
     </div>
     <div class="mt-2">
       <%= f.label :password_confirmation, "New Password Confirmation" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'rounded-md w-full' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'rounded-md w-full focus:border-green-600 focus:ring-green-600' %>
     </div>
     <div class="actions">
       <%= f.submit "Update", class: 'bg-green-500 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-green-600 mt-4 w-full' %>
