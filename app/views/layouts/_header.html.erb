@@ -3,6 +3,9 @@
     <div class="flex gap-3 items-center ">
       <div class="flex gap-2 items-center"><i class="las la-chart-bar"></i>
         <p class="hidden lg:inline-block">BullStock</p>
+        <% if user_signed_in? %>
+          <p class="text-sm md:text-md lg:text-xl sm:font-medium">| <%= current_user.email %></p>
+        <%end%>
       </div>
     </div>
   <% end %>

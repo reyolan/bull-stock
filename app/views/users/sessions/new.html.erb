@@ -1,0 +1,30 @@
+<% provide(:title, 'Login')%>
+<%= render "shared/error_message", object: resource %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'bg-slate-100 max-w-lg m-auto p-6 rounded-md mt-4'}) do |f| %>
+  <h2 class="font-bold text-4xl mb-4 text-center">Login</h2>
+  <div>
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded-md w-full' %>
+  </div>
+  <div class="mt-2">
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "current-password", class: 'rounded-md w-full' %>
+  </div>
+  <% if devise_mapping.rememberable? %>
+    <div class="mt-2 flex justify-between">
+      <div>
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+      <%= link_to "Forgot your password?", new_password_path(resource_name), class: "text-green-600 hover:underline font-medium" %>
+    </div>
+  <% end %>
+  <div class="actions mt-2">
+    <%= f.submit "Log in", class: 'bg-green-500 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-green-600 w-full' %>
+  </div>
+  <div class="text-center py-2">
+    <hr class="border-black my-2">
+    <p class="mt-2"> Already have an account? <span class="text-green-600 hover:underline font-medium"> <%= link_to "Sign up", new_registration_path(resource_name) %></span></p>
+    <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: 'text-green-600 hover:underline font-medium' %>
+  </div>
+<% end %>

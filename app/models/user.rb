@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :stocks
   has_many :transactions
-  
+
   enum role: %i[trader admin]
   after_initialize :set_default_role, :if => :new_record?
 

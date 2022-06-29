@@ -45,15 +45,8 @@ class Admins::TradersController < ApplicationController
       end
     end
   end
-  
-  private
 
-  def authenticate_admin
-    if current_user.admin?
-    else 
-      redirect_to root_path
-    end
-  end
+  private
 
   def trader_params
     params.require(:user).permit(:email,:password,:password_confirmation)
