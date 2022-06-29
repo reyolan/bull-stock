@@ -34,7 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
 
       t.timestamps null: false
-      t.string   :status, default: "pending"
+      t.boolean   :approved, default: false
     end
 
     add_index :users, :email,                unique: true
