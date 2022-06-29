@@ -1,0 +1,29 @@
+<%= @trader.email %>
+<table>
+  <tbody>
+    <tr>
+      <td>Email</td>
+      <td><%=@trader.email%></td>
+    </tr>
+    <tr>
+      <td>Role</td>
+      <td><%=@trader.role%></td>
+    </tr>
+    <tr>
+      <td>Account Confirmation</td>
+      <td><%= @trader.confirmed? ? "Account Confirmed" : "Pending Email Confirmation" %></td>
+    </tr>
+    <tr>
+      <td>Account Confirmation</td>
+      <td><%= @trader.confirmed? ? @trader.confirmed_at.strftime('%a, %b %d, %Y') : "Pending Email Confirmation" %></td>
+    </tr>
+    <tr>
+      <td>Account Approval</td>
+      <td><%= @trader.approved? ? "Account Approved" : "Pending Approval" %></td>
+    </tr>
+    <tr>
+      <td>Actions</td>
+      <td><%= link_to "edit", edit_trader_path(@trader.id) %> </td>
+    </tr>
+  </tbody>
+</table>

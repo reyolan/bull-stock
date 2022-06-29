@@ -1,0 +1,24 @@
+<% if @trader.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@trader.errors.count, "error") %> prohibited this trader from being saved:</h2>
+    <ul>
+      <% @trader.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_with model: @trader, url: user_registration_path(@trader) do |f| %>
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email"%>
+  </div>
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
+  </div>
+  <div class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm Password" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create Trader Account" %>
+  </div>
+<% end %>
