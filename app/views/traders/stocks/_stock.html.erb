@@ -1,0 +1,11 @@
+<tr class='text-center'>
+  <td class='p-1'><%= stock.symbol %></td>
+  <td><%= stock.company_name %></td>
+  <td><%= stock.quantity %></td>
+  <td>$<%= stock.unit_price.round(2) %></td>
+  <td>$<%= stock.amount.round(2) %></td>
+  <td><%= link_to new_buy_transaction_path(stock.symbol), class: 'bg-green-400 mr-2' do %>
+      <i class="las la-coins"></i>BUY
+    <% end %> <%= link_to new_sell_transaction_path(stock.symbol), class: 'bg-red-200' do %>
+      <i class="las la-money-bill-wave"></i>SELL <% end %> </td>
+</tr>

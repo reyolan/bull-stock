@@ -1,25 +1,25 @@
-<nav class="flex justify-between items-center h-16 px-5 md:px-16 w-full bg-blue-600 relative">
+<nav class="flex justify-between items-center h-16 px-5 md:px-16 w-full bg-green-600 relative">
   <%= link_to root_path, class: "text-white text-xl sm:text-2xl font-bold sm:w-auto w-fit" do %>
     <div class="flex gap-3 items-center ">
-      <div class="flex gap-2 items-center"><i class="las la-coins"></i>
+      <div class="flex gap-2 items-center"><i class="las la-chart-bar"></i>
         <p class="hidden lg:inline-block">BullStock</p>
       </div>
     </div>
   <% end %>
   <span id="hamburger" class="sm:hidden text-white text-lg font-bold">&#9776;</span>
-  <ul id="list" class="hidden gap-0 bg-blue-600 flex flex-col absolute top-0 right-0 mt-16 px-4 py-2 text-right sm:mr-0 sm:text-left sm:mt-0 sm:flex-row sm:gap-4 sm:flex sm:static">
+  <ul id="list" class="hidden gap-0 bg-green-600 flex flex-col absolute top-0 right-0 mt-16 px-4 py-2 text-right sm:mr-0 sm:text-left sm:mt-0 sm:flex-row sm:gap-4 sm:flex sm:static">
     <% if user_signed_in? %>
       <% if current_user.admin? %>
         <li><%= link_to "Home", traders_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
         <li><%= link_to "Pending Traders", pending_traders_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
       <% else %>
-        <li><%= link_to "Home", root_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
+        <li><%= link_to "Portfolio", trader_stocks_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
       <% end %>
-      <li><%= link_to "Settings", edit_user_registration_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
-      <li><%= link_to "Log out", destroy_user_session_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
+      <li><%= link_to "Settings", edit_user_registration_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
+      <li><%= link_to "Log out", destroy_user_session_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
     <% else %>
-      <li><%= link_to "Log in", new_user_session_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
-      <li><%= link_to "Sign up", new_user_registration_path, class: "text-xl sm:text-lg text-blue-200 hover:text-blue-100 font-medium" %></li>
+      <li><%= link_to "Log in", new_user_session_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
+      <li><%= link_to "Sign up", new_user_registration_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
     <% end %>
   </ul>
 </nav>

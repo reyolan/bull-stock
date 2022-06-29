@@ -1,0 +1,7 @@
+<h1> Search Stock </h1>
+<p> Input the symbol you want to find </p>
+<p> Access this link to see all the Stock Symbols: <%= link_to 'Symbols', 'https://iextrading.com/trading/eligible-symbols/' %> </p>
+<%= form_with url: search_stocks_path do |form| %>
+  <%= form.text_field :symbol %>
+  <%= form.submit "Search Stock" %>
+<% end %>

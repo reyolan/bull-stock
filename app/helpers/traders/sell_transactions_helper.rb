@@ -1,0 +1,2 @@
+module Traders::SellTransactionsHelper
+end

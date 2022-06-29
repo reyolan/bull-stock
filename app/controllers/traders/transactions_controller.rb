@@ -1,7 +1,6 @@
 # Trader User Story #7
 class Traders::TransactionsController < ApplicationController
   def index
-    # User Story #7
-    # @transactions = current_user.transactions
+    @transactions = current_user.transactions.order(created_at: :desc)
   end
 end

@@ -1,0 +1,15 @@
+<% if object.errors.any? %>
+  <div class="bg-slate-300 flex w-fit rounded border-2 border-red-400 m-auto mt-4 mb-6" id="error_explanation">
+    <div class="w-20 bg-red-400 text-xl flex justify-center items-center p-6">
+      <div class="border-2 rounded-full p-4 h-12 w-12 flex justify-center items-center border-slate-300 text-slate-300">X</div>
+    </div>
+    <div class="p-4">
+      <p class="font-medium text-lg">There <%= format_auxiliary_verb(object.errors.count) %> <%= pluralize(object.errors.count, "error").upcase%> in your submission. </p>
+      <ul class="list-disc list-inside">
+        <% object.errors.full_messages.each do |message| %>
+          <li> <%= message %>. </li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+<% end %>

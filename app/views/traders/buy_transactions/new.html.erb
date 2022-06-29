@@ -1,0 +1,16 @@
+<%= render 'shared/error_message', object: @transaction %>
+<h1> <%= @quote.symbol %> </h1>
+<p>Company Name: <%= @quote.company_name %></p>
+<p>Price: <%= @quote.latest_price %></p>
+<h2> Purchase a share (1, 10, 0.5, 1.5) </h2>
+<%#= if current_user.approved? %>
+<%= form_with scope: :buy_transaction, url: buy_transactions_path do |f| %>
+  <%= f.hidden_field :symbol, value: @quote.symbol %>
+  <%= f.hidden_field :company_name, value: @quote.company_name %>
+  <%= f.hidden_field :unit_price, value: @quote.latest_price %>
+  <%= f.number_field :quantity, step: 0.1 %>
+  <%= f.submit "Purchase Stock" %>
+<% end %>
+<%# else %>
+<p class='bg-red-400 rounded-md p-4 text-xl font-bold'> Please wait for admin approval to purchase a stock. </p>
+<%# end %>
