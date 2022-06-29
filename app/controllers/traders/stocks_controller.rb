@@ -2,9 +2,8 @@
 class Traders::StocksController < ApplicationController
   def index
     # User Story #6
-    @stocks = current_user.stocks
+    @stocks = current_user.stocks.order(:symbol)
   end
-
     # Stock.transaction do
     #   current_user.stocks.create!(stock_params)
     #   # log transaction

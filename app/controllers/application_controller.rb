@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(*)
-    current_user.admin? ? traders_path : portfolio_path
+    current_user.admin? ? traders_path : trader_stocks_path
   end
 
   def authenticate_trader

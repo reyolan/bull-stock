@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_06_27_121851) do
     t.decimal "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["symbol"], name: "index_stocks_on_symbol"
     t.index ["user_id"], name: "index_stocks_on_user_id"
   end
 
@@ -34,7 +35,7 @@ ActiveRecord::Schema.define(version: 2022_06_27_121851) do
     t.decimal "unit_price"
     t.decimal "quantity"
     t.decimal "amount"
-    t.string "transaction_type"
+    t.integer "transaction_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_transactions_on_user_id"

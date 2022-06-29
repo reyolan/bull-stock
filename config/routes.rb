@@ -10,18 +10,17 @@ Rails.application.routes.draw do
   end
 
   scope module: 'traders' do
-    resources :stocks, except: :index
+    resources :stocks, only: :index, path: 'portfolio', as: 'trader_stocks'
 
-    resources :bought_stocks, only: :create
-    patch 'bought_stocks/:symbol', to: 'bought_stocks#update', as: 'bought_stock'
+    resources :buy_transactions, only: :create, path: 'buy'
+    get 'buy/:symbol', to: 'buy_transactions#new', as: 'new_buy_transaction'
 
-    resources :sold_stocks, only: :create
-    get 'sold_stocks/:symbol', to: 'sold_stocks#new', as: 'new_sold_stock'
+    resources :sell_transactions, only: :create, path: 'sell'
+    get 'sell/:symbol', to: 'sell_transactions#new', as: 'new_sell_transaction'
 
-    get 'portfolio', to: 'stocks#index'
-    resources :transactions, as: 'trader_transactions'
+    resources :transactions, only: :index, as: 'trader_transactions', path: 'portfolio/transactions'
+
     resources :search_stocks, only: %i[new create]
-    get 'search_stocks/:symbol', to: 'search_stocks#show', as: 'search_stock'
   end
 
   root 'static_pages#home'

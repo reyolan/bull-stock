@@ -7,7 +7,7 @@ class CreateTransactions < ActiveRecord::Migration[6.1]
       t.decimal :unit_price
       t.decimal :quantity
       t.decimal :amount
-      t.string :transaction_type
+      t.integer :transaction_type
 
       t.timestamps
     end

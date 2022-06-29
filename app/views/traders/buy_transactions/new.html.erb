@@ -1,9 +1,10 @@
+<%= render 'shared/error_message', object: @transaction %>
 <h1> <%= @quote.symbol %> </h1>
 <p>Company Name: <%= @quote.company_name %></p>
 <p>Price: <%= @quote.latest_price %></p>
-<h2> Purchase a share </h2>
+<h2> Purchase a share (1, 10, 0.5, 1.5) </h2>
 <%#= if current_user.approved? %>
-<%= form_with scope: :bought_stock, url: check_if_new_url(@stock), method: check_if_new_method(@stock) do |f| %>
+<%= form_with scope: :buy_transaction, url: buy_transactions_path do |f| %>
   <%= f.hidden_field :symbol, value: @quote.symbol %>
   <%= f.hidden_field :company_name, value: @quote.company_name %>
   <%= f.hidden_field :unit_price, value: @quote.latest_price %>

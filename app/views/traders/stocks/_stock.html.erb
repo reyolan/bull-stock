@@ -4,8 +4,8 @@
   <td><%= stock.quantity %></td>
   <td>$<%= stock.unit_price.round(2) %></td>
   <td>$<%= stock.amount.round(2) %></td>
-  <td><%= link_to search_stock_path(stock.symbol), class: 'bg-green-400 mr-2' do %>
+  <td><%= link_to new_buy_transaction_path(stock.symbol), class: 'bg-green-400 mr-2' do %>
       BUY<i class="las la-coins"></i>
-    <% end %> <%= link_to new_sold_stock_path(stock.symbol), class: 'bg-red-200' do %>
+    <% end %> <%= link_to new_sell_transaction_path(stock.symbol), class: 'bg-red-200' do %>
       SELL<i class="las la-money-bill-wave"></i> <% end %> </td>
 </tr>
