@@ -10,16 +10,15 @@ class Traders::SellTransactionsController < ApplicationController
   def create
     @transaction = current_user.transactions.build(sell_transaction_params)
     @stock = existing_stock
-    if @transaction.valid? && @stock.valid?
-      ActiveRecord::Base.transaction do
-        @transaction.save_sell
-        @stock.sell_share(sold_stock_params)
-      end
-      redirect_to trader_stocks_url, success: "Successfully sold shares of #{@stock.company_name}."
-    else
-        request_iex_quote
-        render :new
+
+    Transaction.transaction do
+      @transaction.save_sell!
+      @stock.sell_share!(sold_stock_params)
     end
+    redirect_to trader_stocks_url, success: "Successfully sold shares of #{@stock.company_name}."
+  rescue ActiveRecord::RecordInvalid
+    request_iex_quote
+    render :new
   end
 
   private

@@ -5,14 +5,14 @@ class Transaction < ApplicationRecord
 
   enum transaction_type: %i[buy sell]
 
-  def save_buy
+  def save_buy!
     self.transaction_type = 0
-    save
+    save!
   end
 
-  def save_sell
+  def save_sell!
     self.transaction_type = 1
-    save
+    save!
   end
 
   private

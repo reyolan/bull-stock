@@ -12,16 +12,14 @@ class Traders::BuyTransactionsController < ApplicationController
     @transaction = current_user.transactions.build(buy_transaction_params)
     @stock = existing_or_new_stock
 
-    if @transaction.valid?
-      ActiveRecord::Base.transaction do
-        @transaction.save_buy
-        stock_update || @stock.save
-      end
-      redirect_to trader_stocks_url, success: "Successfully bought shares of #{@stock.company_name}."
-    else
-      iex_quote
-      render 'traders/search_stocks/show'
+    Transaction.transaction do
+      @transaction.save_buy!
+      stock_exists? ? @stock.buy_share!(buy_transaction_params) : @stock.save!
     end
+    redirect_to trader_stocks_url, success: "Successfully bought shares of #{@stock.company_name}."
+  rescue ActiveRecord::RecordInvalid
+    request_iex_quote
+    render :new
   end
 
   private
@@ -31,14 +29,18 @@ class Traders::BuyTransactionsController < ApplicationController
   end
 
   def stock_update
-    current_user.stocks.exists?(symbol: params[:buy_transaction][:symbol]) && @stock.buy_share(buy_transaction_params)
+    @stock.buy_share!(buy_transaction_params)
+  end
+
+  def stock_exists?
+    current_user.stocks.exists?(symbol: params[:buy_transaction][:symbol])
   end
 
   def existing_or_new_stock
     current_user.stocks.find_by(symbol: params[:buy_transaction][:symbol]) || current_user.stocks.build(buy_transaction_params)
   end
 
-  def iex_quote
+  def request_iex_quote
     request_iex_resource
     @quote = @client.quote(params[:buy_transaction][:symbol])
   end
