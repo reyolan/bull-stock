@@ -1,4 +1,4 @@
-<%= link_to "#{display_purchase_or_search} Stock", new_search_stock_path %>
+<%= link_to "#{display_purchase_or_search} Stock", new_search_stock_path, class: 'bg-green-400 rounded-md p-2 font-bold hover:bg-green-500' %>
 <% if current_user.stocks.count > 0 %>
   <%= link_to 'Show Transactions', trader_transactions_path%>
   <table class='bg-green-100 rounded'>
