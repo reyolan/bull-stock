@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_trader
-    raise ActionController::RoutingError, 'Not Found' unless current_user.admin?
+    raise ActionController::RoutingError, 'Not Found' unless current_user.trader?
   end
 
   def authenticate_admin
-    raise ActionController::RoutingError, 'Not Found' unless current_user.trader?
+    raise ActionController::RoutingError, 'Not Found' unless current_user.admin?
   end
 
   def check_if_trader_approved

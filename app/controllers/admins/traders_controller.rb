@@ -1,7 +1,7 @@
 # Admin User Story #1 - #4
 class Admins::TradersController < ApplicationController
   before_action :authenticate_admin
-  
+
   def index
     # User Story #4
       @traders = User.where "role = ?", 0
