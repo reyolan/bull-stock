@@ -8,7 +8,7 @@
     <p class='text-xl text-right font-bold'>Company Name: </p>
     <p class='text-left text-xl'><%= @quote.company_name %></p>
     <p class='text-xl text-right font-bold'>Price: </p>
-    <p class='text-left text-xl'>$<%= @quote.latest_price %></p>
+    <p class='text-left text-xl'><%= dollarize(@quote.latest_price) %></p>
   </div>
   <% if current_user.approved? %>
     <%= form_with scope: :buy_transaction, url: buy_transactions_path, class: 'mt-2' do |f| %>
