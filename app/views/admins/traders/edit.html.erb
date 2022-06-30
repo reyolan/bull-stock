@@ -9,7 +9,7 @@
   </div>
 <% end %>
 <h2>Edit <%= @trader.email%></h2>
-<%= form_for(@trader, url: user_registration_path, html: { method: :put }) do |f| %>
+<%= form_with model: @trader, url: trader_path do |f| %>
   <table>
     <tbody>
       <tr>
