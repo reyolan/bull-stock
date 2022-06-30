@@ -1,11 +1,11 @@
 <tr class='text-center'>
-  <td class='p-1'><%= stock.symbol %></td>
-  <td><%= stock.company_name %></td>
-  <td><%= stock.quantity %></td>
-  <td>$<%= stock.unit_price.round(2) %></td>
-  <td>$<%= stock.amount.round(2) %></td>
-  <td><%= link_to new_buy_transaction_path(stock.symbol), class: 'bg-green-400 mr-2' do %>
+  <td class='p-4'><%= stock.symbol %></td>
+  <td class='p-4'><%= stock.company_name %></td>
+  <td class='p-4'><%= stock.quantity %></td>
+  <td class='p-4'><%= dollarize(stock.unit_price.round(2)) %></td>
+  <td class='p-4'><%= dollarize(stock.amount.round(2)) %></td>
+  <td class='p-4 flex flex-wrap'><%= link_to new_buy_transaction_path(stock.symbol), class: 'bg-green-400 hover:bg-green-500 rounded mr-2 p-2 font-medium' do %>
       <i class="las la-coins"></i>BUY
-    <% end %> <%= link_to new_sell_transaction_path(stock.symbol), class: 'bg-red-200' do %>
+    <% end %> <%= link_to new_sell_transaction_path(stock.symbol), class: 'bg-red-400 hover:bg-red-500 rounded p-2 font-medium' do %>
       <i class="las la-money-bill-wave"></i>SELL <% end %> </td>
 </tr>

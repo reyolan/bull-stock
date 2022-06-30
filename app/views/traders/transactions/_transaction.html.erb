@@ -1,8 +1,9 @@
 <tr class='text-center'>
-  <td class='p-1'><%= transaction.symbol %></td>
-  <td><%= transaction.company_name %></td>
-  <td><%= transaction.quantity %></td>
-  <td>$<%= transaction.unit_price.round(2) %></td>
-  <td>$<%= transaction.amount %></td>
-  <td><%= transaction.transaction_type&.upcase %></td>
+  <td class='p-4'><%= local_time(transaction.created_at, '%Y-%m-%d %l:%M %p') %></td>
+  <td class="<%=turn_to_red_or_green(transaction.transaction_type)%> p-4 text-bold"><%= transaction.transaction_type&.upcase %></td>
+  <td class='p-4'><%= transaction.symbol %></td>
+  <td class='p-4'><%= transaction.company_name %></td>
+  <td class='p-4'><%= transaction.quantity %></td>
+  <td class='p-4'><%= dollarize(transaction.unit_price.round(2)) %></td>
+  <td class='p-4'><%= dollarize(transaction.amount) %></td>
 </tr>

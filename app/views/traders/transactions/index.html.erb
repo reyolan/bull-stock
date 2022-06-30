@@ -1,13 +1,24 @@
-<%= link_to 'Purchase Stock', new_search_stock_path %>
-<%= link_to 'Show Portfolio', trader_stocks_path %>
-<table class='bg-green-100 rounded'>
-  <tr class='bg-green-500'>
-    <th class='p-1'>Symbol</th>
-    <th>Company Name</th>
-    <th>Quantity</th>
-    <th>Unit Price</th>
-    <th>Amount</th>
-    <th>Transaction Type</th>
-  </tr>
-  <%= render @transactions %>
-</table>
+<div class='flex flex-col items-center'>
+  <div class='flex flex-wrap'>
+    <%= link_to "#{display_purchase_or_search} Stock", new_search_stock_path, class: 'bg-green-400 rounded-md p-2 font-bold hover:bg-green-500 text-xl' %>
+    <%= link_to 'Show Portfolio', trader_stocks_path, class: 'bg-green-400 rounded-md p-2 font-bold hover:bg-green-500 text-xl ml-4'%>
+  </div>
+  <div class='overflow-auto mt-4 w-[calc(100%-64px)]'>
+    <table class='bg-blue-100 rounded m-auto'>
+      <thead>
+        <tr class='bg-blue-500 text-lg'>
+          <th class='p-2'>Time</th>
+          <th class='p-2'>Transaction Type</th>
+          <th class='p-2'>Symbol</th>
+          <th class='p-2'>Company Name</th>
+          <th class='p-2'>Quantity</th>
+          <th class='p-2'>Unit Price</th>
+          <th class='p-2'>Amount</th>
+        </tr>
+      </thead>
+      <tbody class='overflow-x-scroll'>
+        <%= render @transactions %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,8 +1,9 @@
 class Traders::BuyTransactionsController < ApplicationController
-  before_action :request_iex_resource
+  before_action :authenticate_trader, :request_iex_resource
 
   def new
     @quote = @client.quote(params[:symbol])
+    @logo = @client.logo(params[:symbol])
     @transaction = current_user.transactions.build
   rescue IEX::Errors::SymbolNotFoundError
     redirect_back(fallback_location: new_search_stock_url, danger: 'Stock not found.')

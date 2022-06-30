@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_scope :user do
+    get '/users', to: 'devise/registrations#new'
+  end
 
   scope module: 'admins' do
     resources :pending_traders, only: :index
     resources :approved_traders, only: :create
     resources :traders
     resources :transactions
-
   end
 
   scope module: 'traders' do
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
 
     resources :transactions, only: :index, as: 'trader_transactions', path: 'portfolio/transactions'
 
-    resources :search_stocks, only: %i[new create]
+    resource :search_stock, only: %i[new create], path: 'search'
   end
 
   root 'static_pages#home'

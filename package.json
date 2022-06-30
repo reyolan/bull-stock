@@ -17,6 +17,7 @@
     "@types/rails__ujs": "^6.0.1",
     "@types/turbolinks": "^5.2.0",
     "autoprefixer": "^10.4.7",
+    "local-time": "^2.1.0",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.4",
     "vite": "^2.9.1",

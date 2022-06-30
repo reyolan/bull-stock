@@ -1,0 +1,22 @@
+<% if flash[:success] || flash[:notice] %>
+  <div class="bg-slate-100 flex w-fit rounded border border-green-400 m-auto mt-4 mb-6" id="alert-success">
+    <div class="w-20 bg-green-400 text-xl flex justify-center items-center p-6">
+      <div class="border-2 rounded-full p-4 h-12 w-12 flex justify-center items-center text-slate-200">&#10003;</div>
+    </div>
+    <div class="p-4 flex flex-col justify-center">
+      <p class="font-medium text-xl">SUCCESS</p>
+      <p class="text-lg" id="alert-message"><%= flash[:success] || flash[:notice] %></p>
+    </div>
+  </div>
+<% end %>
+<% if flash[:danger] || flash[:alert] %>
+  <div class="bg-slate-100 flex w-fit rounded m-auto mt-4 mb-6 border border-red-400" id="alert-danger">
+    <div class="w-20 bg-red-400 text-xl flex justify-center items-center p-6">
+      <div class="border-2 rounded-full p-4 h-12 w-12 flex justify-center items-center text-slate-200">X</div>
+    </div>
+    <div class="p-4 flex flex-col justify-center">
+      <p class="font-medium text-xl">ERROR</p>
+      <p class="text-lg" id="alert-message"><%= flash[:danger] || flash[:alert] %></p>
+    </div>
+  </div>
+<% end %>

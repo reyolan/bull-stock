@@ -1,5 +1,5 @@
 class Traders::SearchStocksController < ApplicationController
-  before_action :request_iex_resource
+  before_action :authenticate_trader, :request_iex_resource
 
   def new; end
 
