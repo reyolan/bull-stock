@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
     raise ActionController::RoutingError, 'Not Found' unless current_user.admin?
   end
 
-  def check_if_trader_approved
-    redirect_to root_url, danger: 'Please wait for your account approval.' unless current_user.approved?
+  def authenticate_approved_trader
+    raise ActionController::RoutingError, 'Not Found' unless current_user.approved?
   end
 
   def request_iex_resource
