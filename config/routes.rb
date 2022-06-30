@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
     resources :transactions, only: :index, as: 'trader_transactions', path: 'portfolio/transactions'
 
-    resources :search_stocks, only: %i[new create]
+    resources :search_stocks, only: %i[new create], path: 'search'
   end
 
   root 'static_pages#home'
