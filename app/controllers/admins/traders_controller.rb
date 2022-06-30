@@ -1,58 +1,49 @@
-# Admin User Story #1 - #4
 class Admins::TradersController < ApplicationController
   before_action :authenticate_admin
+  before_action :set_trader, only: %i[edit update show]
 
   def index
-    # User Story #4
-      @traders = User.where "role = ?", 0
+    @traders = User.traders
   end
 
   def show
-    # User Story #3
-    @trader = User.find params[:id]
+    @trader = User.traders.find(params[:id])
   end
 
   def new
     @trader = User.new
-    # User Story #1
   end
 
   def create
-    # User Story #1
-    @trader = User.create trader_params
-      respond_to do |format|
-        if  @trader.save
-            format.html { redirect_to traders_path, notice: "Trader was successfully created!" }
-        else
-            format.html { render :new, status: :unprocessable_entity }
-        end
-      end
+    @trader = User.new(trader_params)
+    if @trader.save_trader
+      redirect_to traders_path, notice: 'Trader was successfully created.'
+    else
+      render :new
+    end
   end
 
-  def edit
-    # User Story #2
-    @trader = User.find params[:id]
-  end
+  def edit; end
 
   def update
-    # User Story #2
-    @trader = User.find params[:id]
-    respond_to do |format|
-      if @trader.update(trader_update_params)
-        format.html { redirect_to traders_path(@trader), notice: "Trader details was successfully updated!" }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @trader.update(trader_update_params)
+      redirect_to traders_path(@trader), notice: 'Trader details was successfully updated.'
+    else
+      render :edit
     end
   end
 
   private
 
   def trader_params
-    params.require(:user).permit(:email,:password,:password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
   def trader_update_params
-    params.require(:user).permit(:email,:approved)
+    params.require(:user).permit(:email, :approved)
+  end
+
+  def set_trader
+    @trader = User.traders.find(params[:id])
   end
 end

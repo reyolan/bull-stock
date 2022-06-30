@@ -9,6 +9,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable
 
+  scope :traders, -> { where(role: '1') }
+
+  def save_trader
+    self.approved = true
+    save
+  end
+
   private
 
   def set_default_role
