@@ -71,3 +71,6 @@ gem 'devise'
 
 # iex ruby client
 gem 'iex-ruby-client'
+
+# offsets UTC time to local timezone
+gem 'local_time'

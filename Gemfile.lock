@@ -139,6 +139,7 @@ GEM
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
+    local_time (2.1.0)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -342,6 +343,7 @@ DEPENDENCIES
   devise
   htmlbeautifier
   iex-ruby-client
+  local_time
   net-imap
   net-pop
   net-smtp
