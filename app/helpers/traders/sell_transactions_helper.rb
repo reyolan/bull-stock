@@ -17,4 +17,3 @@ module Traders::SellTransactionsHelper
     end
   end
 end
-

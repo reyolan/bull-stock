@@ -1,6 +1,6 @@
 <div class= 'bg-slate-100 max-w-lg m-auto p-6 rounded-md mt-4 text-center'>
   <h1 class='text-center text-4xl font-bold'> <%= display_purchase_or_search %> </h1>
-  <%= form_with url: search_stocks_path, class: 'mt-2' do |form| %>
+  <%= form_with url: search_stock_path, class: 'mt-2' do |form| %>
     <%= form.label :symbol, "Input the symbol you want to #{display_purchase_or_search.downcase}:", class: 'text-xl' %>
     <%= form.text_field :symbol, class: 'rounded-lg border-slate-300 focus:border-green-600 focus:ring-green-600 mt-2 w-full text-center text-xl', placeholder: "Symbol to #{display_purchase_or_search.downcase} (e.g. MSFT, AMZN)"  %>
     <div>
