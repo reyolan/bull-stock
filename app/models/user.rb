@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_many :stocks
-  has_many :transactions
+  has_many :stocks, dependent: :destroy
+  has_many :transactions, dependent: :destroy
 
   enum role: %i[admin trader]
   after_initialize :set_default_role, :if => :new_record?

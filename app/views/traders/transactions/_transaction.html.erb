@@ -1,8 +1,8 @@
-<tr class='text-center'>
+<tr class='text-center '>
   <td class='p-1'><%= transaction.symbol %></td>
   <td><%= transaction.company_name %></td>
   <td><%= transaction.quantity %></td>
   <td>$<%= transaction.unit_price.round(2) %></td>
   <td>$<%= transaction.amount %></td>
-  <td><%= transaction.transaction_type&.upcase %></td>
+  <td class="<%=turn_to_red_or_green(transaction.transaction_type)%> text-bold"><%= transaction.transaction_type&.upcase %></td>
 </tr>

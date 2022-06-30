@@ -1,6 +1,10 @@
-<%= link_to "#{display_purchase_or_search} Stock", new_search_stock_path, class: 'bg-green-400 rounded-md p-2 font-bold hover:bg-green-500' %>
+<div class='flex flex-wrap'>
+  <%= link_to "#{display_purchase_or_search} Stock", new_search_stock_path, class: 'bg-green-400 rounded-md p-2 font-bold hover:bg-green-500 text-xl' %>
+  <% if current_user.stocks.count > 0 %>
+    <%= link_to 'Show Transactions', trader_transactions_path, class: 'bg-blue-400 rounded-md p-2 font-bold hover:bg-blue-500 text-xl'%>
+  <% end %>
+</div>
 <% if current_user.stocks.count > 0 %>
-  <%= link_to 'Show Transactions', trader_transactions_path%>
   <table class='bg-green-100 rounded'>
     <tr class='bg-green-500'>
       <th class='p-1'>Symbol</th>
