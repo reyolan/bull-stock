@@ -15,8 +15,8 @@
       <%= f.hidden_field :symbol, value: @quote.symbol %>
       <%= f.hidden_field :company_name, value: @quote.company_name %>
       <%= f.hidden_field :unit_price, value: @quote.latest_price %>
-      <%= f.label :quantity, "Purchase a share of #{@quote.symbol} (e.g. 1, 10, 0.5, 1.5):", class: 'text-xl'%>
-      <%= f.number_field :quantity, step: 0.1, class: 'rounded-lg border-slate-300 focus:border-green-600 focus:ring-green-600 mt-2 w-full text-center text-xl' %>
+      <%= f.label :quantity, "Purchase a share of #{@quote.symbol}:", class: 'text-xl'%>
+      <%= f.number_field :quantity, step: 0.1, class: 'rounded-lg border-slate-300 focus:border-green-600 focus:ring-green-600 mt-2 w-full text-center text-xl', placeholder: 'Number of shares to buy (e.g. 1, 2, 0.5, 1,5)' %>
       <%= f.submit "Purchase Stock", class: 'bg-green-500 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-green-600 mt-4 w-full' %>
     <% end %>
   <% else %>

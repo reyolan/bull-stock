@@ -5,15 +5,17 @@
   <% end %>
 </div>
 <% if current_user.stocks.count > 0 %>
-  <table class='bg-green-100 rounded'>
-    <tr class='bg-green-500'>
-      <th class='p-1'>Symbol</th>
-      <th>Company Name</th>
-      <th>Quantity</th>
-      <th>Unit Price</th>
-      <th>Amount</th>
-      <th>Actions</th>
-    </tr>
-    <%= render @stocks %>
-  </table>
+  <div class='overflow-auto'>
+    <table class='bg-green-100 rounded'>
+      <tr class='bg-green-500'>
+        <th class='p-1'>Symbol</th>
+        <th>Company Name</th>
+        <th>Quantity</th>
+        <th>Unit Price</th>
+        <th>Amount</th>
+        <th>Actions</th>
+      </tr>
+      <%= render @stocks %>
+    </table>
+  </div>
 <% end %>

@@ -15,4 +15,8 @@ module ApplicationHelper
   def display_purchase_or_search
     current_user.approved? ? 'Purchase' : 'Search'
   end
+
+  def dollarize(number)
+    "$#{number}"
+  end
 end
