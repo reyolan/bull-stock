@@ -11,7 +11,7 @@ class Traders::SellStockTransactionsController < ApplicationController
     @transaction = current_user.stock_transactions.build(sell_transaction_params)
     @stock = existing_stock
 
-    StockTransaction.transaction do
+    ActiveRecord::Base.transaction do
       @transaction.save_sell!
       @stock.sell_share!(sold_stock_params)
     end

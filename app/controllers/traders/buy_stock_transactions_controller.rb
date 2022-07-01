@@ -13,7 +13,7 @@ class Traders::BuyStockTransactionsController < ApplicationController
     @transaction = current_user.stock_transactions.build(buy_transaction_params)
     @stock = existing_or_new_stock
 
-    StockTransaction.transaction do
+    ActiveRecord::Base.transaction do
       @transaction.save_buy!
       stock_exists? ? @stock.buy_share!(buy_transaction_params) : @stock.save!
     end

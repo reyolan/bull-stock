@@ -5,17 +5,18 @@ class Traders::DepositBalanceTransactionsController < ApplicationController
 
   def create
     @deposit_transaction = current_user.balance_transactions.build(deposit_transaction_params)
-    if @deposit_transaction.save
-      current_user.balance.deposit(@deposit_transaction.amount)
-      redirect_to trader_balance_transactions_url, success: "Successfully deposited $#{@deposit_transaction.amount}."
-    else
-      render :new
+    ActiveRecord::Base.transaction do
+      current_user.deposit!(@deposit_transaction.amount)
+      @deposit_transaction.log_deposit!
     end
+    redirect_to trader_balance_transactions_url, success: "Successfully withdrew $#{@deposit_transaction.amount}."
+  rescue ActiveRecord::RecordInvalid
+    render :new
   end
 
   private
 
   def deposit_transaction_params
-    params.require(:deposit_transaction).permit(:balance)
+    params.require(:deposit_transaction).permit(:amount)
   end
 end

@@ -19,14 +19,14 @@ class User < ApplicationRecord
     save
   end
 
-  def deposit(amount_to_add)
-    balance += amount_to_add
-    update(balance:)
+  def deposit!(amount_to_add)
+    balance = self.balance + amount_to_add
+    update!(balance:)
   end
 
-  def withdraw(amount_to_subtract)
-    balance -= amount_to_subtract
-    update(balance:)
+  def withdraw!(amount_to_subtract)
+    balance = self.balance - amount_to_subtract
+    update!(balance:)
   end
 
   private

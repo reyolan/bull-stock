@@ -1,0 +1,9 @@
+<%= render 'shared/error_message', object: @withdraw_transaction %>
+<%= render 'shared/error_message', object: @current_user %>
+<div class= 'bg-slate-100 max-w-lg m-auto p-6 rounded-md mt-4 text-center'>
+  <h1 class='text-center text-4xl font-bold'>Withdraw Amount ($)</h1>
+  <%= form_with scope: :withdraw_transaction, url: withdraw_balance_transactions_path do |form| %>
+    <%= form.number_field :amount, class: 'rounded-lg border-slate-300 focus:border-red-500 focus:ring-red-500 mt-2 w-full text-center text-xl', placeholder: 'Amount to deposit (50, 100)' %>
+    <%= form.submit "Confirm Withdrawal", class: 'bg-red-400 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-red-500 mt-4 w-full'%>
+  <% end %>
+</div>
