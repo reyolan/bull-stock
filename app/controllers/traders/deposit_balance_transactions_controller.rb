@@ -1,4 +1,6 @@
 class Traders::DepositBalanceTransactionsController < ApplicationController
+  before_action :authenticate_approved_trader
+  
   def new
     @deposit_transaction = current_user.balance_transactions.build
   end

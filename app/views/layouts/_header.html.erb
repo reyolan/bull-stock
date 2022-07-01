@@ -16,7 +16,9 @@
         <li><%= link_to "Home", traders_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
         <li><%= link_to "Pending Traders", pending_traders_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
       <% else %>
-        <li><%= link_to "Balance", trader_balance_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
+        <% if current_user.approved? %>
+          <li><%= link_to "Balance", trader_balance_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
+        <% end %>
         <li><%= link_to "Portfolio", trader_stocks_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
       <% end %>
       <li><%= link_to "Settings", edit_user_registration_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>

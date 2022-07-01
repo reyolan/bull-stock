@@ -1,4 +1,6 @@
 class Traders::WithdrawBalanceTransactionsController < ApplicationController
+  before_action :authenticate_approved_trader
+  
   def new
     @withdraw_transaction = current_user.balance_transactions.build
   end

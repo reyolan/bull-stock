@@ -1,5 +1,5 @@
 class Traders::SellStockTransactionsController < ApplicationController
-  before_action :authenticate_trader, :authenticate_approved_trader, :request_iex_resource
+  before_action :authenticate_approved_trader, :request_iex_resource
 
   def new
     @quote = @client.quote(params[:symbol])
