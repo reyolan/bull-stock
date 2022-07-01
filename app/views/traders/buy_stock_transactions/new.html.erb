@@ -12,11 +12,11 @@
     <p class='text-xl text-right font-bold'>Company Name: </p>
     <p class='text-left text-xl'><%= @quote.company_name %></p>
     <p class='text-xl text-right font-bold'>Price: </p>
-    <p class='text-left text-xl'><%= dollarize(@quote.latest_price) %></p>
+    <p class='text-left text-xl'><%= number_to_currency(@quote.latest_price) %></p>
   </div>
   <% if current_user.approved? %>
     <div class='bg-slate-200 mt-4 p-2 rounded-md'>
-      <p class='text-lg font-bold'>You currently have: <%=dollarize(current_user.balance)%></p>
+      <p class='text-lg font-bold'>You currently have: <%=number_to_currency(current_user.balance)%></p>
       <p class='text-lg font-bold'>You can purchase a maximum of <%=max_share(@quote.latest_price, current_user.balance)%> shares.</p>
       <%= form_with scope: :buy_transaction, url: buy_stock_transactions_path, class: 'mt-2' do |f| %>
         <%= f.hidden_field :symbol, value: @quote.symbol %>

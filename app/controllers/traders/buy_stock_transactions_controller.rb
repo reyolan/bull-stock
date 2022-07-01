@@ -14,6 +14,7 @@ class Traders::BuyStockTransactionsController < ApplicationController
     @stock = existing_or_new_stock
     @current_user_balance = current_user.subtract_amount(@transaction.amount)
 
+    debugger
     ActiveRecord::Base.transaction do
       @transaction.save!
       @stock.save!
