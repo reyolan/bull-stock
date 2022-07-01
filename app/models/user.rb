@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :stocks, dependent: :destroy
-  has_many :transactions, dependent: :destroy
+  has_many :stock_transactions, dependent: :destroy
   validates :balance, numericality: { greater_than_or_equal_to: 0 }
 
   enum role: %i[admin trader]

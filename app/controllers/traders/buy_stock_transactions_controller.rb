@@ -4,16 +4,16 @@ class Traders::BuyStockTransactionsController < ApplicationController
   def new
     @quote = @client.quote(params[:symbol])
     @logo = @client.logo(params[:symbol])
-    @transaction = current_user.transactions.build
+    @transaction = current_user.stock_transactions.build
   rescue IEX::Errors::SymbolNotFoundError
     redirect_back(fallback_location: new_search_stock_url, danger: 'Stock not found.')
   end
 
   def create
-    @transaction = current_user.transactions.build(buy_transaction_params)
+    @transaction = current_user.stock_transactions.build(buy_transaction_params)
     @stock = existing_or_new_stock
 
-    Transaction.transaction do
+    StockTransaction.transaction do
       @transaction.save_buy!
       stock_exists? ? @stock.buy_share!(buy_transaction_params) : @stock.save!
     end

@@ -1,4 +1,4 @@
-class Transaction < ApplicationRecord
+class StockTransaction < ApplicationRecord
   belongs_to :user
   validates :quantity, presence: true, numericality: { greater_than: 0 }
   before_create :total_amount

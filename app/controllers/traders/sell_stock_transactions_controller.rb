@@ -4,14 +4,14 @@ class Traders::SellStockTransactionsController < ApplicationController
   def new
     @quote = @client.quote(params[:symbol])
     @stock = current_user.stocks.find_by!(symbol: params[:symbol])
-    @transaction = current_user.transactions.build
+    @transaction = current_user.stock_transactions.build
   end
 
   def create
-    @transaction = current_user.transactions.build(sell_transaction_params)
+    @transaction = current_user.stock_transactions.build(sell_transaction_params)
     @stock = existing_stock
 
-    Transaction.transaction do
+    StockTransaction.transaction do
       @transaction.save_sell!
       @stock.sell_share!(sold_stock_params)
     end
