@@ -1,6 +1,10 @@
 class Traders::WithdrawBalanceTransactionsController < ApplicationController
   before_action :authenticate_approved_trader
-  
+
+  def index
+    @withdraw_transactions = current_user.balance_transactions.withdrawals.order(created_at: :desc)
+  end
+
   def new
     @withdraw_transaction = current_user.balance_transactions.build
   end

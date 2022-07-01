@@ -25,8 +25,8 @@ Rails.application.routes.draw do
 
     resources :balance_transactions, only: :index, as: 'trader_balance_transactions', path: 'balance/transactions'
 
-    resources :deposit_balance_transactions, only: %i[new create], path: 'balance/deposit'
-    resources :withdraw_balance_transactions, only: %i[new create], path: 'balance/withdraw'
+    resources :deposit_balance_transactions, only: %i[index new create], path: 'balance/deposit'
+    resources :withdraw_balance_transactions, only: %i[index new create], path: 'balance/withdraw'
   end
 
   root 'static_pages#home'

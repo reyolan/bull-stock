@@ -4,9 +4,9 @@
     <%= link_to 'Show Portfolio', trader_stocks_path, class: 'bg-green-400 rounded-md p-2 font-bold hover:bg-green-500 text-xl'%>
     <%= link_to 'Show Stock Transactions', trader_stock_transactions_path, class: 'bg-blue-400 rounded-md p-2 font-bold hover:bg-blue-500 text-xl'%>
   </div>
-  <h1 class='font-bold text-4xl mt-4'> Balance Transactions </h1>
+  <h1 class='font-bold text-4xl mt-4'> DEPOSIT Transactions </h1>
   <div class='mt-4'>
-    <%= link_to 'DEPOSIT Transactions', deposit_balance_transactions_path, class: 'bg-blue-400 rounded-md p-2 font-bold hover:bg-blue-500 text-xl'%>
+    <%= link_to 'All Transactions', trader_balance_transactions_path, class: 'bg-blue-400 rounded-md p-2 font-bold hover:bg-blue-500 text-xl'%>
     <%= link_to 'WITHDRAW Transactions', withdraw_balance_transactions_path, class: 'bg-blue-400 rounded-md p-2 font-bold hover:bg-blue-500 text-xl'%>
   </div>
   <div class='overflow-auto mt-4 w-[calc(100%-64px)]'>
@@ -19,7 +19,7 @@
         </tr>
       </thead>
       <tbody class='overflow-x-scroll'>
-        <%= render @balance_transactions %>
+        <%= render @deposit_transactions %>
       </tbody>
     </table>
   </div>

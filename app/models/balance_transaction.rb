@@ -4,6 +4,9 @@ class BalanceTransaction < ApplicationRecord
 
   enum transaction_type: %i[deposit withdraw]
 
+  scope :deposits, -> { where(transaction_type: 0).order(created_at: :desc) }
+  scope :withdrawals, -> { where(transaction_type: 1).order(created_at: :desc) }
+
   def deposit_type
     self.transaction_type = 0
     self
