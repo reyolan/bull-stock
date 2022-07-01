@@ -42,5 +42,6 @@ class Traders::BuyStockTransactionsController < ApplicationController
   def request_iex_quote
     request_iex_resource
     @quote = @client.quote(params[:buy_transaction][:symbol])
+    @logo = @client.logo(params[:buy_transaction][:symbol])
   end
 end
