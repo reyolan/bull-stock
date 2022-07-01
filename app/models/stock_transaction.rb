@@ -1,6 +1,6 @@
 class StockTransaction < ApplicationRecord
   belongs_to :user
-  validates :quantity, presence: true, numericality: { greater_than: 0 }
+  validate :stock_quantity_is_positive
 
   enum transaction_type: %i[buy sell]
 
@@ -14,5 +14,12 @@ class StockTransaction < ApplicationRecord
     self.transaction_type = 1
     self.amount = quantity * unit_price
     self
+  end
+
+  private
+
+  def stock_quantity_is_positive
+    errors.add(:base, 'An input of 0 share is not possible') if quantity.zero?
+    errors.add(:base, 'An input of negative share is not possible') if quantity.negative?
   end
 end

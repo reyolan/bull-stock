@@ -15,9 +15,9 @@ class Traders::BuyStockTransactionsController < ApplicationController
     @current_user_balance = current_user.subtract_amount(@transaction.amount)
 
     ActiveRecord::Base.transaction do
+      @transaction.save!
       @stock.save!
       @current_user_balance.save!
-      @transaction.save!
     end
     redirect_to trader_stocks_url, success: "Successfully bought shares of #{@stock.company_name}."
   rescue ActiveRecord::RecordInvalid
@@ -28,7 +28,7 @@ class Traders::BuyStockTransactionsController < ApplicationController
   private
 
   def existing_or_new_stock
-    current_user.stocks.find_by(symbol: params[:buy_transaction][:symbol]).buy_share(buy_transaction_params) || 
+    current_user.stocks.find_by(symbol: params[:buy_transaction][:symbol])&.buy_share(buy_transaction_params) || 
       current_user.stocks.build(buy_transaction_params)
   end
 

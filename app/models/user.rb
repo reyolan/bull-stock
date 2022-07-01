@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :stock_transactions, dependent: :destroy
   has_many :balance_transactions, dependent: :destroy
 
-  validates :balance, numericality: { greater_than_or_equal_to: 0 }
+  validate :balance_is_positive_or_zero
 
   enum role: %i[admin trader]
   after_initialize :set_default_role, :if => :new_record?
@@ -33,5 +33,9 @@ class User < ApplicationRecord
 
   def set_default_role
     self.role ||= :trader
+  end
+
+  def balance_is_positive_or_zero
+    errors.add(:base, 'Your balance will become negative with the input you entered') if balance.negative?
   end
 end

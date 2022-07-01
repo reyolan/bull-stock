@@ -13,9 +13,9 @@ class Traders::SellStockTransactionsController < ApplicationController
     @current_user_balance = current_user.add_amount(@transaction.amount)
 
     ActiveRecord::Base.transaction do
+      @transaction.save!
       @stock.save!
       @current_user_balance.save!
-      @transaction.save!
     end
     redirect_to trader_stocks_url, success: "Successfully sold #{@stock.quantity} shares of #{@stock.company_name}."
   rescue ActiveRecord::RecordInvalid
