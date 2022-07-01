@@ -8,12 +8,14 @@ class Traders::SellStockTransactionsController < ApplicationController
   end
 
   def create
-    @transaction = current_user.stock_transactions.build(sell_transaction_params)
+    @transaction = current_user.stock_transactions.build(sell_transaction_params).sell_type
     @stock = existing_stock
+    @current_user_balance = current_user.add_amount(@transaction.amount)
 
     ActiveRecord::Base.transaction do
-      @stock.sell_share!(sold_stock_params)
-      @transaction.log_sell!
+      @stock.save!
+      @current_user_balance.save!
+      @transaction.save!
     end
     redirect_to trader_stocks_url, success: "Successfully sold #{@stock.quantity} shares of #{@stock.company_name}."
   rescue ActiveRecord::RecordInvalid
@@ -24,7 +26,7 @@ class Traders::SellStockTransactionsController < ApplicationController
   private
 
   def existing_stock
-    current_user.stocks.find_by!(symbol: params[:sell_transaction][:symbol])
+    current_user.stocks.find_by!(symbol: params[:sell_transaction][:symbol]).sell_share(sell_transaction_params)
   end
 
   def sold_stock_params

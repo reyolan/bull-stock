@@ -4,13 +4,13 @@ class BalanceTransaction < ApplicationRecord
 
   enum transaction_type: %i[deposit withdraw]
 
-  def log_deposit!
+  def deposit_type
     self.transaction_type = 0
-    save!
+    self
   end
 
-  def log_withdraw!
+  def withdraw_type
     self.transaction_type = 1
-    save!
+    self
   end
 end

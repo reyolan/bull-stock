@@ -4,10 +4,11 @@ class Traders::DepositBalanceTransactionsController < ApplicationController
   end
 
   def create
-    @deposit_transaction = current_user.balance_transactions.build(deposit_transaction_params)
+    @deposit_transaction = current_user.balance_transactions.build(deposit_transaction_params).deposit_type
+    @current_user_balance = current_user.add_amount(@deposit_transaction.amount)
     ActiveRecord::Base.transaction do
-      current_user.deposit!(@deposit_transaction.amount)
-      @deposit_transaction.log_deposit!
+      @current_user_balance.save!
+      @deposit_transaction.save!
     end
     redirect_to trader_balance_transactions_url, success: "Successfully deposited $#{@deposit_transaction.amount}."
   rescue ActiveRecord::RecordInvalid
