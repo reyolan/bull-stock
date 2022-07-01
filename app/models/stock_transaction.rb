@@ -1,23 +1,23 @@
 class StockTransaction < ApplicationRecord
   belongs_to :user
   validates :quantity, presence: true, numericality: { greater_than: 0 }
-  before_create :total_amount
 
   enum transaction_type: %i[buy sell]
 
-  def save_buy!
+  def buy_type
     self.transaction_type = 0
-    save!
+    calculate_total_amount
+    self
   end
 
-  def save_sell!
+  def log_sell!
     self.transaction_type = 1
     save!
   end
 
   private
 
-  def total_amount
+  def calculate_total_amount
     self.amount = quantity * unit_price
   end
 end

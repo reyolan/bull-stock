@@ -13,21 +13,21 @@ class Stock < ApplicationRecord
     if subtracted_quantity.zero?
       destroy
     else
-      quantity = subtract_quantity(params_sold_quantity)
-      amount = new_total_amount(quantity:, unit_price: params_unit_price)
-      update!(quantity:, amount:)
+      self.quantity = subtract_quantity(params_sold_quantity)
+      self.amount = new_total_amount(quantity:, unit_price: params_unit_price)
+      save!
     end
   end
 
-  def buy_share!(bought_stock)
+  def buy_share(bought_stock)
     params_bought_quantity = bought_stock[:quantity].to_d
     params_unit_price = bought_stock[:unit_price].to_d
-    quantity = add_quantity(params_bought_quantity)
-    unit_price = average_price_per_share(new_quantity: params_bought_quantity,
-                                         new_price_per_share: params_unit_price,
-                                         total_quantity: quantity)
-    amount = new_total_amount(quantity:, unit_price: params_unit_price)
-    update!(quantity:, unit_price:, amount:)
+    self.quantity = add_quantity(params_bought_quantity)
+    self.unit_price = average_price_per_share(new_quantity: params_bought_quantity,
+                                              new_price_per_share: params_unit_price,
+                                              total_quantity: quantity)
+    self.amount = new_total_amount(quantity:, unit_price: params_unit_price)
+    self
   end
 
   private

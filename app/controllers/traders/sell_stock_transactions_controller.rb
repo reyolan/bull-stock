@@ -12,8 +12,8 @@ class Traders::SellStockTransactionsController < ApplicationController
     @stock = existing_stock
 
     ActiveRecord::Base.transaction do
-      @transaction.save_sell!
       @stock.sell_share!(sold_stock_params)
+      @transaction.log_sell!
     end
     redirect_to trader_stocks_url, success: "Successfully sold #{@stock.quantity} shares of #{@stock.company_name}."
   rescue ActiveRecord::RecordInvalid

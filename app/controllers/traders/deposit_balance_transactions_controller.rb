@@ -9,7 +9,7 @@ class Traders::DepositBalanceTransactionsController < ApplicationController
       current_user.deposit!(@deposit_transaction.amount)
       @deposit_transaction.log_deposit!
     end
-    redirect_to trader_balance_transactions_url, success: "Successfully withdrew $#{@deposit_transaction.amount}."
+    redirect_to trader_balance_transactions_url, success: "Successfully deposited $#{@deposit_transaction.amount}."
   rescue ActiveRecord::RecordInvalid
     render :new
   end
