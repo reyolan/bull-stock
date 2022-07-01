@@ -17,7 +17,8 @@ class Traders::SellStockTransactionsController < ApplicationController
       @stock.save!
       @current_user_balance.save!
     end
-    redirect_to trader_stocks_url, success: "Successfully sold #{@stock.quantity} shares of #{@stock.company_name}."
+    redirect_to trader_stocks_url, success: "Successfully sold #{@transaction.quantity} shares of #{@stock.company_name}. 
+                                             You earned #{@transaction.amount}."
   rescue ActiveRecord::RecordInvalid
     request_iex_quote
     render :new

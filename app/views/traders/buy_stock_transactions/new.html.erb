@@ -16,8 +16,8 @@
   </div>
   <% if current_user.approved? %>
     <div class='bg-slate-200 mt-4 p-2 rounded-md'>
-      <p class='text-lg font-bold'>You currently have: <%=number_to_currency(current_user.balance)%></p>
-      <p class='text-lg font-bold'>You can purchase a maximum of <%=max_share(@quote.latest_price, current_user.balance)%> shares.</p>
+      <p class='text-lg font-bold'>You currently have: <%=number_to_currency(current_user.changes[:balance]&.first || current_user.balance)%></p>
+      <p class='text-lg font-bold'>You can purchase a maximum of <%=max_share(@quote.latest_price, current_user.changes[:balance]&.first || current_user.balance)%> shares.</p>
       <%= form_with scope: :buy_transaction, url: buy_stock_transactions_path, class: 'mt-2' do |f| %>
         <%= f.hidden_field :symbol, value: @quote.symbol %>
         <%= f.hidden_field :company_name, value: @quote.company_name %>

@@ -8,7 +8,7 @@
     <p class='text-xl font-bold'>Price: </p>
     <p class='text-xl'><%= number_to_currency(@quote.latest_price) %></p>
     <p class='text-xl font-bold'>Owned Shares: </p>
-    <p class='text-xl'><%= @stock.quantity %></p>
+    <p class='text-xl'><%= @stock.changes[:quantity]&.first || @stock.quantity %></p>
     <p class='text-xl font-bold'>Your Unit Price: </p>
     <p class='text-xl'><%= number_to_currency(@stock.unit_price) %></p>
   </div>
