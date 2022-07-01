@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
     resource :search_stock, only: %i[new create], path: 'search'
 
+    resource :balance, only: :show, as: 'trader_balance'
+
     resources :balance_transactions, only: :index, as: 'trader_balance_transactions', path: 'balance/transactions'
 
     resources :deposit_balance_transactions, only: %i[new create], path: 'balance/deposit'

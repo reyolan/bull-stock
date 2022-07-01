@@ -1,2 +1,0 @@
-module Traders::DepositBalanceTransactionHelper
-end

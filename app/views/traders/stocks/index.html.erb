@@ -8,8 +8,7 @@
     <% if current_user.stocks.count > 0 %>
       <%= link_to 'Show Transactions', trader_stock_transactions_path, class: 'bg-blue-400 rounded-md p-2 font-bold hover:bg-blue-500 text-xl'%>
     <% end %>
-    <%= link_to "Deposit", new_deposit_balance_transaction_path, class: 'bg-green-400 rounded-md p-2 font-bold hover:bg-green-500 text-xl' %>
-    <%= if current_user.balance > 0 %>
+    <% if current_user.balance > 0 %>
       <%= link_to "Withdraw", new_withdraw_balance_transaction_path, class: 'bg-green-400 rounded-md p-2 font-bold hover:bg-green-500 text-xl' %>
     <%end%>
   </div>

@@ -1,2 +1,0 @@
-module Traders::WithdrawBalanceTransactionHelper
-end
