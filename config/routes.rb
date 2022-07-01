@@ -17,9 +17,10 @@ Rails.application.routes.draw do
     resources :sell_transactions, only: :create, path: 'sell'
     get 'sell/:symbol', to: 'sell_transactions#new', as: 'new_sell_transaction'
 
-    resources :transactions, only: :index, as: 'trader_transactions', path: 'portfolio/transactions'
+    resources :stock_transactions, only: :index, as: 'trader_stock_transactions', path: 'portfolio/transactions'
 
     resource :search_stock, only: %i[new create], path: 'search'
+    resource :balance
   end
 
   root 'static_pages#home'

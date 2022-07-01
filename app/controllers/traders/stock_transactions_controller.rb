@@ -1,4 +1,4 @@
-class Traders::TransactionsController < ApplicationController
+class Traders::StockTransactionsController < ApplicationController
   before_action :authenticate_trader, :authenticate_approved_trader
 
   def index

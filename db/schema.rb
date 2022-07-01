@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2022_06_27_121851) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "approved", default: false
+    t.decimal "balance", default: "0.0"
     t.integer "role"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
