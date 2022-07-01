@@ -1,4 +1,4 @@
-module Traders::SellTransactionsHelper
+module Traders::SellStockTransactionsHelper
   def check_profit
     profit = @quote.latest_price / @stock.unit_price
     if profit < 1

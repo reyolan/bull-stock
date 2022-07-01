@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
-# the Traders::SellTransactionsHelper. For example:
+# the Traders::SellStockTransactionsHelper. For example:
 #
-# describe Traders::SellTransactionsHelper do
+# describe Traders::SellStockTransactionsHelper do
 #   describe "string concat" do
 #     it "concats two strings with spaces" do
 #       expect(helper.concat_strings("this","that")).to eq("this that")
 #     end
 #   end
 # end
-RSpec.describe Traders::SellTransactionsHelper, type: :helper do
+RSpec.describe Traders::SellStockTransactionsHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
