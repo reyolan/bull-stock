@@ -1,4 +1,8 @@
 <%= render 'shared/error_message', object: @transaction %>
+<% if @stock && @current_user_balance %>
+  <%= render 'shared/error_message', object: @stock %>
+  <%= render 'shared/error_message', object: @current_user_balance %>
+<% end %>
 <div class= 'bg-slate-100 max-w-lg m-auto p-6 rounded-md mt-4 text-center'>
   <div class='flex items-center justify-center gap-2'>
     <%#= image_tag(@logo.url, size: '48')%>
@@ -18,8 +22,8 @@
         <%= f.hidden_field :symbol, value: @quote.symbol %>
         <%= f.hidden_field :company_name, value: @quote.company_name %>
         <%= f.hidden_field :unit_price, value: @quote.latest_price %>
-        <%= f.label :quantity, "Purchase a share of #{@quote.symbol}:", class: 'text-xl'%>
-        <%= f.number_field :quantity, step: 0.1, min: 0.1, class: 'rounded-lg border-slate-300 focus:border-green-600 focus:ring-green-600 mt-2 w-full text-center text-xl', placeholder: 'Number of shares to buy (e.g. 1, 2, 0.5, 1.5)' %>
+        <%= f.label :quantity, "Purchase share/s of #{@quote.symbol}:", class: 'text-xl'%>
+        <%= f.number_field :quantity, step: 0.1, class: 'rounded-lg border-slate-300 focus:border-green-600 focus:ring-green-600 mt-2 w-full text-center text-xl', placeholder: 'Number of shares to buy (e.g. 1, 2, 0.5, 1.5)' %>
         <%= f.submit "Purchase Stock", class: 'bg-green-500 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-green-600 mt-4 w-full' %>
       <% end %>
     <% else %>
