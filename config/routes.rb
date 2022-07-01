@@ -20,7 +20,11 @@ Rails.application.routes.draw do
     resources :stock_transactions, only: :index, as: 'trader_stock_transactions', path: 'portfolio/transactions'
 
     resource :search_stock, only: %i[new create], path: 'search'
-    resource :balance
+
+    resources :balance_transactions, only: :index, as: 'trader_balance_transactions', path: 'balance/transactions'
+
+    resources :deposit_balance_transactions, only: %i[new create], path: 'balance/deposit'
+    resources :withdraw_balance_transactions, only: %i[new create], path: 'balance/withdraw'
   end
 
   root 'static_pages#home'

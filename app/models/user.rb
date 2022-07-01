@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :stocks, dependent: :destroy
   has_many :stock_transactions, dependent: :destroy
+  has_many :balance_transactions, dependent: :destroy
+
   validates :balance, numericality: { greater_than_or_equal_to: 0 }
 
   enum role: %i[admin trader]
@@ -15,6 +17,16 @@ class User < ApplicationRecord
   def save_trader
     self.approved = true
     save
+  end
+
+  def deposit(amount_to_add)
+    balance += amount_to_add
+    update(balance:)
+  end
+
+  def withdraw(amount_to_subtract)
+    balance += amount_to_subtract
+    update(balance:)
   end
 
   private
