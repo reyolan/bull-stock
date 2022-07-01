@@ -1,4 +1,4 @@
-class Traders::BuyTransactionsController < ApplicationController
+class Traders::BuyStockTransactionsController < ApplicationController
   before_action :authenticate_trader, :request_iex_resource
 
   def new

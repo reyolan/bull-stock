@@ -11,7 +11,7 @@
     <p class='text-left text-xl'><%= dollarize(@quote.latest_price) %></p>
   </div>
   <% if current_user.approved? %>
-    <%= form_with scope: :buy_transaction, url: buy_transactions_path, class: 'mt-2' do |f| %>
+    <%= form_with scope: :buy_transaction, url: buy_stock_transactions_path, class: 'mt-2' do |f| %>
       <%= f.hidden_field :symbol, value: @quote.symbol %>
       <%= f.hidden_field :company_name, value: @quote.company_name %>
       <%= f.hidden_field :unit_price, value: @quote.latest_price %>

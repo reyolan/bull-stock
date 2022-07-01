@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   scope module: 'traders' do
     resources :stocks, only: :index, path: 'portfolio', as: 'trader_stocks'
 
-    resources :buy_transactions, only: :create, path: 'buy'
-    get 'buy/:symbol', to: 'buy_transactions#new', as: 'new_buy_transaction'
+    resources :buy_stock_transactions, only: :create, path: 'buy'
+    get 'buy/:symbol', to: 'buy_stock_transactions#new', as: 'new_buy_stock_transaction'
 
     resources :sell_transactions, only: :create, path: 'sell'
     get 'sell/:symbol', to: 'sell_transactions#new', as: 'new_sell_transaction'
