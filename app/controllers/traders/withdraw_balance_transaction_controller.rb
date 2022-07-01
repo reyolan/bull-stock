@@ -1,15 +1,21 @@
 class Traders::WithdrawBalanceTransactionController < ApplicationController
   def new
-    @deposit_transaction = current_user.balance_transactions.build
+    @withdraw_transaction = current_user.balance_transactions.build
   end
 
   def create
-    @deposit_transaction = current_user.balance_transactions.build(deposit_transaction_params)
+    @withdraw_transaction = current_user.balance_transactions.build(deposit_transaction_params)
+    if @withdraw_transaction.save
+      current_user.balance.withdraw(@withdraw_transaction.amount)
+      redirect_to trader_balance_transactions_url, success: "Successfully withdrew $#{@withdraw_transaction.amount}."
+    else
+      render :new
+    end
   end
 
   private
 
   def deposit_transaction_params
-    params.require(:deposit_transaction).permit(:balance)
+    params.require(:withdraw_transaction).permit(:balance)
   end
 end

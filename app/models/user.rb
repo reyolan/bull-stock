@@ -25,7 +25,7 @@ class User < ApplicationRecord
   end
 
   def withdraw(amount_to_subtract)
-    balance += amount_to_subtract
+    balance -= amount_to_subtract
     update(balance:)
   end
 
