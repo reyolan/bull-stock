@@ -4,6 +4,6 @@ class Admins::TransactionsController < ApplicationController
 
   def index
     # User Story #7
-    @transactions = Transaction.all
+  @transactions = StockTransaction.all
   end
 end
