@@ -4,7 +4,7 @@ class CreateStocks < ActiveRecord::Migration[6.1]
       t.references :user, null: false, foreign_key: true
       t.string :symbol, index: true
       t.string :company_name
-      t.decimal :quantity
+      t.float :quantity
       t.decimal :unit_price
       t.decimal :amount
 
