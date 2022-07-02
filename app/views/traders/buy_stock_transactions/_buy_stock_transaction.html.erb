@@ -1,0 +1,9 @@
+<tr class='text-center'>
+  <td class='p-4'><%= local_time(buy_transaction.created_at, '%Y-%m-%d %l:%M %p') %></td>
+  <td class="<%=turn_to_red_or_green(buy_transaction.transaction_type)%> p-4 text-bold"><%= buy_transaction.transaction_type&.upcase %></td>
+  <td class='p-4'><%= buy_transaction.symbol %></td>
+  <td class='p-4'><%= buy_transaction.company_name %></td>
+  <td class='p-4'><%= buy_transaction.quantity %></td>
+  <td class='p-4'><%= number_to_currency(buy_transaction.unit_price) %></td>
+  <td class='p-4'><%= number_to_currency(buy_transaction.amount) %></td>
+</tr>

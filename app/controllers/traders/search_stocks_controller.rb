@@ -4,6 +4,6 @@ class Traders::SearchStocksController < ApplicationController
   def new; end
 
   def create
-    redirect_to new_buy_transaction_url(params[:symbol])
+    redirect_to new_buy_stock_transaction_url(params[:symbol])
   end
 end
