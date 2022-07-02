@@ -1,6 +1,10 @@
 class Traders::SellStockTransactionsController < ApplicationController
   before_action :authenticate_approved_trader, :request_iex_resource
 
+  def index
+    @sell_transactions = current_user.stock_transactions.sell_list
+  end
+
   def new
     @quote = @client.quote(params[:symbol])
     @stock = current_user.stocks.find_by!(symbol: params[:symbol])

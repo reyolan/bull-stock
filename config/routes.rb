@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   scope module: 'traders' do
     resources :stocks, only: :index, path: 'portfolio', as: 'trader_stocks'
 
-    resources :buy_stock_transactions, only: :create, path: 'buy'
+    resources :buy_stock_transactions, only: %i[index create], path: 'buy'
     get 'buy/:symbol', to: 'buy_stock_transactions#new', as: 'new_buy_stock_transaction'
 
-    resources :sell_stock_transactions, only: :create, path: 'sell'
+    resources :sell_stock_transactions, only: %i[index create], path: 'sell'
     get 'sell/:symbol', to: 'sell_stock_transactions#new', as: 'new_sell_stock_transaction'
 
     resources :stock_transactions, only: :index, as: 'trader_stock_transactions', path: 'portfolio/transactions'

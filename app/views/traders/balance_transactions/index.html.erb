@@ -1,14 +1,15 @@
 <div class='flex flex-col items-center'>
-  <div class='flex flex-wrap gap-4'>
+  <div class='flex flex-wrap gap-4 justify-center'>
     <%= link_to "#{display_purchase_or_search} Stock", new_search_stock_path, class: 'bg-green-400 rounded-md p-2 font-bold hover:bg-green-500 text-xl' %>
     <%= link_to 'Show Portfolio', trader_stocks_path, class: 'bg-green-400 rounded-md p-2 font-bold hover:bg-green-500 text-xl'%>
     <%= link_to 'Show Stock Transactions', trader_stock_transactions_path, class: 'bg-blue-400 rounded-md p-2 font-bold hover:bg-blue-500 text-xl'%>
   </div>
-  <h1 class='font-bold text-4xl mt-4'> Balance Transactions </h1>
-  <div class='mt-4'>
-    <%= link_to 'DEPOSIT Transactions', deposit_balance_transactions_path, class: 'bg-blue-400 rounded-md p-2 font-bold hover:bg-blue-500 text-xl'%>
-    <%= link_to 'WITHDRAW Transactions', withdraw_balance_transactions_path, class: 'bg-blue-400 rounded-md p-2 font-bold hover:bg-blue-500 text-xl'%>
+  <hr class='border border-black w-full my-4'>
+  <div class='flex flex-wrap justify-center gap-4'>
+    <%= link_to 'DEPOSIT Transactions', deposit_balance_transactions_path, class: 'bg-green-500 rounded-md p-2 font-bold hover:bg-green-600 text-xl'%>
+    <%= link_to 'WITHDRAW Transactions', withdraw_balance_transactions_path, class: 'bg-red-400 rounded-md p-2 font-bold hover:bg-red-500 text-xl'%>
   </div>
+  <h1 class='font-bold text-4xl mt-4 text-center'> Balance Transactions </h1>
   <div class='overflow-auto mt-4 w-[calc(100%-64px)]'>
     <table class='bg-blue-100 rounded m-auto'>
       <thead>

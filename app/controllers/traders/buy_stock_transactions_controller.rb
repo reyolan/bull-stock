@@ -1,6 +1,10 @@
 class Traders::BuyStockTransactionsController < ApplicationController
   before_action :authenticate_trader, :request_iex_resource
 
+  def index
+    @buy_transactions = current_user.stock_transactions.buy_list
+  end
+
   def new
     @quote = @client.quote(params[:symbol])
     @logo = @client.logo(params[:symbol])
