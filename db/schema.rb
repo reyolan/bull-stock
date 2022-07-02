@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_07_01_041826) do
     t.string "symbol"
     t.string "company_name"
     t.decimal "unit_price"
-    t.decimal "quantity"
+    t.float "quantity"
     t.decimal "amount"
     t.integer "transaction_type"
     t.datetime "created_at", precision: 6, null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2022_07_01_041826) do
     t.bigint "user_id", null: false
     t.string "symbol"
     t.string "company_name"
-    t.decimal "quantity"
+    t.float "quantity"
     t.decimal "unit_price"
     t.decimal "amount"
     t.datetime "created_at", precision: 6, null: false
