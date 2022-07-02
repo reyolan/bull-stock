@@ -1,6 +1,7 @@
 class Stock < ApplicationRecord
   belongs_to :user
-  validates :quantity, numericality: { greater_than_or_equal_to: 0 }
+  validate :quantity_is_positive_or_zero
+
   before_save :total_amount
   after_save :destroy_stock_if_zero_quantity
 
@@ -41,6 +42,10 @@ class Stock < ApplicationRecord
     old_quantity = quantity
     total_quantity = old_quantity + new_quantity
     ((old_price_per_share * old_quantity) + (new_price_per_share * new_quantity)) / total_quantity
+  end
+
+  def quantity_is_positive_or_zero
+    errors.add(:base, 'Insufficient number of shares to sell') if quantity.negative?
   end
 
   def destroy_stock_if_zero_quantity
