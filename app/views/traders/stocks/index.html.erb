@@ -10,9 +10,15 @@
     <% end %>
   </div>
   <hr class='border border-black w-full my-4'>
-  <h1 class='font-bold text-4xl text-center'> Portfolio </h1>
+  <div class='bg-slate-100 rounded-lg p-4 font-bold mt-4 text-xl flex flex-wrap gap-8 justify-center items-center'>
+    <h1 class='font-bold text-4xl text-center'> Portfolio </h1>
+    <div>
+      <p>Portfolio Value: <%= number_to_currency(@stocks_value) %></p>
+      <p>Overall Shares: <%= @number_of_shares %></p>
+    </div>
+  </div>
   <% if current_user.stocks.count > 0 %>
-    <div class='overflow-auto mt-4 w-[calc(100%-64px)]'>
+    <div class='overflow-auto mt-4 w-[calc(100%-16px)]'>
       <table class='bg-green-100 rounded m-auto'>
         <tr class='bg-green-500 text-lg'>
           <th class='p-2'>Symbol</th>

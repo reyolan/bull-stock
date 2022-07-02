@@ -2,7 +2,7 @@ class Traders::DepositBalanceTransactionsController < ApplicationController
   before_action :authenticate_approved_trader
 
   def index
-    @deposit_transactions = current_user.balance_transactions.deposits.order(created_at: :desc)
+    @deposit_transactions = current_user.balance_transactions.deposits
   end
 
   def new

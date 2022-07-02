@@ -7,6 +7,9 @@ class Stock < ApplicationRecord
 
   # soft delete the stock
   # use Discard gem
+  scope :overall_amount, -> { sum(:amount) }
+  scope :overall_shares, -> { sum(:quantity) }
+  scope :asc_symbol, -> { order(:symbol) }
 
   def sell_share(sold_stock)
     params_sold_quantity = sold_stock[:quantity].to_d
