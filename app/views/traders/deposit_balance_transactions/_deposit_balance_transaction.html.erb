@@ -1,5 +1,5 @@
 <tr class='text-center'>
   <td class='p-4'><%= local_time(deposit_transaction.created_at, '%Y-%m-%d %l:%M %p') %></td>
-  <td class="p-4 text-bold"><%= deposit_transaction.transaction_type&.upcase %></td>
+  <td class="p-4 text-bold <%=turn_to_red_or_green(deposit_transaction.transaction_type)%>"><%= deposit_transaction.transaction_type&.upcase %></td>
   <td class='p-4'><%= deposit_transaction.amount %></td>
 </tr>
