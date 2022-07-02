@@ -29,11 +29,6 @@
         <td><%= @trader.confirmed? ? @trader.confirmed_at.strftime('%a, %b %d, %Y'): "Pending Email Confirmation" %></td>
       </tr>
       <tr>
-        <td>Account Approval</td>
-        <td><%= check_box_tag(@trader.approved, {checked: @trader.approved}) %>
-          <%= label_tag(@trader.approved, "Mark as approved?") %></td>
-      </tr>
-      <tr>
         <td>Actions</td>
         <td>
           <div class="actions">

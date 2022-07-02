@@ -1,0 +1,25 @@
+<h1>Welcome, Admin <%= current_user.email%>!</h1>
+<span>search feature</span>
+<span>sort feature</span>
+<table>
+  <thread>
+    <tr>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Account Confirmation</th>
+      <th>Account Approval</th>
+      <th>Action</th>
+    </tr>
+  </thread>
+  <tbody>
+    <% @traders.each do |t| %>
+      <tr>
+        <td><%=t.email%></td>
+        <td><%=t.role%></td>
+        <td><%= t.confirmed? ? "Account Confirmed" : "Pending Email Confirmation" %></td>
+        <td><%= t.approved? ? "Account Approved" : "Pending Approval" %></td>
+        <td> <%= link_to "show", trader_path(t.id) %> | <%= link_to "edit", edit_trader_path(t.id) %> </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
