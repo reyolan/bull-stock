@@ -4,6 +4,10 @@ class Traders::SearchStocksController < ApplicationController
   def new; end
 
   def create
-    redirect_to new_buy_stock_transaction_url(params[:symbol])
+    if params[:symbol] == ''
+      redirect_to new_search_stock_url, danger: 'Stock not found.'
+    else
+      redirect_to new_buy_stock_transaction_url(params[:symbol])
+    end
   end
 end
