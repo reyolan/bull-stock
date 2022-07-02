@@ -27,6 +27,7 @@ class Admins::TradersController < ApplicationController
 
   def update
     if @trader.update(trader_update_params)
+      UserMailer.with(user: @trader).account_approval_email.deliver_now
       redirect_to traders_path(@trader), notice: 'Trader details was successfully updated.'
     else
       render :edit
