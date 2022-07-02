@@ -1,6 +1,6 @@
 class StockTransaction < ApplicationRecord
   belongs_to :user
-  validate :stock_quantity_is_positive
+  validate :stock_quantity_is_positive, :stock_quantity_scale_is_one
 
   enum transaction_type: %i[buy sell]
 
@@ -24,5 +24,11 @@ class StockTransaction < ApplicationRecord
   def stock_quantity_is_positive
     errors.add(:base, 'An input of 0 share is not possible') if quantity.zero?
     errors.add(:base, 'An input of negative share is not possible') if quantity.negative?
+  end
+
+  def stock_quantity_scale_is_one
+    unless quantity == quantity.round(1)
+      errors.add(:base, 'You can only input number of shares up to scale of 1 (e.g. 1, 2, 1.5, 2.5)')
+    end
   end
 end

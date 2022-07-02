@@ -16,7 +16,7 @@ class Traders::WithdrawBalanceTransactionsController < ApplicationController
       @current_user_balance.save!
       @withdraw_transaction.save!
     end
-    redirect_to trader_balance_transactions_url, success: "Successfully withdrew $#{@withdraw_transaction.amount}. 
+    redirect_to trader_balance_url, success: "Successfully withdrew $#{@withdraw_transaction.amount}. 
                                                            Remaining balance is: $#{current_user.balance}"
   rescue ActiveRecord::RecordInvalid
     render :new

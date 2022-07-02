@@ -16,7 +16,7 @@ class Traders::DepositBalanceTransactionsController < ApplicationController
       @current_user_balance.save!
       @deposit_transaction.save!
     end
-    redirect_to trader_balance_transactions_url, success: "Successfully deposited $#{@deposit_transaction.amount}."
+    redirect_to trader_balance_url, success: "Successfully deposited $#{@deposit_transaction.amount}."
   rescue ActiveRecord::RecordInvalid
     render :new
   end

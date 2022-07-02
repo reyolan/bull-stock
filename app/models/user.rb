@@ -36,6 +36,6 @@ class User < ApplicationRecord
   end
 
   def balance_is_positive_or_zero
-    errors.add(:base, 'Insufficient balance for the input you entered.') if balance.negative?
+    errors.add(:base, 'Insufficient balance for the input you entered') if balance.negative?
   end
 end
