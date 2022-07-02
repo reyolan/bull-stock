@@ -2,13 +2,21 @@
   <tr class="border-b bg-blue-100 border-blue-200">
     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center">Email</th>
     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center">Email Confirmation</th>
+    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center"><%= sort_link(@q, :created_at, 'Created At', default_order: :desc) %></th>
     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center">Action</th>
   </tr>
+  <div class= "py-5">
+    <%= search_form_for @q, url: pending_traders_path, method: :get do |f| %>
+      <%= f.search_field :email_cont, placeholder: "Email" %>
+      <%= f.submit %>
+    <% end %>
+  </div>
   <tbody>
     <% @pending_traders.each do |t| %>
       <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"><%=t.email%></td>
         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"><%= t.confirmed? ? "Confirmed" : "Pending Email Confirmation" %></td>
+        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"><%= local_time(t.created_at, '%Y-%m-%d %l:%M %p') %></td>
         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
           <%= form_with model: t, url: trader_path(t.id), method: :put do |f| %>
             <%= f.check_box :approved%>

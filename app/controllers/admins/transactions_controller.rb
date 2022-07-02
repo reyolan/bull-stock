@@ -4,6 +4,7 @@ class Admins::TransactionsController < ApplicationController
 
   def index
     # User Story #7
-  @transactions = StockTransaction.all
+    @q = StockTransaction.all.ransack(params[:q])
+    @transactions = @q.result
   end
 end

@@ -5,6 +5,7 @@ class Admins::PendingTradersController < ApplicationController
   def index
     # User Story #5
     # User.all.where(approved: :false)
-    @pending_traders = User.where(role: "trader", approved: :false)
+    @q = User.where(role: "trader", approved: :false).ransack(params[:q])
+    @pending_traders = @q.result
   end
 end

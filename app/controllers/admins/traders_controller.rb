@@ -3,7 +3,8 @@ class Admins::TradersController < ApplicationController
   before_action :set_trader, only: %i[edit update show]
 
   def index
-    @traders = User.traders
+    @q = User.ransack(params[:q])
+    @traders = @q.result.traders
   end
 
   def show
