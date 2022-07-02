@@ -4,8 +4,8 @@
   <td class='p-4'><%= stock.quantity %></td>
   <td class='p-4'><%= number_to_currency(stock.unit_price) %></td>
   <td class='p-4'><%= number_to_currency(stock.amount) %></td>
-  <td class='p-4 flex flex-wrap'><%= link_to new_buy_stock_transaction_path(stock.symbol), class: 'bg-green-400 hover:bg-green-500 rounded mr-2 p-2 font-medium' do %>
+  <td class='p-4 flex flex-wrap gap-2'><%= link_to new_buy_stock_transaction_path(stock.symbol), class: 'bg-green-400 hover:bg-green-500 rounded p-2 font-medium m-auto' do %>
       <i class="las la-coins"></i>BUY
-    <% end %> <%= link_to new_sell_stock_transaction_path(stock.symbol), class: 'bg-red-400 hover:bg-red-500 rounded p-2 font-medium' do %>
+    <% end %> <%= link_to new_sell_stock_transaction_path(stock.symbol), class: 'bg-red-400 hover:bg-red-500 rounded p-2 font-medium m-auto' do %>
       <i class="las la-money-bill-wave"></i>SELL <% end %> </td>
 </tr>

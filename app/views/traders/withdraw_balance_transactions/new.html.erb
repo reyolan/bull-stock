@@ -5,7 +5,7 @@
   <div class='bg-slate-200 mt-4 p-2 rounded-md'>
     <p class='text-lg font-bold'>You currently have: <%=number_to_currency(current_user.changes[:balance]&.first || current_user.balance)%></p>
     <%= form_with scope: :withdraw_transaction, url: withdraw_balance_transactions_path do |form| %>
-      <%= form.number_field :amount, class: 'rounded-lg border-slate-300 focus:border-red-500 focus:ring-red-500 mt-2 w-full text-center text-xl', placeholder: 'Amount to withdraw (50, 50.1, 50.25)' %>
+      <%= form.number_field :amount, step: 'any', class: 'rounded-lg border-slate-300 focus:border-red-500 focus:ring-red-500 mt-2 w-full text-center text-xl', placeholder: 'Amount to withdraw (50, 50.1, 50.25)' %>
       <%= form.submit "Confirm Withdrawal", class: 'bg-red-400 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-red-500 mt-4 w-full'%>
     <% end %>
   </div>
