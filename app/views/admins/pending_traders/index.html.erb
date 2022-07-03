@@ -18,18 +18,11 @@
         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"><%= t.confirmed? ? "Confirmed" : "Pending Email Confirmation" %></td>
         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center"><%= local_time(t.created_at, '%Y-%m-%d %l:%M %p') %></td>
         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
-          <%= form_with model: t, url: trader_path(t.id), method: :put do |f| %>
-            <%= f.check_box :approved%>
-            <button type="button" class="inline-block px-6 mx-5 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out"><%= f.submit "Approve" %></button>
+          <%= form_with model: t, url: approved_trader_path(t.id) do |f| %>
+            <%= f.submit "Approve", class:"inline-block px-6 mx-5 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out cursor-pointer"%>
           <% end %></td>
       </tr>
     <%end%>
   </tbody>
 </table>
-<button class="inline-flex items-center px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-md">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
-  </svg>
-  <%= link_to "Back", :back %>
-</button>
 </div>

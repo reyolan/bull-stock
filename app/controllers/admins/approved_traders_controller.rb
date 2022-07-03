@@ -1,9 +1,9 @@
 class Admins::ApprovedTradersController < ApplicationController
   before_action :authenticate_admin
 
-  def create
-    # Admin User Story #6
-    # Trader User Story #4
-    # Approve logic
+  def update
+    trader = User.find(params[:id])
+    trader.update(approved: true)
+    redirect_back(fallback_location: traders_url, success: "#{trader.email} has been successfully approved.")
   end
 end

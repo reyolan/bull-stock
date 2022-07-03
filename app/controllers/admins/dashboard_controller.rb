@@ -1,4 +1,3 @@
-# Admin User Story # 7
 class Admins::DashboardController < ApplicationController
   before_action :authenticate_admin
 

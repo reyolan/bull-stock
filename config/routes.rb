@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   scope module: 'admins' do
     resources :pending_traders, only: :index
-    resources :approved_traders, only: :create
+    resources :approved_traders, only: :update
     resources :traders
     resources :transactions
     resources :dashboard, only: :index

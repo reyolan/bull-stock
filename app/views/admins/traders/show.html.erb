@@ -1,4 +1,4 @@
-<table>
+<div class='overflow-auto mt-4 m-auto w-[calc(100%-64px)]'>
   <table class="m-auto">
     <tbody>
       <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
@@ -6,12 +6,8 @@
         <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center"><%=@trader.email%></td>
       </tr>
       <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
-        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Role</td>
-        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center"><%=@trader.role%></td>
-      </tr>
-      <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
         <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Account Confirmation</td>
-        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center"><%= @trader.confirmed? ? "Account Confirmed" : "Pending Email Confirmation" %></td>
+        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center"><%= @trader.confirmed? ? "Confirmed" : "Pending" %></td>
       </tr>
       <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
         <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Account Confirmation</td>
@@ -19,18 +15,12 @@
       </tr>
       <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
         <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Account Approval</td>
-        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center"><%= @trader.approved? ? "Account Approved" : "Pending Approval" %></td>
+        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center"><%= @trader.approved? ? "Approved" : "Pending" %></td>
       </tr>
       <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
         <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Actions</td>
-        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center"><button type="button" class="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"><%= link_to "edit", edit_trader_path(@trader.id) %></button> </td>
+        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center"><%= link_to "edit", edit_trader_path(@trader.id), class: "inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out" %></td>
       </tr>
     </tbody>
   </table>
-  <button class="inline-flex items-center px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-md">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
-    </svg>
-    <%= link_to "Back", :back %>
-  </button>
 </div>
