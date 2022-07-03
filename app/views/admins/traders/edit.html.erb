@@ -10,38 +10,35 @@
 <% end %>
 <h2>Edit <%= @trader.email%></h2>
 <%= form_with model: @trader, url: trader_path do |f| %>
-  <table>
+  <table class="m-auto">
     <tbody>
-      <tr>
-        <td>Email</td>
-        <td>
-          <div class="field">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: @trader.email%>
-          </div>
+      <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
+        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Email</td>
+        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: @trader.email%>
         </td>
       </tr>
-      <tr>
-        <td>Account Confirmation</td>
-        <td><%= @trader.confirmed? ? "Account Confirmed" : "Pending Email Confirmation" %></td>
+      <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
+        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Account Confirmation</td>
+        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center"><%= @trader.confirmed? ? "Account Confirmed" : "Pending Email Confirmation" %></td>
       </tr>
-      <tr>
-        <td>Account Confirmation</td>
-        <td><%= @trader.confirmed? ? @trader.confirmed_at.strftime('%a, %b %d, %Y'): "Pending Email Confirmation" %></td>
+      <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
+        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Account Confirmation</td>
+        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center"><%= @trader.confirmed? ? @trader.confirmed_at.strftime('%a, %b %d, %Y'): "Pending Email Confirmation" %></td>
       </tr>
-      <tr>
-        <td>Account Approval</td>
-        <td><%= check_box_tag(@trader.approved, {checked: @trader.approved}) %>
-          <%= label_tag(@trader.approved, "Mark as approved?") %></td>
-      </tr>
-      <tr>
-        <td>Actions</td>
-        <td>
-          <div class="actions">
-            <%= f.submit "Submit" %>
-          </div>
+      <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
+        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Actions</td>
+        <td scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-center">
+          <button type="button" class="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out"><%= f.submit "Submit" %></button>
         </td>
       </tr>
     </tbody>
   </table>
 <% end %>
-<%= link_to "Back", :back %>
+<button class="inline-flex items-center px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium rounded-md">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+  </svg>
+  <%= link_to "Back", :back %>
+</button>
+</div>
