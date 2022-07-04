@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class='overflow-auto mt-2'>
-    <table class="min-w-full">
+    <table class="min-w-full table-fixed">
       <tr class="border-b bg-blue-100 border-blue-200 text-xl">
         <th scope="col" class="px-6 py-4 text-center">Time</th>
         <th scope="col" class="px-6 py-4 text-center">Balance Transaction ID</th>
@@ -30,4 +30,5 @@
       </tbody>
     </table>
   </div>
+  <%= paginate @balance_transactions, color: 'blue' %>
 </div>

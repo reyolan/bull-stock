@@ -3,6 +3,6 @@ class Admins::PendingTradersController < ApplicationController
 
   def index
     @q = User.where(role: 'trader', approved: false).ransack(params[:q])
-    @pending_traders = @q.result
+    @pending_traders = @q.result.page(params[:page])
   end
 end

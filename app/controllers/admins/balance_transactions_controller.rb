@@ -3,6 +3,6 @@ class Admins::BalanceTransactionsController < ApplicationController
 
   def index
     @q = BalanceTransaction.all.desc_created_at.includes(:user).ransack(params[:q])
-    @balance_transactions = @q.result
+    @balance_transactions = @q.result.page(params[:page])
   end
 end

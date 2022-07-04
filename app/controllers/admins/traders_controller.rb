@@ -4,7 +4,7 @@ class Admins::TradersController < ApplicationController
 
   def index
     @q = User.asc_traders.ransack(params[:q])
-    @traders = @q.result
+    @traders = @q.result.page(params[:page])
   end
 
   def show
