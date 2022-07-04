@@ -2,7 +2,7 @@ class Traders::DepositBalanceTransactionsController < ApplicationController
   before_action :authenticate_approved_trader
 
   def index
-    @deposit_transactions = current_user.balance_transactions.deposits
+    @deposit_transactions = current_user.balance_transactions.deposits.page(params[:page])
   end
 
   def new

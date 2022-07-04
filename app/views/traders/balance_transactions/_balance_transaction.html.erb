@@ -1,5 +1,6 @@
 <tr class='text-center'>
   <td class='p-4'><%= local_time(balance_transaction.created_at, '%Y-%m-%d %l:%M %p') %></td>
-  <td class="p-4 text-bold <%=turn_to_red_or_green(balance_transaction.transaction_type)%>"><%= balance_transaction.transaction_type&.upcase %></td>
-  <td class='p-4'><%= balance_transaction.amount %></td>
+  <td class='p-4'><%= balance_transaction.id %></td>
+  <td class="p-4 text-bold <%=balance_to_red_or_green(balance_transaction.transaction_type)%>"><%= balance_transaction.transaction_type&.upcase %></td>
+  <td class='p-4'><%= number_to_currency(balance_transaction.amount) %></td>
 </tr>

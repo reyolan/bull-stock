@@ -2,7 +2,7 @@ class Traders::SellStockTransactionsController < ApplicationController
   before_action :authenticate_approved_trader, :request_iex_resource
 
   def index
-    @sell_transactions = current_user.stock_transactions.sell_list
+    @sell_transactions = current_user.stock_transactions.sell_list.page(params[:page])
   end
 
   def new
@@ -22,7 +22,7 @@ class Traders::SellStockTransactionsController < ApplicationController
       @current_user_balance.save!
     end
     redirect_to trader_stocks_url, success: "Successfully sold #{@transaction.quantity} shares of #{@stock.company_name}. 
-                                             You earned $#{@transaction.amount}."
+                                             You received $#{@transaction.amount}."
   rescue ActiveRecord::RecordInvalid
     request_iex_quote
     render :new

@@ -3,8 +3,8 @@ class Admins::TradersController < ApplicationController
   before_action :set_trader, only: %i[edit update show]
 
   def index
-    @q = User.ransack(params[:q])
-    @traders = @q.result.traders
+    @q = User.asc_traders.ransack(params[:q])
+    @traders = @q.result.page(params[:page])
   end
 
   def show
@@ -28,7 +28,6 @@ class Admins::TradersController < ApplicationController
 
   def update
     if @trader.update(trader_update_params)
-      UserMailer.with(user: @trader).account_approval_email.deliver_now
       redirect_to traders_path(@trader), notice: 'Trader details was successfully updated.'
     else
       render :edit
@@ -42,7 +41,7 @@ class Admins::TradersController < ApplicationController
   end
 
   def trader_update_params
-    params.require(:user).permit(:email, :approved)
+    params.require(:user).permit(:email)
   end
 
   def set_trader

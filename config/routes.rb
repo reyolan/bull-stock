@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     resources :pending_traders, only: :index
     resources :approved_traders, only: :update
     resources :traders
-    resources :transactions
-    resources :dashboard, only: :index
+    resources :stock_transactions, only: :index
+    resources :balance_transactions, only: :index
   end
 
   scope module: 'traders' do
