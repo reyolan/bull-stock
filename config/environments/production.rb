@@ -71,7 +71,7 @@ Rails.application.configure do
 
   # Mail configuration
   config.action_mailer.delivery_method = :smtp
-  host = 'punctually.herokuapp.com'
+  host = 'bull-stock.herokuapp.com'
   config.action_mailer.default_url_options = { host: }
 
   ActionMailer::Base.smtp_settings = {
