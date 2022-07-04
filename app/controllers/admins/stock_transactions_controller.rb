@@ -2,7 +2,7 @@ class Admins::StockTransactionsController < ApplicationController
   before_action :authenticate_admin
 
   def index
-    @q = StockTransaction.all.desc_created_at.ransack(params[:q])
+    @q = StockTransaction.all.desc_created_at.includes(:user).ransack(params[:q])
     @stock_transactions = @q.result
   end
 end
