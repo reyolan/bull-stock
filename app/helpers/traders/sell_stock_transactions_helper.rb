@@ -1,15 +1,15 @@
 module Traders::SellStockTransactionsHelper
   def check_profit
-    profit = @quote.latest_price / @stock.unit_price
+    profit = @stock.unit_price - @quote.latest_price
     if profit < 1
-      "lose $#{profit.round(2)}"
+      "lose $#{profit.round(2).abs}"
     else
       "gain $#{profit.round(2)}"
     end
   end
 
   def change_color_if_gain_or_lose
-    profit = @quote.latest_price / @stock.unit_price
+    profit = @stock.unit_price - @quote.latest_price
     if profit < 1
       'text-red-500'
     else
