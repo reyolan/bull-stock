@@ -75,4 +75,7 @@ gem 'iex-ruby-client'
 # offsets UTC time to local timezone
 gem 'local_time'
 
-gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'ransack'
+
+# pagination
+gem 'kaminari'

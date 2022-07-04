@@ -5,23 +5,28 @@
     <%= link_to 'Show Stock Transactions', trader_stock_transactions_path, class: 'bg-blue-400 rounded-md p-2 font-bold hover:bg-blue-500 text-xl'%>
   </div>
   <hr class='border border-black w-full my-4'>
-  <div class='flex flex-wrap justify-center gap-4'>
-    <%= link_to 'DEPOSIT Transactions', deposit_balance_transactions_path, class: 'bg-green-500 rounded-md p-2 font-bold hover:bg-green-600 text-xl'%>
-    <%= link_to 'WITHDRAW Transactions', withdraw_balance_transactions_path, class: 'bg-red-400 rounded-md p-2 font-bold hover:bg-red-500 text-xl'%>
-  </div>
-  <h1 class='font-bold text-4xl mt-4 text-center'> Balance Transactions </h1>
-  <div class='overflow-auto mt-4 w-[calc(100%-64px)]'>
-    <table class='bg-blue-100 rounded m-auto'>
-      <thead>
-        <tr class='bg-blue-500 text-lg'>
-          <th class='p-2'>Time</th>
-          <th class='p-2'>Transaction Type</th>
-          <th class='p-2'>Amount</th>
-        </tr>
-      </thead>
-      <tbody class='overflow-x-scroll'>
-        <%= render @balance_transactions %>
-      </tbody>
-    </table>
+  <div class='bg-slate-100 border border-slate-300 rounded-lg py-4 px-8  w-[calc(100%-64px)]'>
+    <div class='flex flex-wrap justify-between m-auto items-center gap-2'>
+      <h1 class='font-bold text-3xl'> Balance Transactions </h1>
+      <div class='flex flex-wrap gap-2 justify-center'>
+        <%= link_to 'DEPOSIT Transactions', deposit_balance_transactions_path, class: 'bg-green-500 rounded-md p-2 font-bold hover:bg-green-600 text-xl'%>
+        <%= link_to 'WITHDRAW Transactions', withdraw_balance_transactions_path, class: 'bg-red-400 rounded-md p-2 font-bold hover:bg-red-500 text-xl'%>
+      </div>
+    </div>
+    <div class='overflow-auto mt-2 mx-auto'>
+      <table class='bg-blue-100 rounded m-auto w-full'>
+        <thead>
+          <tr class='bg-blue-500 text-lg'>
+            <th class='p-2'>Time</th>
+            <th class='p-2'>Transaction Type</th>
+            <th class='p-2'>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @balance_transactions %>
+        </tbody>
+      </table>
+    </div>
+    <%= paginate @balance_transactions %>
   </div>
 </div>
