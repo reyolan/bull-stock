@@ -7,5 +7,5 @@
     remote:        data-remote
 -%>
 <span class="last">
-  <%= link_to_unless current_page.last?, t('views.pagination.last').html_safe, url, remote: remote %>
+  <%= link_to_unless current_page.last?, t('views.pagination.last').html_safe, url, class: 'rounded hover:bg-slate-400 w-8 h-8 inline-flex justify-center items-center', remote: remote %>
 </span>

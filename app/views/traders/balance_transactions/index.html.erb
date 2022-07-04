@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class='overflow-auto mt-2 mx-auto'>
-      <table class='bg-blue-100 w-full'>
+      <table class='bg-blue-100 w-full table-fixed'>
         <thead>
           <tr class='bg-blue-500 text-lg'>
             <th class='p-2'>Time</th>
@@ -27,6 +27,6 @@
         </tbody>
       </table>
     </div>
-    <%= paginate @balance_transactions %>
+    <%= paginate @balance_transactions, color: 'blue' %>
   </div>
 </div>

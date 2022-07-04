@@ -4,8 +4,9 @@ class StockTransaction < ApplicationRecord
 
   enum transaction_type: %i[buy sell]
 
-  scope :buy_list, -> { where(transaction_type: 0).order(created_at: :desc) }
-  scope :sell_list, -> { where(transaction_type: 1).order(created_at: :desc) }
+  scope :buy_list, -> { where(transaction_type: 0).desc_created_at }
+  scope :sell_list, -> { where(transaction_type: 1).desc_created_at }
+  scope :desc_created_at, -> { order(created_at: :desc) }
 
   def buy_type
     self.transaction_type = 0

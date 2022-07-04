@@ -16,7 +16,7 @@
     <div class='overflow-auto mt-2 mx-auto'>
       <table class='bg-blue-100 w-full'>
         <thead>
-          <tr class='bg-blue-500 text-lg'>
+          <tr class='bg-blue-500 text-lg table-fixed'>
             <th class='p-2'>Time</th>
             <th class='p-2'>Transaction Type</th>
             <th class='p-2'>Symbol</th>
@@ -31,5 +31,6 @@
         </tbody>
       </table>
     </div>
+    <%= paginate @stock_transactions, color: 'blue' %>
   </div>
 </div>

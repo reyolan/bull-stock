@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class='overflow-auto mt-2 mx-auto'>
-      <table class='bg-green-200 w-full'>
+      <table class='bg-green-200 w-full table-fixed'>
         <thead>
           <tr class='bg-green-500 text-lg'>
             <th class='p-2'>Time</th>
@@ -27,5 +27,6 @@
         </tbody>
       </table>
     </div>
+    <%= paginate @deposit_transactions, color: 'green' %>
   </div>
 </div>

@@ -2,7 +2,7 @@ class Traders::SellStockTransactionsController < ApplicationController
   before_action :authenticate_approved_trader, :request_iex_resource
 
   def index
-    @sell_transactions = current_user.stock_transactions.sell_list
+    @sell_transactions = current_user.stock_transactions.sell_list.page(params[:page])
   end
 
   def new
