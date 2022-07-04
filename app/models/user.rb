@@ -12,6 +12,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable
 
+  scope :asc_traders, -> { order(:email).traders }
   scope :traders, -> { where(role: '1') }
 
   def save_trader

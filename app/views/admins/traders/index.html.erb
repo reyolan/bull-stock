@@ -12,10 +12,10 @@
   <div class='overflow-auto mt-2'>
     <table class="min-w-full">
       <tr class="border-b bg-blue-100 border-blue-200 text-xl">
-        <th scope="col" class="px-6 py-4 text-center" >Email</th>
+        <th scope="col" class="px-6 py-4 text-center" ><%= sort_link(@q, :email, 'Email', default_order: :desc, class: 'hover:bg-blue-200 cursor-pointer p-2') %></th>
         <th scope="col" class="px-6 py-4 text-center">Email Confirmation</th>
         <th scope="col" class="px-6 py-4 text-center">Account Approval</th>
-        <th scope="col" class="px-6 py-4 text-center"><%= sort_link(@q, :created_at, 'Created At', default_order: :desc) %></th>
+        <th scope="col" class="px-6 py-4 text-center">Registration Date</th>
         <th scope="col" class="px-6 py-4 text-center">Action</th>
       </tr>
       <tbody>
