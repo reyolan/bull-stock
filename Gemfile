@@ -80,6 +80,3 @@ gem 'ransack'
 
 # pagination
 gem 'kaminari'
-
-# email provider
-gem 'mailjet'
