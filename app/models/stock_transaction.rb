@@ -8,13 +8,13 @@ class StockTransaction < ApplicationRecord
   scope :sell_list, -> { where(transaction_type: 1).desc_created_at }
   scope :desc_created_at, -> { order(created_at: :desc) }
 
-  def buy_type
+  def buy
     self.transaction_type = 0
     self.amount = quantity * unit_price
     self
   end
 
-  def sell_type
+  def sell
     self.transaction_type = 1
     self.amount = quantity * unit_price
     self

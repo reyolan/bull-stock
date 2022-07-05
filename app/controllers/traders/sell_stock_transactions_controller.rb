@@ -12,7 +12,7 @@ class Traders::SellStockTransactionsController < ApplicationController
   end
 
   def create
-    @transaction = current_user.stock_transactions.build(sell_transaction_params).sell_type
+    @transaction = current_user.stock_transactions.build(sell_transaction_params).sell
     @stock = existing_stock
     @current_user_balance = current_user.add_amount(@transaction.amount)
 
