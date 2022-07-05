@@ -14,7 +14,7 @@ class Traders::BuyStockTransactionsController < ApplicationController
   end
 
   def create
-    @transaction = current_user.stock_transactions.build(buy_transaction_params).buy_type
+    @transaction = current_user.stock_transactions.build(buy_transaction_params).buy
     @stock = existing_or_new_stock
     @current_user_balance = current_user.subtract_amount(@transaction.amount)
     ActiveRecord::Base.transaction do
