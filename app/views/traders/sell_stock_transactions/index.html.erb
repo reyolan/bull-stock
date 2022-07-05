@@ -13,25 +13,29 @@
         <%= link_to 'BUY Transactions', buy_stock_transactions_path, class: 'bg-green-500 rounded-md p-2 font-bold hover:bg-green-600 text-xl'%>
       </div>
     </div>
-    <div class='overflow-auto mt-2 mx-auto'>
-      <table class='bg-red-200 w-full'>
-        <thead>
-          <tr class='bg-red-500 text-lg'>
-            <th class='p-2'>Time</th>
-            <th class='p-2'>Stock Transaction ID</th>
-            <th class='p-2'>Symbol</th>
-            <th class='p-2'>Company Name</th>
-            <th class='p-2'>Quantity</th>
-            <th class='p-2'>Unit Price</th>
-            <th class='p-2'>Amount</th>
-            <th class='p-2'>Transaction Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render @sell_transactions %>
-        </tbody>
-      </table>
-    </div>
-    <%= paginate @sell_transactions, color: 'red' %>
+    <% if @sell_transactions.count.zero? %>
+      <h2 class='text-center font-bold text-3xl bg-red-400 rounded w-fit m-auto p-4 rounded-md mt-4'>No Sell Transactions to show.</h2>
+    <% else %>
+      <div class='overflow-auto mt-2 mx-auto'>
+        <table class='bg-red-200 w-full'>
+          <thead>
+            <tr class='bg-red-500 text-lg'>
+              <th class='p-2'>Time</th>
+              <th class='p-2'>Stock Transaction ID</th>
+              <th class='p-2'>Symbol</th>
+              <th class='p-2'>Company Name</th>
+              <th class='p-2'>Quantity</th>
+              <th class='p-2'>Unit Price</th>
+              <th class='p-2'>Amount</th>
+              <th class='p-2'>Transaction Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @sell_transactions %>
+          </tbody>
+        </table>
+      </div>
+      <%= paginate @sell_transactions, color: 'red' %>
+    <% end %>
   </div>
 </div>
