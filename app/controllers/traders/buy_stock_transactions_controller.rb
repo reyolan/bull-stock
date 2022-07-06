@@ -23,7 +23,7 @@ class Traders::BuyStockTransactionsController < ApplicationController
       @current_user_balance.save!
     end
     redirect_to trader_stocks_url, success: "Successfully bought #{@transaction.quantity}
-                                             shares of #{@stock.company_name}."
+                                             share/s of #{@stock.company_name}."
   rescue ActiveRecord::RecordInvalid
     request_iex_quote_and_logo(session[:stock]['symbol'])
     store_stock_quote_to_buy
