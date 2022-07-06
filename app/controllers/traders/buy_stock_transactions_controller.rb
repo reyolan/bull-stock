@@ -41,13 +41,13 @@ class Traders::BuyStockTransactionsController < ApplicationController
     params.require(:buy_transaction).permit(:quantity).merge(session[:stock])
   end
 
-  def request_iex_quote_and_logo(params)
-    request_iex_resource
-    @quote = @client.quote(params)
-    @logo = @client.logo(params)
-  end
-
   def store_stock_quote_to_buy
     session[:stock] = { company_name: @quote.company_name, symbol: @quote.symbol, unit_price: @quote.latest_price }
+  end
+
+  def request_iex_quote_and_logo(params)
+    @client = IEX::Api::Client.new
+    @quote = @client.quote(params)
+    @logo = @client.logo(params)
   end
 end
