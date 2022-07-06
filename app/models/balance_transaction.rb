@@ -21,13 +21,13 @@ class BalanceTransaction < ApplicationRecord
   private
 
   def amount_scale_is_one
-    unless amount.to_i == amount.to_i.round(2)
+    unless amount.to_d == amount.to_d.round(2)
       errors.add(:base, 'You can only input amount up to scale of 2 (e.g. 20, 20.3, 20.25)')
     end
   end
 
   def amount_is_positive
-    errors.add(:base, 'Please input a valid amount') if amount.to_i.zero?
-    errors.add(:base, 'An input of negative amount is not possible') if amount.to_i.negative?
+    errors.add(:base, 'Please input a valid amount') if amount.to_d.zero?
+    errors.add(:base, 'An input of negative amount is not possible') if amount.to_d.negative?
   end
 end
