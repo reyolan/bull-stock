@@ -24,10 +24,18 @@ RSpec.describe "User Management", type: :request do
       follow_redirect!
       expect(response.body).to include("Trader was successfully created.")
     end
-
-    it "does not render a different template" do
+    
+    it "edits a user trader account and redirects to traders page" do
       get new_trader_path
-      expect(response).to_not render_template(:show)
+      create_trader_by_admin
+      get edit_trader_path(User.last)
+      expect(response).to render_template(:edit)
+      put trader_path, :params => { :user => {:email => Faker::Internet.email }}
+      follow_redirect!
+      expect(response.body).to include('Trader details was successfully updated.')
     end
+
+  
+  
   end
 end
