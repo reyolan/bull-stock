@@ -13,6 +13,7 @@ class User < ApplicationRecord
          :confirmable, :lockable
 
   scope :asc_traders, -> { order(:email).traders }
+  scope :pending_traders, -> { where(approved: false).traders }
   scope :traders, -> { where(role: '1') }
 
   def save_trader
@@ -36,11 +37,11 @@ class User < ApplicationRecord
 
   private
 
-  def set_default_role
-    self.role ||= :trader
-  end
-
   def balance_is_positive_or_zero
     errors.add(:base, 'Insufficient balance for the input you entered') if balance.negative?
+  end
+
+  def set_default_role
+    self.role ||= :trader
   end
 end

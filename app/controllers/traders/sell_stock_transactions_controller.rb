@@ -33,17 +33,17 @@ class Traders::SellStockTransactionsController < ApplicationController
 
   private
 
-  def sell_transaction_params
-    params.require(:sell_transaction).permit(:quantity).merge(session[:stock])
+  def request_iex_quote_and_logo(params)
+    client = IEX::Api::Client.new
+    @quote = client.quote(params)
+    @logo = client.logo(params)
   end
 
   def store_stock_quote_to_sell
     session[:stock] = { company_name: @quote.company_name, symbol: @quote.symbol, unit_price: @quote.latest_price }
   end
 
-  def request_iex_quote_and_logo(params)
-    @client = IEX::Api::Client.new
-    @quote = @client.quote(params)
-    @logo = @client.logo(params)
+  def sell_transaction_params
+    params.require(:sell_transaction).permit(:quantity).merge(session[:stock])
   end
 end

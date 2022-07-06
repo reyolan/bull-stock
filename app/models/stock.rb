@@ -11,12 +11,6 @@ class Stock < ApplicationRecord
   scope :overall_shares, -> { sum(:quantity) }
   scope :asc_symbol, -> { order(:symbol) }
 
-  def sell_share(sold_stock)
-    params_sold_quantity = sold_stock[:quantity].to_d
-    self.quantity = subtract_quantity(params_sold_quantity)
-    self
-  end
-
   def buy_share(bought_stock)
     params_bought_quantity = bought_stock[:quantity].to_d
     params_unit_price = bought_stock[:unit_price].to_d
@@ -26,14 +20,20 @@ class Stock < ApplicationRecord
     self
   end
 
-  private
-
-  def add_quantity(bought_quantity)
-    quantity + bought_quantity
+  def sell_share(sold_stock)
+    params_sold_quantity = sold_stock[:quantity].to_d
+    self.quantity = subtract_quantity(params_sold_quantity)
+    self
   end
 
-  def subtract_quantity(sold_quantity)
-    quantity - sold_quantity
+  private
+
+  def quantity_is_positive_or_zero
+    errors.add(:base, 'Insufficient number of shares to sell') if quantity.negative?
+  end
+
+  def destroy_stock_if_zero_quantity
+    destroy if quantity.zero?
   end
 
   def total_amount
@@ -47,11 +47,11 @@ class Stock < ApplicationRecord
     ((old_price_per_share * old_quantity) + (new_price_per_share * new_quantity)) / total_quantity
   end
 
-  def quantity_is_positive_or_zero
-    errors.add(:base, 'Insufficient number of shares to sell') if quantity.negative?
+  def add_quantity(bought_quantity)
+    quantity + bought_quantity
   end
 
-  def destroy_stock_if_zero_quantity
-    destroy if quantity.zero?
+  def subtract_quantity(sold_quantity)
+    quantity - sold_quantity
   end
 end
