@@ -33,7 +33,7 @@
   <% end %>
   <h2 class="font-bold text-3xl border-b-2 border-black mb-2 mt-6">Delete Account</h2>
   <div class='text-center'>
-    <p class='mb-4 text-lg font-semibold text-red-600'>All of your details, categories, and tasks will be deleted if you continue to delete your account.</p>
+    <p class='mb-4 text-lg font-semibold text-red-600'>All of your details will be deleted if you continue to delete your account.</p>
     <%= link_to "Delete account", registration_path(resource_name), data: { confirm: "Are you sure you want to delete your account?" }, method: :delete, class:'bg-red-400 p-3 text-xl rounded-md font-medium hover:bg-red-500' %>
   </div>
 </div>

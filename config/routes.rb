@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }
 
   scope module: 'admins' do
     resources :pending_traders, only: :index, path: 'traders/pending'
