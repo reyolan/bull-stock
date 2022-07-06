@@ -1,5 +1,0 @@
-<tr class='text-center'>
-  <td class='p-4'><%= local_time(withdraw_transaction.created_at, '%Y-%m-%d %l:%M %p') %></td>
-  <td class="p-4 text-bold <%=balance_to_red_or_green(withdraw_transaction.transaction_type)%>"><%= withdraw_transaction.transaction_type&.upcase %></td>
-  <td class='p-4'><%= withdraw_transaction.amount %></td>
-</tr>

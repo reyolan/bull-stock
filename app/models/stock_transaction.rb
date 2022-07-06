@@ -10,25 +10,25 @@ class StockTransaction < ApplicationRecord
 
   def buy
     self.transaction_type = 0
-    self.amount = quantity * unit_price
+    self.amount = quantity.to_d * unit_price
     self
   end
 
   def sell
     self.transaction_type = 1
-    self.amount = quantity * unit_price
+    self.amount = quantity.to_d * unit_price
     self
   end
 
   private
 
   def stock_quantity_is_positive
-    errors.add(:base, 'An input of 0 share is not possible') if quantity.zero?
-    errors.add(:base, 'An input of negative share is not possible') if quantity.negative?
+    errors.add(:base, 'Please input valid number of shares') if quantity.to_d.zero?
+    errors.add(:base, 'An input of negative share is not possible') if quantity.to_d.negative?
   end
 
   def stock_quantity_scale_is_one
-    unless quantity == quantity.round(1)
+    unless quantity.to_d == quantity.to_d.round(1)
       errors.add(:base, 'You can only input number of shares up to scale of 1 (e.g. 1, 2, 1.5, 2.5)')
     end
   end
