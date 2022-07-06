@@ -6,12 +6,12 @@ require_relative '../support/create_trader_support'
 RSpec.describe "User Management", type: :request do
   
   
-  describe "Admin sign in" do
+  describe "Admin" do
     before(:each) do
       sign_in_as_a_valid_admin
     end
     
-    it "signs in admin" do
+    it "signs in" do
       get traders_path
       expect(response).to render_template(:index)
     end
@@ -34,8 +34,16 @@ RSpec.describe "User Management", type: :request do
       follow_redirect!
       expect(response.body).to include('Trader details was successfully updated.')
     end
+    
+    it "views specific trader account" do
+      create_trader_by_admin
+      get trader_path(User.last)
+      expect(response).to render_template(:show)
+      expect(response.body).to include("#{User.last.email}")
+    end
+    
 
-  
-  
+    
+    
   end
 end
