@@ -42,6 +42,16 @@ RSpec.describe "User Management", type: :request do
       expect(response.body).to include("#{User.last.email}")
     end
     
+    it "views all traders that registered in the app" do
+      get traders_path
+      expect(response).to render_template(:index)
+      expect(response.body).to include("Email")
+      expect(response.body).to include("Email Confirmation")
+      expect(response.body).to include("Account Approval")
+      expect(response.body).to include("Registration Date")
+      expect(response.body).to include("Action")
+    end
+
 
     
     
