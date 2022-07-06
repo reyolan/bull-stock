@@ -41,15 +41,15 @@ class Admins::TradersController < ApplicationController
 
   private
 
+  def set_trader
+    @trader = User.traders.find(params[:id])
+  end
+
   def trader_params
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
   def trader_update_params
     params.require(:user).permit(:email)
-  end
-
-  def set_trader
-    @trader = User.traders.find(params[:id])
   end
 end
