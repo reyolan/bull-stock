@@ -3,7 +3,7 @@ module ValidAdminRequestHelper
 
   # for use in request specs
   def sign_in_as_a_valid_admin
-    @admin ||= FactoryBot.create :user
+    @admin ||= FactoryBot.create :admin
     sign_in @admin
   end
 end
