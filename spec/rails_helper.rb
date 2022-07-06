@@ -64,4 +64,12 @@ RSpec.configure do |config|
 
   # Factory bot methods
   config.include FactoryBot::Syntax::Methods
+
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+
+  config.include Devise::Test::ControllerHelpers, :type => :controller
+  config.include Warden::Test::Helpers
+  config.include Devise::Test::IntegrationHelpers, type: :request
 end

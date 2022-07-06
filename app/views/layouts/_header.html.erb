@@ -24,8 +24,6 @@
       <% end %>
       <li><%= link_to "Log out", destroy_user_session_path, class: "text-xl sm:text-lg #{change_text_color_if_admin_or_trader} font-medium" %></li>
     <% else %>
-      <li><%= link_to "Log in", new_user_session_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
-      <li><%= link_to "Sign up", new_user_registration_path, class: "text-xl sm:text-lg text-green-200 hover:text-green-100 font-medium" %></li>
     <% end %>
   </ul>
 </nav>
