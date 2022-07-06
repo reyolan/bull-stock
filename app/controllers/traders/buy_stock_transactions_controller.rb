@@ -32,22 +32,22 @@ class Traders::BuyStockTransactionsController < ApplicationController
 
   private
 
-  def existing_or_new_stock_of_current_user
-    current_user.stocks.find_by(symbol: session[:stock]['symbol'])&.buy_share(buy_transaction_params) ||
-      current_user.stocks.build(buy_transaction_params)
-  end
-
-  def buy_transaction_params
-    params.require(:buy_transaction).permit(:quantity).merge(session[:stock])
+  def request_iex_quote_and_logo(params)
+    client = IEX::Api::Client.new
+    @quote = client.quote(params)
+    @logo = client.logo(params)
   end
 
   def store_stock_quote_to_buy
     session[:stock] = { company_name: @quote.company_name, symbol: @quote.symbol, unit_price: @quote.latest_price }
   end
 
-  def request_iex_quote_and_logo(params)
-    client = IEX::Api::Client.new
-    @quote = client.quote(params)
-    @logo = client.logo(params)
+  def buy_transaction_params
+    params.require(:buy_transaction).permit(:quantity).merge(session[:stock])
+  end
+
+  def existing_or_new_stock_of_current_user
+    current_user.stocks.find_by(symbol: session[:stock]['symbol'])&.buy_share(buy_transaction_params) ||
+      current_user.stocks.build(buy_transaction_params)
   end
 end
