@@ -42,8 +42,8 @@ class Traders::SellStockTransactionsController < ApplicationController
   end
 
   def request_iex_quote_and_logo(params)
-    @client = IEX::Api::Client.new
-    @quote = @client.quote(params)
-    @logo = @client.logo(params)
+    client = IEX::Api::Client.new
+    @quote = client.quote(params)
+    @logo = client.logo(params)
   end
 end
