@@ -1,6 +1,6 @@
 class Admins::TradersController < ApplicationController
   before_action :authenticate_admin
-  before_action :set_trader, only: %i[edit update show]
+  before_action :set_trader, only: %i[edit update show destroy]
 
   def index
     @q = User.asc_traders.ransack(params[:q])
@@ -32,6 +32,11 @@ class Admins::TradersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @trader.destroy
+    redirect_back(fallback_location: traders_url, notice: "Trader, #{@trader.email}, successfully deleted.")
   end
 
   private

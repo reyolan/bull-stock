@@ -1,5 +1,7 @@
 <%= render 'shared/error_message', object: @withdraw_transaction %>
-<%= render 'shared/error_message', object: @current_user %>
+<% if @withdraw_transaction.errors.full_messages.empty? %>
+  <%= render 'shared/error_message', object: current_user %>
+<% end %>
 <div class= 'bg-slate-100 max-w-lg m-auto p-6 rounded-md mt-4 text-center'>
   <h1 class='text-center text-4xl font-bold'>Withdraw Amount ($)</h1>
   <div class='bg-slate-200 mt-4 p-2 rounded-md'>

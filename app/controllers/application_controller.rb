@@ -19,8 +19,4 @@ class ApplicationController < ActionController::Base
   def authenticate_approved_trader
     raise ActionController::RoutingError, 'Not Found' unless current_user.approved? && current_user.trader?
   end
-
-  def request_iex_resource
-    @client = IEX::Api::Client.new
-  end
 end

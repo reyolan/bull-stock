@@ -21,11 +21,15 @@ class User < ApplicationRecord
   end
 
   def add_amount(amount_to_add)
+    return self if amount_to_add.blank?
+
     self.balance += amount_to_add
     self
   end
 
   def subtract_amount(amount_to_subtract)
+    return self if amount_to_subtract.blank?
+
     self.balance -= amount_to_subtract
     self
   end
