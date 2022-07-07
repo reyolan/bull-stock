@@ -34,7 +34,7 @@ RSpec.describe BalanceTransaction, type: :model do
       expect(deposits).to(include(deposit, yesterday_deposit))
     end
 
-    it 'has a descending order based on created_at' do
+    it 'orders descendingly based on created_at' do
       expect(deposits).to(eq([deposit, yesterday_deposit]))
     end
 
