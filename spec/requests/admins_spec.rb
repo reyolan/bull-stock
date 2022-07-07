@@ -6,7 +6,6 @@ require_relative '../support/trader_create_trader_support'
 
 RSpec.describe "User Management", type: :request do
   
-  
   describe "Admin manages traders accounts" do
     before(:each) do
       sign_in_as_a_valid_admin
@@ -14,11 +13,13 @@ RSpec.describe "User Management", type: :request do
     
     it "signs in admin" do
       get traders_path
+      expect(response).to have_http_status(200)
       expect(response).to render_template(:index)
     end
 
     it "creates a new user trader account and redirects to traders page" do
       get new_trader_path
+      expect(response).to have_http_status(200)
       expect(response).to render_template(:new)
       create_trader_by_admin
       expect(response).to redirect_to(traders_path)
@@ -28,6 +29,7 @@ RSpec.describe "User Management", type: :request do
 
     it "does not render a different template" do
       get new_trader_path
+      expect(response).to have_http_status(200)
       expect(response).to_not render_template(:show)
     end
 
@@ -35,6 +37,7 @@ RSpec.describe "User Management", type: :request do
     it "edits a user trader account and redirects to traders page" do
       create_trader_by_admin
       get edit_trader_path(User.last)
+      expect(response).to have_http_status(200)
       expect(response).to render_template(:edit)
       put trader_path, :params => { :user => {:email => Faker::Internet.email }}
       follow_redirect!
@@ -45,12 +48,14 @@ RSpec.describe "User Management", type: :request do
     it "views specific trader account" do
       create_trader_by_admin
       get trader_path(User.last)
+      expect(response).to have_http_status(200)
       expect(response).to render_template(:show)
       expect(response.body).to include("#{User.last.email}")
     end
     
     it "views all traders that registered in the app" do
       get traders_path
+      expect(response).to have_http_status(200)
       expect(response).to render_template(:index)
       expect(response.body).to include("Traders")
       expect(response.body).to include("Email")
@@ -62,6 +67,7 @@ RSpec.describe "User Management", type: :request do
     
     it "views all traders that has pending email confirmation" do
       get pending_traders_path
+      expect(response).to have_http_status(200)
       expect(response).to render_template(:index)
       expect(response.body).to include("Pending Traders")
       expect(response.body).to include("Email")
@@ -73,6 +79,8 @@ RSpec.describe "User Management", type: :request do
     it "views all traders that has pending email confirmation" do 
       create_trader_account_by_trader
       get pending_traders_path
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:index)
       put approved_trader_path(User.last), :params => { :user => {:approved => true} }
       follow_redirect!
       expect(response).to render_template(:index)
@@ -81,6 +89,7 @@ RSpec.describe "User Management", type: :request do
     
     it "views all stock transactions made by traders" do
       get stock_transactions_path
+      expect(response).to have_http_status(200)
       expect(response).to render_template(:index)
       expect(response.body).to include("Stock Transactions")
       expect(response.body).to include("Time")
@@ -96,6 +105,7 @@ RSpec.describe "User Management", type: :request do
 
     it "views all balance transactions made by traders" do
       get balance_transactions_path
+      expect(response).to have_http_status(200)
       expect(response).to render_template(:index)
       expect(response.body).to include("Balance Transactions")
       expect(response.body).to include("Time")
