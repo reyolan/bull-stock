@@ -31,6 +31,7 @@ FactoryBot.define do
 
     factory :admin, traits: %i[approved confirmed admin_email_role]
     factory :approved_confirmed_trader, traits: %i[approved confirmed trader_email_role]
+    factory :approved_unconfirmed_trader, traits: %i[approved trader_email_role]
     factory :unapproved_confirmed_trader, traits: %i[unapproved confirmed trader_email_role]
     factory :unapproved_unconfirmed_trader, traits: %i[unapproved trader_email_role]
     factory :trader_with_balance, traits: %i[approved confirmed trader_email_role with_balance]
