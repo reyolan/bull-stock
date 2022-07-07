@@ -64,4 +64,8 @@ RSpec.configure do |config|
 
   # Factory bot methods
   config.include FactoryBot::Syntax::Methods
+
+  # Devise and Warden Helpers
+  config.include Warden::Test::Helpers
+  config.include Devise::Test::IntegrationHelpers, type: :request
 end
