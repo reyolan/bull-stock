@@ -5,6 +5,8 @@ RSpec.describe BalanceTransaction, type: :model do
     expect(build(:deposit_transaction)).to be_valid
   end
 
+  let(:balance_transaction) { build(:deposit_transaction) }
+
   it 'is invalid without association to a user' do
     balance_transaction = build(:deposit_transaction, user_id: nil)
     balance_transaction.valid?
@@ -30,53 +32,49 @@ RSpec.describe BalanceTransaction, type: :model do
   end
 
   describe '.deposits' do
-    before do
-      @deposit = create(:deposit_transaction)
-      @yesterday_deposit = create(:yesterday_deposit_transaction)
-      @withdraw = create(:withdraw_transaction)
-    end
+    let(:deposits) { BalanceTransaction.deposits }
+    let(:deposit) { create(:deposit_transaction) }
+    let(:yesterday_deposit) { create(:yesterday_deposit_transaction) }
+    let(:withdraw) { create(:withdraw_transaction) }
 
     it 'includes balance transactions with deposit transaction type' do
-      expect(BalanceTransaction.deposits).to(include(@deposit, @yesterday_deposit))
+      expect(deposits).to(include(deposit, yesterday_deposit))
     end
 
     it 'has a descending order based on created_at' do
-      expect(BalanceTransaction.deposits.first).to(eq(@deposit))
+      expect(deposits).to(eq([deposit, yesterday_deposit]))
     end
 
     it 'excludes balance transactions without deposit transaction type' do
-      expect(BalanceTransaction.deposits).not_to(include(@withdraw))
+      expect(deposits).not_to(include(withdraw))
     end
   end
 
   describe '.withdrawals' do
-    before do
-      @deposit = create(:deposit_transaction)
-      @withdraw = create(:withdraw_transaction)
-      @yesterday_withdraw = create(:yesterday_withdraw_transaction)
-    end
+    let(:withdrawals) { BalanceTransaction.withdrawals }
+    let(:deposit) { create(:deposit_transaction) }
+    let(:withdraw) { create(:withdraw_transaction) }
+    let(:yesterday_withdraw) { create(:yesterday_withdraw_transaction) }
 
     it 'includes balance transactions with withdrawal type' do
-      expect(BalanceTransaction.withdrawals).to(include(@withdraw, @yesterday_withdraw))
+      expect(withdrawals).to(include(withdraw, yesterday_withdraw))
     end
 
     it 'orders the collection in descending order based on created_at attribute' do
-      expect(BalanceTransaction.withdrawals.first).to(eq(@withdraw))
+      expect(withdrawals).to(eq([withdraw, yesterday_withdraw]))
     end
 
     it 'excludes balance transaction without withdraw transaction type' do
-      expect(BalanceTransaction.withdrawals).not_to(include(@deposit))
+      expect(withdrawals).not_to(include(deposit))
     end
   end
 
   describe '.desc_created_at' do
-    before do
-      @today_transaction = create(:withdraw_transaction)
-      @yesterday_transaction = create(:yesterday_withdraw_transaction)
-    end
+    let(:today_transaction) { create(:withdraw_transaction) }
+    let(:yesterday_transaction) { create(:yesterday_withdraw_transaction) }
 
     it 'orders the collection in descending order based on created_at attribute' do
-      expect(BalanceTransaction.first).to(eq(@today_transaction))
+      expect(BalanceTransaction.all).to(eq([today_transaction, yesterday_transaction]))
     end
   end
 end
