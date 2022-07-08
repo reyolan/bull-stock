@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe BalanceTransaction, type: :model do
+  let(:balance_transaction) { build(:deposit_transaction) }
+
   it 'has a valid factory' do
-    expect(build(:deposit_transaction)).to be_valid
+    expect(balance_transaction).to be_valid
   end
 
   describe '#amount' do
-    let(:balance_transaction) { build(:deposit_transaction) }
-
     it 'is invalid with amount scaling to three or more' do
       balance_transaction.amount = 2.225
       expect(balance_transaction).to be_invalid
@@ -72,8 +72,6 @@ RSpec.describe BalanceTransaction, type: :model do
   end
 
   describe '#deposit_type' do
-    let(:balance_transaction) { build(:balance_transaction) }
-
     it 'returns balance transaction with deposit as the transaction type' do
       balance_transaction.deposit_type
       expect(balance_transaction.transaction_type).to(eq('deposit'))
@@ -81,8 +79,6 @@ RSpec.describe BalanceTransaction, type: :model do
   end
 
   describe '#withdraw_type' do
-    let(:balance_transaction) { build(:balance_transaction) }
-
     it 'returns balance transaction with withdraw as the transaction type' do
       balance_transaction.withdraw_type
       expect(balance_transaction.transaction_type).to(eq('withdraw'))

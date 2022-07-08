@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe StockTransaction, type: :model do
+  let(:stock_transaction) { build(:buy_transaction) }
+
   it 'has a valid factory' do
-    expect(build(:buy_transaction)).to be_valid
+    expect(stock_transaction).to be_valid
   end
 
   describe '#quantity' do
-    let(:stock_transaction) { build(:buy_transaction) }
-
     it 'is invalid with quantity scaling to two or more' do
       stock_transaction.quantity = 2.22
       expect(stock_transaction).to be_invalid
@@ -63,7 +63,6 @@ RSpec.describe StockTransaction, type: :model do
   end
 
   describe '#buy' do
-    let(:stock_transaction) { build(:stock_transaction) }
     it 'returns stock transaction with computed amount and buy transaction type' do
       stock_transaction.buy
       computed_amount = stock_transaction.unit_price * stock_transaction.quantity
@@ -73,7 +72,6 @@ RSpec.describe StockTransaction, type: :model do
   end
 
   describe '#sell' do
-    let(:stock_transaction) { build(:stock_transaction) }
     it 'returns stock transaction with computed amount and sell transaction type' do
       stock_transaction.sell
       computed_amount = stock_transaction.unit_price * stock_transaction.quantity
