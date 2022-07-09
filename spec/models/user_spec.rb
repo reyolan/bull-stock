@@ -53,11 +53,11 @@ RSpec.describe User, type: :model do
     let(:trader) { create(:approved_confirmed_trader) }
 
     it 'includes users with trader role' do
-      expect(User.traders).to(include(trader))
+      expect(described_class.traders).to(include(trader))
     end
 
     it 'excludes users with admin role' do
-      expect(User.traders).to_not(include(admin))
+      expect(described_class.traders).to_not(include(admin))
     end
   end
 
@@ -67,13 +67,13 @@ RSpec.describe User, type: :model do
     let(:admin) { create(:admin) }
 
     it 'includes approved users' do
-      expect(User.pending_traders).to(include(unapproved_trader))
+      expect(described_class.pending_traders).to(include(unapproved_trader))
     end
     it 'excludes approved users' do
-      expect(User.pending_traders).to_not(include(approved_trader))
+      expect(described_class.pending_traders).to_not(include(approved_trader))
     end
     it 'excludes users with admin role' do
-      expect(User.pending_traders).to_not(include(admin))
+      expect(described_class.pending_traders).to_not(include(admin))
     end
   end
 
@@ -82,7 +82,7 @@ RSpec.describe User, type: :model do
     let(:starts_with_a) { create(:approved_confirmed_trader, email: 'abc@example.com') }
 
     it 'orders traders ascendingly based on email attribute' do
-      expect(User.asc_traders).to(eq([starts_with_a, starts_with_t]))
+      expect(described_class.asc_traders).to(eq([starts_with_a, starts_with_t]))
     end
   end
 
@@ -91,7 +91,7 @@ RSpec.describe User, type: :model do
 
     it 'saves user with approved attribute' do
       unapproved_trader.save_approved_trader
-      expect(User.first.approved).to(be(true))
+      expect(described_class.first.approved).to(be(true))
     end
   end
 

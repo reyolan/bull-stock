@@ -25,7 +25,7 @@ RSpec.describe StockTransaction, type: :model do
   end
 
   describe '.buy_list' do
-    let(:buy_list) { StockTransaction.buy_list }
+    let(:buy_list) { described_class.buy_list }
     let(:buy) { create(:buy_transaction) }
     let(:yesterday_buy) { create(:yesterday_buy_transaction) }
     let(:sell) { create(:sell_transaction) }
@@ -44,7 +44,7 @@ RSpec.describe StockTransaction, type: :model do
   end
 
   describe '.sell_list' do
-    let(:sell_list) { StockTransaction.sell_list }
+    let(:sell_list) { described_class.sell_list }
     let(:sell) { create(:sell_transaction) }
     let(:yesterday_sell) { create(:yesterday_sell_transaction) }
     let(:buy) { create(:buy_transaction) }

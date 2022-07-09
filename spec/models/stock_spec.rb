@@ -20,7 +20,7 @@ RSpec.describe Stock, type: :model do
 
     it 'sums the amount of all stocks' do
       expected_amount = saved_stock.amount + another_saved_stock.amount
-      expect(Stock.overall_amount).to(eq(expected_amount))
+      expect(described_class.overall_amount).to(eq(expected_amount))
     end
   end
 
@@ -30,7 +30,7 @@ RSpec.describe Stock, type: :model do
 
     it 'sums the number of shares of all stocks' do
       expected_overall_shares = saved_stock.quantity + another_saved_stock.quantity
-      expect(Stock.overall_shares).to(eq(expected_overall_shares))
+      expect(described_class.overall_shares).to(eq(expected_overall_shares))
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe Stock, type: :model do
     let(:stock_symbol_a) { create(:another_valid_stock) }
 
     it 'orders ascendingly based on symbol' do
-      expect(Stock.asc_symbol).to(eq([stock_symbol_a, stock_symbol_t]))
+      expect(described_class.asc_symbol).to(eq([stock_symbol_a, stock_symbol_t]))
     end
   end
 
@@ -84,7 +84,7 @@ RSpec.describe Stock, type: :model do
       it 'destroys stock when quantity is zero' do
         stock.quantity = 0
         stock.save!
-        expect(Stock.all).to_not(include(stock))
+        expect(described_class.all).to_not(include(stock))
       end
     end
   end

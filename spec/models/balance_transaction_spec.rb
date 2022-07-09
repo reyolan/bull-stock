@@ -25,7 +25,7 @@ RSpec.describe BalanceTransaction, type: :model do
   end
 
   describe '.deposits' do
-    let(:deposits) { BalanceTransaction.deposits }
+    let(:deposits) { described_class.deposits }
     let(:deposit) { create(:deposit_transaction) }
     let(:yesterday_deposit) { create(:yesterday_deposit_transaction) }
     let(:withdraw) { create(:withdraw_transaction) }
@@ -44,7 +44,7 @@ RSpec.describe BalanceTransaction, type: :model do
   end
 
   describe '.withdrawals' do
-    let(:withdrawals) { BalanceTransaction.withdrawals }
+    let(:withdrawals) { described_class.withdrawals }
     let(:deposit) { create(:deposit_transaction) }
     let(:withdraw) { create(:withdraw_transaction) }
     let(:yesterday_withdraw) { create(:yesterday_withdraw_transaction) }
@@ -67,7 +67,7 @@ RSpec.describe BalanceTransaction, type: :model do
     let(:yesterday_transaction) { create(:yesterday_withdraw_transaction) }
 
     it 'orders the collection descendingly based on created_at attribute' do
-      expect(BalanceTransaction.all).to(eq([today_transaction, yesterday_transaction]))
+      expect(described_class.all).to(eq([today_transaction, yesterday_transaction]))
     end
   end
 
