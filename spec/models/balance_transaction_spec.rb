@@ -53,7 +53,7 @@ RSpec.describe BalanceTransaction, type: :model do
       expect(withdrawals).to(include(withdraw, yesterday_withdraw))
     end
 
-    it 'orders the collection in descending order based on created_at attribute' do
+    it 'orders the collection descendingly based on created_at attribute' do
       expect(withdrawals).to(eq([withdraw, yesterday_withdraw]))
     end
 
@@ -66,7 +66,7 @@ RSpec.describe BalanceTransaction, type: :model do
     let(:today_transaction) { create(:withdraw_transaction) }
     let(:yesterday_transaction) { create(:yesterday_withdraw_transaction) }
 
-    it 'orders the collection in descending order based on created_at attribute' do
+    it 'orders the collection descendingly based on created_at attribute' do
       expect(BalanceTransaction.all).to(eq([today_transaction, yesterday_transaction]))
     end
   end

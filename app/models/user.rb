@@ -16,7 +16,7 @@ class User < ApplicationRecord
   scope :pending_traders, -> { where(approved: false).traders }
   scope :traders, -> { where(role: '1') }
 
-  def save_trader
+  def save_approved_trader
     self.approved = true
     save
   end

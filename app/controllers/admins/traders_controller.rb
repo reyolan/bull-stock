@@ -17,7 +17,7 @@ class Admins::TradersController < ApplicationController
 
   def create
     @trader = User.new(trader_params)
-    if @trader.save_trader
+    if @trader.save_approved_trader
       redirect_to traders_path, notice: 'Trader was successfully created.'
     else
       render :new
