@@ -67,5 +67,5 @@ RSpec.configure do |config|
 
   # Devise and Warden Helpers
   config.include Warden::Test::Helpers
-  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: %i[request system]
 end
