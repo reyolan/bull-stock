@@ -142,6 +142,7 @@ GEM
       hashie
       money (~> 6.0)
     jaro_winkler (1.5.4)
+    json (2.6.2)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -228,6 +229,10 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
+    rails_real_favicon (0.1.1)
+      json (>= 1.7, < 3)
+      rails
+      rubyzip (~> 2)
     railties (6.1.6)
       actionpack (= 6.1.6)
       activesupport (= 6.1.6)
@@ -381,6 +386,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 6.1.6)
   rails-controller-testing
+  rails_real_favicon
   ransack
   rspec-rails
   rubocop (~> 1.30)
