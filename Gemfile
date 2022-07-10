@@ -47,6 +47,9 @@ group :development do
 
   # language server for ruby intellisense
   gem 'solargraph'
+
+  # favicon generator
+  gem 'rails_real_favicon'
 end
 
 group :test do
