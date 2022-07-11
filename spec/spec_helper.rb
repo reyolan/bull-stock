@@ -47,6 +47,11 @@ RSpec.configure do |config|
   # default formatter
   config.add_formatter 'Fuubar'
 
+  # driven_by configuration
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

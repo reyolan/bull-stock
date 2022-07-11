@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe BalanceTransaction, type: :model do
-  let(:balance_transaction) { build(:deposit_transaction) }
+  let(:balance_transaction) { build_stubbed(:deposit_transaction) }
 
   it 'has a valid factory' do
     expect(balance_transaction).to be_valid

@@ -3,10 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Trader login', type: :system do
   let(:approved_trader) { create(:approved_confirmed_trader) }
 
-  before do
-    driven_by(:rack_test)
-  end
-
   context 'with valid credentials' do
     it 'allows user to sign in' do
       visit(new_user_session_path)

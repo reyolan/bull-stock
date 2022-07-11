@@ -4,13 +4,9 @@ RSpec.describe 'Deposit amount to increase balance', type: :system do
   let(:approved_trader) { create(:approved_confirmed_trader) }
   let(:unapproved_trader) { create(:unapproved_confirmed_trader) }
 
-  before do
-    driven_by(:rack_test)
-  end
-
   context 'when user is approved' do
     context 'with valid amount' do
-      it 'is successful' do
+      it 'adds amount to the balance of the trader' do
         sign_in approved_trader
 
         visit new_deposit_balance_transaction_path

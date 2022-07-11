@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Trader registration', type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
   context 'with valid details' do
     it 'is successful with email confirmation' do
       visit(new_user_registration_path)

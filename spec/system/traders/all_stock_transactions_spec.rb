@@ -4,10 +4,6 @@ RSpec.describe 'View all stock transactions', type: :system do
   let(:approved_trader) { create(:approved_confirmed_trader) }
   let(:unapproved_trader) { create(:unapproved_confirmed_trader) }
 
-  before do
-    driven_by(:rack_test)
-  end
-
   context 'when user is approved' do
     let!(:stock_transaction) { create(:buy_transaction, user: approved_trader) }
 
