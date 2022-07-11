@@ -4,4 +4,6 @@ VCR.configure do |config|
 
   # hooks/talks to webmock
   config.hook_into :webmock
+
+  config.ignore_localhost = true
 end
