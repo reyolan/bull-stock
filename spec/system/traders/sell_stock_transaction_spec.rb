@@ -6,36 +6,34 @@ RSpec.describe 'Selling of stock', type: :system do
 
   context 'with sufficient number of shares' do
     it 'adds balance equivalent to the sold stock amount' do
-      sign_in approved_trader
-
       VCR.use_cassette('msft_stock') do
+        sign_in approved_trader
+
         visit new_sell_stock_transaction_path(stock.symbol)
+
+        fill_in 'sell_transaction[quantity]', with: stock.quantity
+
+        click_on 'Sell a Share'
+
+        expect { approved_trader.reload }.to change(approved_trader, :balance)
       end
-
-      fill_in 'sell_transaction[quantity]', with: stock.quantity
-
-      click_on 'Sell a Share'
-
-      expect { approved_trader.reload }.to change(approved_trader, :balance)
     end
   end
 
   context 'with invalid number of shares' do
     it 'notifies the user that the input is invalid' do
-      sign_in approved_trader
-
       VCR.use_cassette('msft_stock') do
+        sign_in approved_trader
+
         visit new_sell_stock_transaction_path(stock.symbol)
-      end
 
-      fill_in 'sell_transaction[quantity]', with: -5
+        fill_in 'sell_transaction[quantity]', with: -5
 
-      VCR.use_cassette('msft_stock') do
         click_on 'Sell a Share'
-      end
 
-      expect { approved_trader.reload }.not_to change(approved_trader, :balance)
-      expect(page).to have_css('#error_explanation')
+        expect { approved_trader.reload }.not_to change(approved_trader, :balance)
+        expect(page).to have_css('#error_explanation')
+      end
     end
   end
 
