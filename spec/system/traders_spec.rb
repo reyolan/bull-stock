@@ -55,6 +55,14 @@ RSpec.describe "Trader User Story", type: :system do
   describe 'depositing an amount to have a balance' do
     it 'is successful when user is approved' do
       sign_in approved_trader
+
+      visit new_deposit_balance_transaction_path
+
+      fill_in 'deposit_transaction[amount]', with: 5000
+
+      click_on 'Confirm Deposit'
+
+      expect { approved_trader.reload }.to change(approved_trader, :balance).by(5000)
     end
 
     it 'is unsuccessful when user is not approved' do

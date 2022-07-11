@@ -130,6 +130,9 @@ GEM
     faraday_middleware (1.2.0)
       faraday (~> 1.0)
     ffi (1.15.5)
+    fuubar (2.5.1)
+      rspec-core (~> 3.0)
+      ruby-progressbar (~> 1.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -375,6 +378,7 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker
+  fuubar
   htmlbeautifier
   iex-ruby-client
   kaminari
