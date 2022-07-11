@@ -23,7 +23,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 11 Jul 2022 09:31:33 GMT
+      - Mon, 11 Jul 2022 09:50:14 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -31,8 +31,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - ctoken=e69b6b81de1d412ea67ee95ad512d396; Max-Age=43200; Path=/; Expires=Mon,
-        11 Jul 2022 21:31:33 GMT
+      - ctoken=001fc05f74134192aebe6e2d5207680a; Max-Age=43200; Path=/; Expires=Mon,
+        11 Jul 2022 21:50:14 GMT
       Iexcloud-Messages-Used:
       - '2'
       Iexcloud-Credits-Used:
@@ -55,10 +55,10 @@ http_interactions:
       - Origin, X-Requested-With, Content-Type, Accept, Request-Source
     body:
       encoding: ASCII-8BIT
-      string: '{"avgTotalVolume":29506558,"calculationPrice":"close","change":-0.76,"changePercent":-0.0029,"close":0,"closeSource":"cfaiiolf","closeTime":null,"companyName":"Microsoft
-        Corporation","currency":"USD","delayedPrice":null,"delayedPriceTime":null,"extendedChange":null,"extendedChangePercent":null,"extendedPrice":null,"extendedPriceTime":null,"high":0,"highSource":null,"highTime":null,"iexAskPrice":null,"iexAskSize":null,"iexBidPrice":null,"iexBidSize":null,"iexClose":275.66,"iexCloseTime":1712191237468,"iexLastUpdated":null,"iexMarketPercent":null,"iexOpen":275.96,"iexOpenTime":1727967169062,"iexRealtimePrice":null,"iexRealtimeSize":null,"iexVolume":null,"lastTradeTime":1707548549761,"latestPrice":269.24,"latestSource":"Close","latestTime":"July
-        8, 2022","latestUpdate":1683870340845,"latestVolume":null,"low":0,"lowSource":null,"lowTime":null,"marketCap":2059769799311,"oddLotDelayedPrice":null,"oddLotDelayedPriceTime":null,"open":0,"openTime":null,"openSource":"flcfoiai","peRatio":28.25,"previousClose":269.6,"previousVolume":21588274,"primaryExchange":"SAQNAD","symbol":"MSFT","volume":null,"week52High":366.85,"week52Low":252.46,"ytdChange":-0.21107813569191916,"isUSMarketOpen":false}'
-  recorded_at: Mon, 11 Jul 2022 01:31:33 GMT
+      string: '{"avgTotalVolume":29254385,"calculationPrice":"close","change":-0.74,"changePercent":-0.00289,"close":0,"closeSource":"caflfiio","closeTime":null,"companyName":"Microsoft
+        Corporation","currency":"USD","delayedPrice":null,"delayedPriceTime":null,"extendedChange":null,"extendedChangePercent":null,"extendedPrice":null,"extendedPriceTime":null,"high":0,"highSource":null,"highTime":null,"iexAskPrice":null,"iexAskSize":null,"iexBidPrice":null,"iexBidSize":null,"iexClose":270.91,"iexCloseTime":1712546385431,"iexLastUpdated":null,"iexMarketPercent":null,"iexOpen":268.57,"iexOpenTime":1682035266454,"iexRealtimePrice":null,"iexRealtimeSize":null,"iexVolume":null,"lastTradeTime":1699407750373,"latestPrice":270.94,"latestSource":"Close","latestTime":"July
+        8, 2022","latestUpdate":1668731002611,"latestVolume":null,"low":0,"lowSource":null,"lowTime":null,"marketCap":2025116222166,"oddLotDelayedPrice":null,"oddLotDelayedPriceTime":null,"open":0,"openTime":null,"openSource":"ifiolafc","peRatio":28.1,"previousClose":278.1,"previousVolume":21138956,"primaryExchange":"DASAQN","symbol":"MSFT","volume":null,"week52High":354.34,"week52Low":247.63,"ytdChange":-0.21172146036485937,"isUSMarketOpen":false}'
+  recorded_at: Mon, 11 Jul 2022 01:50:14 GMT
 - request:
     method: get
     uri: https://sandbox.iexapis.com/v1/stock/msft/logo?token=Tpk_bcaf36c73b954ff8af2fdc063539de21
@@ -82,7 +82,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 11 Jul 2022 09:31:34 GMT
+      - Mon, 11 Jul 2022 09:50:15 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -90,8 +90,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - ctoken=7386ada7ffce4072903b6a9cf2f03974; Max-Age=43200; Path=/; Expires=Mon,
-        11 Jul 2022 21:31:34 GMT
+      - ctoken=53120e9dec6f49d1a0c84119fcd1637c; Max-Age=43200; Path=/; Expires=Mon,
+        11 Jul 2022 21:50:14 GMT
       Iexcloud-Messages-Used:
       - '2'
       Iexcloud-Credits-Used:
@@ -114,8 +114,8 @@ http_interactions:
       - Origin, X-Requested-With, Content-Type, Accept, Request-Source
     body:
       encoding: ASCII-8BIT
-      string: '{"url":"/gg/lh7dggpoaogaloi.lp/xo.TScMo.gp/ls:he3-tpim//sFcpnosaeoottiuser"}'
-  recorded_at: Mon, 11 Jul 2022 01:31:34 GMT
+      string: '{"url":"/Fpp.sei-xgio/utg//lon/gdgmgsMcrashtlopoocg3Se./aise7.lpotolTah:po"}'
+  recorded_at: Mon, 11 Jul 2022 01:50:15 GMT
 - request:
     method: get
     uri: https://sandbox.iexapis.com/v1/stock/MSFT/quote?token=Tpk_bcaf36c73b954ff8af2fdc063539de21
@@ -139,7 +139,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 11 Jul 2022 09:33:15 GMT
+      - Mon, 11 Jul 2022 09:50:57 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -147,8 +147,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - ctoken=25e2efffcd1347e68b50a2f5f4e02696; Max-Age=43200; Path=/; Expires=Mon,
-        11 Jul 2022 21:33:15 GMT
+      - ctoken=44c53ee3419b42c095b2b148a6fd284d; Max-Age=43200; Path=/; Expires=Mon,
+        11 Jul 2022 21:50:57 GMT
       Iexcloud-Messages-Used:
       - '2'
       Iexcloud-Credits-Used:
@@ -171,10 +171,10 @@ http_interactions:
       - Origin, X-Requested-With, Content-Type, Accept, Request-Source
     body:
       encoding: ASCII-8BIT
-      string: '{"avgTotalVolume":29365549,"calculationPrice":"close","change":-0.76,"changePercent":-0.00289,"close":0,"closeSource":"floiiacf","closeTime":null,"companyName":"Microsoft
-        Corporation","currency":"USD","delayedPrice":null,"delayedPriceTime":null,"extendedChange":null,"extendedChangePercent":null,"extendedPrice":null,"extendedPriceTime":null,"high":0,"highSource":null,"highTime":null,"iexAskPrice":null,"iexAskSize":null,"iexBidPrice":null,"iexBidSize":null,"iexClose":271.01,"iexCloseTime":1713064040209,"iexLastUpdated":null,"iexMarketPercent":null,"iexOpen":276.74,"iexOpenTime":1721161108023,"iexRealtimePrice":null,"iexRealtimeSize":null,"iexVolume":null,"lastTradeTime":1665140162207,"latestPrice":278.42,"latestSource":"Close","latestTime":"July
-        8, 2022","latestUpdate":1731935708210,"latestVolume":null,"low":0,"lowSource":null,"lowTime":null,"marketCap":2037478803252,"oddLotDelayedPrice":null,"oddLotDelayedPriceTime":null,"open":0,"openTime":null,"openSource":"lifcifoa","peRatio":28.89,"previousClose":275.5,"previousVolume":21120569,"primaryExchange":"DSAANQ","symbol":"MSFT","volume":null,"week52High":362.92,"week52Low":250.65,"ytdChange":-0.20896970350875385,"isUSMarketOpen":false}'
-  recorded_at: Mon, 11 Jul 2022 01:33:15 GMT
+      string: '{"avgTotalVolume":29049126,"calculationPrice":"close","change":-0.76,"changePercent":-0.00283,"close":0,"closeSource":"alifcfio","closeTime":null,"companyName":"Microsoft
+        Corporation","currency":"USD","delayedPrice":null,"delayedPriceTime":null,"extendedChange":null,"extendedChangePercent":null,"extendedPrice":null,"extendedPriceTime":null,"high":0,"highSource":null,"highTime":null,"iexAskPrice":null,"iexAskSize":null,"iexBidPrice":null,"iexBidSize":null,"iexClose":273.78,"iexCloseTime":1712030418471,"iexLastUpdated":null,"iexMarketPercent":null,"iexOpen":272.54,"iexOpenTime":1699067872746,"iexRealtimePrice":null,"iexRealtimeSize":null,"iexVolume":null,"lastTradeTime":1665820965437,"latestPrice":273.51,"latestSource":"Close","latestTime":"July
+        8, 2022","latestUpdate":1705947946679,"latestVolume":null,"low":0,"lowSource":null,"lowTime":null,"marketCap":2073122013011,"oddLotDelayedPrice":null,"oddLotDelayedPriceTime":null,"open":0,"openTime":null,"openSource":"liociffa","peRatio":28.33,"previousClose":274,"previousVolume":20904306,"primaryExchange":"NSADAQ","symbol":"MSFT","volume":null,"week52High":357.69,"week52Low":252.31,"ytdChange":-0.21431453906774156,"isUSMarketOpen":false}'
+  recorded_at: Mon, 11 Jul 2022 01:50:57 GMT
 - request:
     method: get
     uri: https://sandbox.iexapis.com/v1/stock/msft/logo?token=Tpk_bcaf36c73b954ff8af2fdc063539de21
@@ -198,7 +198,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 11 Jul 2022 09:33:16 GMT
+      - Mon, 11 Jul 2022 09:50:57 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -206,8 +206,8 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - ctoken=b3a635fdad04442bb9699143fffc51f6; Max-Age=43200; Path=/; Expires=Mon,
-        11 Jul 2022 21:33:16 GMT
+      - ctoken=5d5adc70bcdf4961971ce177ba61f4c3; Max-Age=43200; Path=/; Expires=Mon,
+        11 Jul 2022 21:50:57 GMT
       Iexcloud-Messages-Used:
       - '2'
       Iexcloud-Credits-Used:
@@ -230,6 +230,6 @@ http_interactions:
       - Origin, X-Requested-With, Content-Type, Accept, Request-Source
     body:
       encoding: ASCII-8BIT
-      string: '{"url":"dor7mocll./a/oxpgo3ihnTgsMaa/os:etoltiFg-/plcoessgeip/gh/uS.tgp.op"}'
-  recorded_at: Mon, 11 Jul 2022 01:33:16 GMT
+      string: '{"url":"Fsegoog/.ppiop/dteS.sactlop/ghpg/oeogic3-:gsoTln7.l/ashoarmxulM/it"}'
+  recorded_at: Mon, 11 Jul 2022 01:50:57 GMT
 recorded_with: VCR 6.1.0
