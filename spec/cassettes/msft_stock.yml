@@ -1,0 +1,119 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sandbox.iexapis.com/v1/stock/MSFT/quote?token=Tpk_bcaf36c73b954ff8af2fdc063539de21
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - IEX Ruby Client/1.6.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 11 Jul 2022 08:18:16 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - ctoken=43e6eaa628a3490caa76d48566581fdb; Max-Age=43200; Path=/; Expires=Mon,
+        11 Jul 2022 20:18:16 GMT
+      Iexcloud-Messages-Used:
+      - '2'
+      Iexcloud-Credits-Used:
+      - '2'
+      Iexcloud-Premium-Messages-Used:
+      - '0'
+      Iexcloud-Premium-Credits-Used:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, OPTIONS
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Request-Source
+    body:
+      encoding: ASCII-8BIT
+      string: '{"avgTotalVolume":28700163,"calculationPrice":"close","change":-0.78,"changePercent":-0.00288,"close":0,"closeSource":"iiaflofc","closeTime":null,"companyName":"Microsoft
+        Corporation","currency":"USD","delayedPrice":null,"delayedPriceTime":null,"extendedChange":null,"extendedChangePercent":null,"extendedPrice":null,"extendedPriceTime":null,"high":0,"highSource":null,"highTime":null,"iexAskPrice":null,"iexAskSize":null,"iexBidPrice":null,"iexBidSize":null,"iexClose":279.12,"iexCloseTime":1707181982389,"iexLastUpdated":null,"iexMarketPercent":null,"iexOpen":265.34,"iexOpenTime":1687690112578,"iexRealtimePrice":null,"iexRealtimeSize":null,"iexVolume":null,"lastTradeTime":1708023946875,"latestPrice":272.79,"latestSource":"Close","latestTime":"July
+        8, 2022","latestUpdate":1672103894549,"latestVolume":null,"low":0,"lowSource":null,"lowTime":null,"marketCap":2090888175489,"oddLotDelayedPrice":null,"oddLotDelayedPriceTime":null,"open":0,"openTime":null,"openSource":"ciliaoff","peRatio":29.01,"previousClose":276.1,"previousVolume":21299033,"primaryExchange":"DAQSAN","symbol":"MSFT","volume":null,"week52High":361.67,"week52Low":242.95,"ytdChange":-0.21370907030109484,"isUSMarketOpen":false}'
+  recorded_at: Mon, 11 Jul 2022 08:18:16 GMT
+- request:
+    method: get
+    uri: https://sandbox.iexapis.com/v1/stock/msft/logo?token=Tpk_bcaf36c73b954ff8af2fdc063539de21
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json; charset=utf-8
+      Content-Type:
+      - application/json; charset=utf-8
+      User-Agent:
+      - IEX Ruby Client/1.6.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 11 Jul 2022 08:18:17 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - ctoken=2391a14e407541e0ac6f1b911553d4e4; Max-Age=43200; Path=/; Expires=Mon,
+        11 Jul 2022 20:18:17 GMT
+      Iexcloud-Messages-Used:
+      - '2'
+      Iexcloud-Credits-Used:
+      - '2'
+      Iexcloud-Premium-Messages-Used:
+      - '0'
+      Iexcloud-Premium-Credits-Used:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      Strict-Transport-Security:
+      - max-age=15768000
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, OPTIONS
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Request-Source
+    body:
+      encoding: ASCII-8BIT
+      string: '{"url":"pSogoolgopegacg/tulholce/oaMtai.so:pxroF/-d.ngT/.tglipesp/mi/sh73s"}'
+  recorded_at: Mon, 11 Jul 2022 08:18:17 GMT
+recorded_with: VCR 6.1.0

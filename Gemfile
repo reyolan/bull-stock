@@ -32,6 +32,12 @@ group :development, :test do
 
   # test suite formatter
   gem 'fuubar'
+
+  # HTTP network stubbing
+  gem 'webmock'
+
+  # record HTTP interactions
+  gem 'vcr'
 end
 
 group :development do
