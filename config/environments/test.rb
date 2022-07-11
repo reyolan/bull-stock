@@ -42,7 +42,8 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
-  config.active_job.queue_adapter = :test
+  # no async jobs in test environment
+  config.active_job.queue_adapter = :inline
 
   # default_url_option for testing
   config.action_mailer.default_url_options = { host: 'example.com' }
