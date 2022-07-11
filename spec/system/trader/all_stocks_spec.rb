@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'View all stocks', type: :system do
   let(:approved_trader) { create(:trader_with_balance) }
   let(:unapproved_trader) { create(:unapproved_confirmed_trader) }
+  let(:admin) { create(:admin) }
 
   context 'when user is approved' do
     let!(:purchased_stock) { create(:valid_stock, user: approved_trader) }
@@ -27,6 +28,14 @@ RSpec.describe 'View all stocks', type: :system do
 
       expect(page).to have_text('Please wait for admin approval')
       expect(page).to have_link('Search Stock')
+    end
+  end
+
+  context 'when user is an admin' do
+    it 'raises a routing error' do
+      sign_in admin
+
+      expect { visit trader_stocks_path }.to raise_error(ActionController::RoutingError)
     end
   end
 end

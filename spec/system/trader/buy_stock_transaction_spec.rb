@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Buying of stock', type: :system do
   let(:unapproved_trader) { create(:unapproved_confirmed_trader) }
   let(:trader_with_balance) { create(:trader_with_balance) }
+  let(:admin) { create(:admin) }
 
   context 'when user is approved' do
     context 'with valid number of shares' do
@@ -44,6 +45,14 @@ RSpec.describe 'Buying of stock', type: :system do
         expect(page).not_to have_css('input')
         expect(page).to have_text('Please wait for admin approval')
       end
+    end
+  end
+
+  context 'when user is an admin' do
+    it 'raises routing error' do
+      sign_in admin
+
+      expect { visit new_buy_stock_transaction_path('MSFT') }.to raise_error(ActionController::RoutingError)
     end
   end
 end

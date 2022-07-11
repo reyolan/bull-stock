@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'View all stock transactions', type: :system do
   let(:approved_trader) { create(:approved_confirmed_trader) }
   let(:unapproved_trader) { create(:unapproved_confirmed_trader) }
+  let(:admin) { create(:admin) }
 
   context 'when user is approved' do
     let!(:stock_transaction) { create(:buy_transaction, user: approved_trader) }
@@ -21,6 +22,14 @@ RSpec.describe 'View all stock transactions', type: :system do
   context 'when user is not approved' do
     it 'raises a routing error' do
       sign_in unapproved_trader
+
+      expect { visit trader_stock_transactions_path }.to raise_error(ActionController::RoutingError)
+    end
+  end
+
+  context 'when user is an admin' do
+    it 'raises a routing error' do
+      sign_in admin
 
       expect { visit trader_stock_transactions_path }.to raise_error(ActionController::RoutingError)
     end

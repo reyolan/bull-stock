@@ -5,12 +5,12 @@ RSpec.describe 'Trader login', type: :system do
 
   context 'with valid credentials' do
     it 'allows user to sign in' do
-      visit(new_user_session_path)
+      visit new_user_session_path
       fill_in 'user_email', with: approved_trader.email
       fill_in 'user_password', with: approved_trader.password
       within('form') { click_on('Log in') }
 
-      expect(page).to have_text('Portfolio')
+      expect(page).to have_current_path(trader_stocks_path)
     end
   end
 
