@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe UserMailer, type: :mailer do
   let(:user) { create(:approved_confirmed_trader) }
-  
+
   describe '#account_approval_email' do
     let(:mail) { described_class.with(user:).account_approval_email.deliver_now }
 
