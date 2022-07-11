@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe StockTransaction, type: :model do
-  let(:stock_transaction) { build(:buy_transaction) }
+  let(:stock_transaction) { build_stubbed(:buy_transaction) }
 
   it 'has a valid factory' do
     expect(stock_transaction).to be_valid

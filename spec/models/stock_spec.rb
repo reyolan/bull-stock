@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Stock, type: :model do
-  let(:stock) { build(:valid_stock) }
+  let(:stock) { build_stubbed(:valid_stock) }
 
   it 'has a valid factory' do
     expect(stock).to be_valid

@@ -1,31 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:trader) { build(:approved_confirmed_trader) }
+  let(:trader) { build_stubbed(:approved_confirmed_trader) }
 
   it 'has a valid factory' do
     expect(trader).to(be_valid)
   end
 
   describe '#email' do
+    let(:registered_trader) { create(:approved_confirmed_trader) }
     it 'is invalid without a value' do
       trader.email = nil
       expect(trader).to_not(be_valid)
     end
 
-    it 'is valid with valid addresses' do
-      valid_addresses = %w[example123@example.com EXAMPLE.123@bar.COM ZXCR@foo.bar.org user+123@edu.ph]
-      valid_addresses.each do |valid_address|
-        trader.email = valid_address
-        expect(trader).to(be_valid)
-      end
-    end
-
     it 'is invalid with duplicate address' do
-      another_trader = build(:approved_confirmed_trader)
-      another_trader.email = trader.email
-      another_trader.save
-      expect(trader).to_not(be_valid)
+      duplicate_trader_email = build_stubbed(:approved_confirmed_trader)
+      duplicate_trader_email.email = registered_trader.email
+      expect(duplicate_trader_email).to_not(be_valid)
     end
   end
 

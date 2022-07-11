@@ -17,7 +17,7 @@ RSpec.describe UserMailer, type: :mailer do
       expect(mail.from).to(eq(['noreply@bullstock.com']))
     end
 
-    it 'contains login_url' do
+    it 'contains user_session_url' do
       expect(mail.body.encoded).to(match('/sign_in'))
     end
   end

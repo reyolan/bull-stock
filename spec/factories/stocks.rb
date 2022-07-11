@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :stock do
     association :user, factory: :approved_confirmed_trader
-    symbol { 'TEST' }
-    company_name { 'Test Company' }
+    symbol { 'MSFT' }
+    company_name { 'Microsoft Company' }
 
     trait :with_quantity_unit_price do
       quantity { 12 }
-      unit_price { 2 }
+      unit_price { 123 }
     end
 
     trait :with_amount do
