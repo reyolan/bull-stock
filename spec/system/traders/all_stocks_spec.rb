@@ -1,16 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe 'View all stocks', type: :system do
-  let(:approved_trader) { create(:approved_confirmed_trader) }
+  let(:approved_trader) { create(:trader_with_balance) }
   let(:unapproved_trader) { create(:unapproved_confirmed_trader) }
 
   context 'when user is approved' do
+    let!(:purchased_stock) { create(:valid_stock, user: approved_trader) }
+
     it 'shows portfolio of the user and a link to purchase stock' do
       sign_in approved_trader
 
       visit trader_stocks_path
 
       expect(page).to have_link('Purchase Stock')
+      expect(page).to have_text(purchased_stock.symbol)
+      expect(page).to have_text(purchased_stock.company_name)
+      expect(page).to have_text(purchased_stock.quantity)
     end
   end
 
