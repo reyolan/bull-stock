@@ -9,7 +9,9 @@ RSpec.describe 'Buying of stock', type: :system do
       it 'adds particular stock to the portfolio of user' do
         sign_in trader_with_balance
 
-        visit new_buy_stock_transaction_path('MSFT')
+        VCR.use_cassette('msft_stock') do
+          visit new_buy_stock_transaction_path('MSFT')
+        end
 
         fill_in 'buy_transaction[quantity]', with: 5
 
@@ -21,11 +23,15 @@ RSpec.describe 'Buying of stock', type: :system do
       it 'notifies the user that the input is invalid' do
         sign_in trader_with_balance
 
-        visit new_buy_stock_transaction_path('MSFT')
+        VCR.use_cassette('msft_stock') do
+          visit new_buy_stock_transaction_path('MSFT')
+        end
 
         fill_in 'buy_transaction[quantity]', with: -5
 
-        expect { click_on 'Purchase Stock' }.not_to change(trader_with_balance.stocks, :count)
+        expect do
+          VCR.use_cassette('msft_stock') { click_on 'Purchase Stock' }
+        end.not_to change(trader_with_balance.stocks, :count)
         expect(page).to have_css('#error_explanation')
       end
     end
@@ -35,7 +41,9 @@ RSpec.describe 'Buying of stock', type: :system do
     it 'contains message to wait for approval' do
       sign_in unapproved_trader
 
-      visit new_buy_stock_transaction_path('MSFT')
+      VCR.use_cassette('msft_stock') do
+        visit new_buy_stock_transaction_path('MSFT')
+      end
 
       expect(page).not_to have_css('input')
       expect(page).to have_text('Please wait for admin approval')
