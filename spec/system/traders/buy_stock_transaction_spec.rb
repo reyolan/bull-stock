@@ -21,7 +21,7 @@ RSpec.describe 'Buying of stock', type: :system do
 
     context 'with invalid number of shares' do
       it 'notifies the user that the input is invalid' do
-        VCR.use_cassette('msft_stock') do
+        VCR.use_cassette('msft_stock', record: :new_episodes) do
           sign_in trader_with_balance
           visit new_buy_stock_transaction_path('MSFT')
 
