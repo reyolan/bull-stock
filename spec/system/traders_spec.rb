@@ -9,86 +9,120 @@ RSpec.describe "Trader User Story", type: :system do
     driven_by(:rack_test)
   end
 
-  describe 'creation of trader account to buy and sell stocks' do
-    it 'is successful with confirmation email' do
-      visit(new_user_registration_path)
+  describe 'creation of trader account' do
+    context 'with valid details' do
+      it 'is successful with confirmation email' do
+        visit(new_user_registration_path)
 
-      fill_in 'user_email', with: 'example@example.com'
-      fill_in 'user_password', with: '123456'
-      fill_in 'user_password_confirmation', with: '123456'
+        fill_in 'user_email', with: 'example@example.com'
+        fill_in 'user_password', with: '123456'
+        fill_in 'user_password_confirmation', with: '123456'
 
-      expect { within('form') { click_on('Sign up') } }.to change(User, :count).by(1)
-                                                       .and change(ActionMailer::Base.deliveries, :count).by(1)
+        expect { within('form') { click_on('Sign up') } }.to change(User, :count).by(1)
+                                                         .and change(ActionMailer::Base.deliveries, :count).by(1)
+      end
     end
 
-    it 'is unsuccessful due to invalid details' do
-      visit(new_user_registration_path)
+    context 'with invalid details' do
+      it 'notifies the user that their details is invalid' do
+        visit(new_user_registration_path)
 
-      fill_in 'user_email', with: 'example@example.com'
-      fill_in 'user_password', with: '12345'
-      fill_in 'user_password_confirmation', with: '12345'
+        fill_in 'user_email', with: 'example@example.com'
+        fill_in 'user_password', with: '12345'
+        fill_in 'user_password_confirmation', with: '12345'
 
-      expect { within('form') { click_on('Sign up') } }.not_to(change { User.count })
-      expect(page).to have_css('#error_explanation')
+        expect { within('form') { click_on('Sign up') } }.not_to(change { User.count })
+        expect(page).to have_css('#error_explanation')
+      end
     end
   end
 
   describe 'logging in of credentials to access on the app' do
-    it 'is successful' do
-      visit(new_user_session_path)
-      fill_in 'user_email', with: approved_trader.email
-      fill_in 'user_password', with: approved_trader.password
-      within('form') { click_on('Log in') }
+    context 'with valid credentials' do
+      it 'allows user to sign in' do
+        visit(new_user_session_path)
+        fill_in 'user_email', with: approved_trader.email
+        fill_in 'user_password', with: approved_trader.password
+        within('form') { click_on('Log in') }
 
-      expect(page).to have_text('Portfolio')
+        expect(page).to have_text('Portfolio')
+      end
     end
 
-    it 'is unsuccessful due to invalid credentials' do
-      visit new_user_session_path
-      fill_in 'user_email', with: 'example@example.com'
-      fill_in 'user_password', with: '123456'
-      within('form') { click_on('Log in') }
+    context 'with invalid credentials' do
+      it 'notifies that their credentials is invalid' do
+        visit new_user_session_path
+        fill_in 'user_email', with: 'example@example.com'
+        fill_in 'user_password', with: '123456'
+        within('form') { click_on('Log in') }
 
-      expect(page).to have_css('#alert-danger')
+        expect(page).to have_css('#alert-danger')
+      end
     end
   end
 
   describe 'depositing an amount to have a balance' do
-    it 'is successful when user is approved' do
-      sign_in approved_trader
+    context 'when user is approved' do
+      context 'with valid amount' do
+        it 'is successful' do
+          sign_in approved_trader
 
-      visit new_deposit_balance_transaction_path
+          visit new_deposit_balance_transaction_path
 
-      fill_in 'deposit_transaction[amount]', with: 5000
+          fill_in 'deposit_transaction[amount]', with: 5000
 
-      click_on 'Confirm Deposit'
+          click_on 'Confirm Deposit'
 
-      expect { approved_trader.reload }.to change(approved_trader, :balance).by(5000)
+          expect { approved_trader.reload }.to change(approved_trader, :balance).by(5000)
+        end
+      end
+
+      context 'with invalid amount' do
+        it 'notifies user that the amount is invalid' do
+          sign_in approved_trader
+
+          visit new_deposit_balance_transaction_path
+
+          fill_in 'deposit_transaction[amount]', with: -1234
+
+          click_on 'Confirm Deposit'
+
+          expect { approved_trader.reload }.not_to change(approved_trader, :balance)
+          expect(page).to have_css('#error_explanation')
+        end
+      end
     end
 
-    it 'is unsuccessful when user is not approved' do
-      sign_in unapproved_trader
-      expect { visit trader_balance_path }.to raise_error(ActionController::RoutingError)
+    context 'when user is not approved' do
+      it 'renders 404' do
+        sign_in unapproved_trader
+        expect { visit trader_balance_path }.to raise_error(ActionController::RoutingError)
+      end
     end
   end
 
   describe 'buying a stock to add to investment portfolio' do
-    it 'is successful when user is approved' do
-      sign_in trader_with_balance
+    context 'when user is approved' do
+      it 'is successful' do
+        sign_in trader_with_balance
 
-      visit new_buy_stock_transaction_path('MSFT')
+        visit new_buy_stock_transaction_path('MSFT')
 
-      fill_in 'buy_transaction[quantity]', with: 5
+        fill_in 'buy_transaction[quantity]', with: 5
 
-      expect { click_on 'Purchase Stock' }.to change(trader_with_balance.stocks, :count).by(1)
+        expect { click_on 'Purchase Stock' }.to change(trader_with_balance.stocks, :count).by(1)
+      end
     end
 
-    it 'is unsuccessful when user is not approved' do
-      sign_in unapproved_trader
+    context 'when user is not approved' do
+      it 'notifies user to wait for approval' do
+        sign_in unapproved_trader
 
-      visit new_buy_stock_transaction_path('MSFT')
+        visit new_buy_stock_transaction_path('MSFT')
 
-      expect(page).not_to have_css('input')
+        expect(page).not_to have_css('input')
+        expect(page).to have_text('Please wait for admin approval')
+      end
     end
   end
 
