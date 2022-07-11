@@ -13,16 +13,33 @@ gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
+
+# Vite Frontend Tool
+gem 'vite_rails'
+
+# authentication
+gem 'devise'
+
+# iex ruby client
+gem 'iex-ruby-client'
+
+# offsets UTC time to local timezone
+gem 'local_time'
+
+gem 'ransack'
+
+# pagination
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -71,26 +88,4 @@ group :test do
   gem 'rails-controller-testing'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'net-smtp'
-gem 'net-imap'
-gem 'net-pop'
-
-# Vite Frontend Tool
-gem 'vite_rails'
-
-# authentication
-gem 'devise'
-
-# iex ruby client
-gem 'iex-ruby-client'
-
-# offsets UTC time to local timezone
-gem 'local_time'
-
-gem 'ransack'
-
-# pagination
-gem 'kaminari'
