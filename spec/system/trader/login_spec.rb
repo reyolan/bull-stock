@@ -10,7 +10,7 @@ RSpec.describe 'Trader login', type: :system do
       fill_in 'user_password', with: approved_trader.password
       within('form') { click_on('Log in') }
 
-      expect(page).to have_text('Portfolio')
+      expect(page).to have_current_path(trader_stocks_path)
     end
   end
 

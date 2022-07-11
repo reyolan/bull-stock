@@ -11,6 +11,8 @@ RSpec.describe 'Trader registration', type: :system do
 
       expect { within('form') { click_on('Sign up') } }.to change(User, :count).by(1)
                                                        .and change(ActionMailer::Base.deliveries, :count).by(1)
+      expect(page).to have_current_path(root_path)
+      expect(page).to have_css('#alert-success')
     end
   end
 
