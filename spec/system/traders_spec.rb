@@ -115,7 +115,7 @@ RSpec.describe "Trader User Story", type: :system do
     end
 
     context 'when user is not approved' do
-      it 'notifies user to wait for approval' do
+      it 'contains message to wait for approval' do
         sign_in unapproved_trader
 
         visit new_buy_stock_transaction_path('MSFT')
@@ -127,5 +127,29 @@ RSpec.describe "Trader User Story", type: :system do
   end
 
   describe 'having a My Portfolio page to see all stocks' do
+    context 'when user is approved' do
+      it 'shows portfolio of the user and its overall amount and shares' do
+      end
+    end
+
+    context 'when user is not approved' do
+      it 'contains message to wait for admin approval' do
+      end
+    end
+  end
+
+  describe 'having a Transaction page to see all stock transactions' do
+    context 'when user is approved' do
+      it 'lorem ipsum' do
+      end
+    end
+
+    context 'when user is not approved' do
+      it 'lorem ipsum' do
+      end
+    end
+  end
+
+  describe 'selling of stocks to gain money' do
   end
 end
