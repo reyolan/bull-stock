@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Trader User Story", type: :system do
   let(:unapproved_trader) { create(:unapproved_confirmed_trader) }
   let(:approved_trader) { create(:approved_confirmed_trader) }
+  let(:trader_with_balance) { create(:trader_with_balance) }
 
   before do
     driven_by(:rack_test)
@@ -66,17 +67,28 @@ RSpec.describe "Trader User Story", type: :system do
     end
 
     it 'is unsuccessful when user is not approved' do
-      # sign_in unapproved_trader
-      # expect { visit trader_balance_path }.to raise_error(ActionController::RoutingError)
+      sign_in unapproved_trader
+      expect { visit trader_balance_path }.to raise_error(ActionController::RoutingError)
     end
   end
 
   describe 'buying a stock to add to investment portfolio' do
     it 'is successful when user is approved' do
-      # sign_in approved_trader
+      sign_in trader_with_balance
+
+      visit new_buy_stock_transaction_path('MSFT')
+
+      fill_in 'buy_transaction[quantity]', with: 5
+
+      expect { click_on 'Purchase Stock' }.to change(trader_with_balance.stocks, :count).by(1)
     end
 
     it 'is unsuccessful when user is not approved' do
+      sign_in unapproved_trader
+
+      visit new_buy_stock_transaction_path('MSFT')
+
+      expect(page).not_to have_css('input')
     end
   end
 
