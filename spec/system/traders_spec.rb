@@ -11,7 +11,7 @@ RSpec.describe "Trader User Story", type: :system do
 
   describe 'creation of trader account' do
     context 'with valid details' do
-      it 'is successful with confirmation email' do
+      it 'is successful with email confirmation' do
         visit(new_user_registration_path)
 
         fill_in 'user_email', with: 'example@example.com'
@@ -94,7 +94,7 @@ RSpec.describe "Trader User Story", type: :system do
     end
 
     context 'when user is not approved' do
-      it 'renders 404' do
+      it 'raises a routing error' do
         sign_in unapproved_trader
         expect { visit trader_balance_path }.to raise_error(ActionController::RoutingError)
       end
@@ -128,24 +128,47 @@ RSpec.describe "Trader User Story", type: :system do
 
   describe 'having a My Portfolio page to see all stocks' do
     context 'when user is approved' do
-      it 'shows portfolio of the user and its overall amount and shares' do
+      it 'shows portfolio of the user and a link to purchase stock' do
+        sign_in approved_trader
+
+        visit trader_stocks_path
+
+        expect(page).to have_link('Purchase Stock')
       end
     end
 
     context 'when user is not approved' do
-      it 'contains message to wait for admin approval' do
+      it 'contains message to wait for admin approval and a link to search stock' do
+        sign_in unapproved_trader
+
+        visit trader_stocks_path
+
+        expect(page).to have_text('Please wait for admin approval')
+        expect(page).to have_link('Search Stock')
       end
     end
   end
 
   describe 'having a Transaction page to see all stock transactions' do
     context 'when user is approved' do
-      it 'lorem ipsum' do
+      let!(:stock_transaction) { create(:buy_transaction, user: approved_trader) }
+
+      it 'shows all stock transactions' do
+        sign_in approved_trader
+
+        visit trader_stock_transactions_path
+
+        expect(page).to have_text(stock_transaction.symbol)
+        expect(page).to have_text(stock_transaction.company_name)
+        expect(page).to have_text(stock_transaction.amount)
       end
     end
 
     context 'when user is not approved' do
-      it 'lorem ipsum' do
+      it 'raises a routing error' do
+        sign_in unapproved_trader
+
+        expect { visit trader_stock_transactions_path }.to raise_error(ActionController::RoutingError)
       end
     end
   end
