@@ -39,15 +39,15 @@ RSpec.describe 'Deposit amount to increase balance', type: :system do
   context 'when user is not approved' do
     it 'raises a routing error' do
       sign_in unapproved_trader
-      expect { visit trader_balance_path }.to raise_error(ActionController::RoutingError)
+      expect { visit new_deposit_balance_transaction_path }.to raise_error(ActionController::RoutingError)
     end
   end
 
-  content 'when user is an admin' do
+  context 'when user is an admin' do
     it 'raises a routing error' do
       sign_in admin
 
-      expect { visit trader_balance_path }.to raise_error(ActionController::RoutingError)
+      expect { visit new_deposit_balance_transaction_path }.to raise_error(ActionController::RoutingError)
     end
   end
 end

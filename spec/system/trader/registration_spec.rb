@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Trader registration', type: :system do
   context 'with valid details' do
     it 'is successful with email confirmation' do
-      visit(new_user_registration_path)
+      visit new_user_registration_path
 
       fill_in 'user_email', with: 'example@example.com'
       fill_in 'user_password', with: '123456'
@@ -18,7 +18,7 @@ RSpec.describe 'Trader registration', type: :system do
 
   context 'with invalid details' do
     it 'notifies the user that their details is invalid' do
-      visit(new_user_registration_path)
+      visit new_user_registration_path
 
       fill_in 'user_email', with: 'example@example.com'
       fill_in 'user_password', with: '12345'
