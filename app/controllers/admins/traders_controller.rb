@@ -36,6 +36,7 @@ class Admins::TradersController < ApplicationController
 
   def destroy
     @trader.destroy
+    UserMailer.with(user: @trader).account_deletion_email.deliver_later
     redirect_back(fallback_location: traders_url, notice: "Trader, #{@trader.email}, successfully deleted.")
   end
 
