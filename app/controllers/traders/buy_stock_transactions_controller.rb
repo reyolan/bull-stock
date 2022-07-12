@@ -6,11 +6,15 @@ class Traders::BuyStockTransactionsController < ApplicationController
   end
 
   def new
-    request_iex_quote_and_logo(params[:symbol])
-    store_stock_quote_to_buy
-    @transaction = current_user.stock_transactions.build
-  rescue IEX::Errors::SymbolNotFoundError
-    redirect_back(fallback_location: new_search_stock_url, danger: 'Stock not found.')
+    result = IexQuoteLogoRequester.new(params[:symbol]).perform
+    if result.success?
+      @quote = result.quote
+      @logo = result.logo
+      @transaction = current_user.stock_transactions.build
+      session[:stock] = { company_name: @quote.company_name, symbol: @quote.symbol, unit_price: @quote.latest_price }
+    else
+      redirect_back(fallback_location: new_search_stock_url, danger: "#{result.message}.")
+    end
   end
 
   def create
@@ -24,22 +28,17 @@ class Traders::BuyStockTransactionsController < ApplicationController
     end
     redirect_to trader_stocks_url, success: "Successfully bought #{@transaction.quantity}
                                              share/s of #{@stock.company_name}."
-  rescue ActiveRecord::RecordInvalid
-    request_iex_quote_and_logo(session[:stock]['symbol'])
-    store_stock_quote_to_buy
-    render :new
+    handle_record_invalid_exception
   end
 
   private
 
-  def request_iex_quote_and_logo(params)
-    client = IEX::Api::Client.new
-    @quote = client.quote(params)
-    @logo = client.logo(params)
-  end
-
-  def store_stock_quote_to_buy
+  def handle_record_invalid_exception
+    result = Iex::IexQuoteLogoRequester.new(session[:stock]['symbol']).perform
+    @quote = result.quote
+    @logo = result.logo
     session[:stock] = { company_name: @quote.company_name, symbol: @quote.symbol, unit_price: @quote.latest_price }
+    render :new
   end
 
   def buy_transaction_params
