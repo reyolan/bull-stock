@@ -2,15 +2,13 @@ require 'rails_helper'
 require 'spec_helper'
 require_relative '../support/sign_in_admin_support'
 require_relative '../support/admin_create_trader_support'
-require_relative '../support/trader_create_trader_support'
 
 RSpec.describe "User Management", type: :request do
-  
   describe "Admin manages traders accounts" do
     before(:each) do
       sign_in_as_a_valid_admin
     end
-    
+
     it "signs in admin" do
       get traders_path
       expect(response).to have_http_status(200)
@@ -33,7 +31,6 @@ RSpec.describe "User Management", type: :request do
       expect(response).to_not render_template(:show)
     end
 
-    
     it "edits a user trader account and redirects to traders page" do
       create_trader_by_admin
       get edit_trader_path(User.last)
@@ -44,7 +41,7 @@ RSpec.describe "User Management", type: :request do
       expect(response).to render_template(:index)
       expect(response.body).to include('Trader details was successfully updated.')
     end
-    
+
     it "views specific trader account" do
       create_trader_by_admin
       get trader_path(User.last)
@@ -52,8 +49,9 @@ RSpec.describe "User Management", type: :request do
       expect(response).to render_template(:show)
       expect(response.body).to include("#{User.last.email}")
     end
-    
+
     it "views all traders that registered in the app" do
+      create(:approved_confirmed_trader)
       get traders_path
       expect(response).to have_http_status(200)
       expect(response).to render_template(:index)
@@ -64,8 +62,9 @@ RSpec.describe "User Management", type: :request do
       expect(response.body).to include("Registration Date")
       expect(response.body).to include("Action")
     end
-    
+
     it "views all traders that has pending email confirmation" do
+      create(:unapproved_confirmed_trader)
       get pending_traders_path
       expect(response).to have_http_status(200)
       expect(response).to render_template(:index)
@@ -75,9 +74,9 @@ RSpec.describe "User Management", type: :request do
       expect(response.body).to include("Registration Date")
       expect(response.body).to include("Action")
     end
-    
-    it "views all traders that has pending email confirmation" do 
-      create_trader_account_by_trader
+
+    it "approves a trader" do
+      create(:unapproved_confirmed_trader)
       get pending_traders_path
       expect(response).to have_http_status(200)
       expect(response).to render_template(:index)
@@ -86,8 +85,9 @@ RSpec.describe "User Management", type: :request do
       expect(response).to render_template(:index)
       expect(response.body).to include("#{User.last.email} has been successfully approved.")
     end
-    
+
     it "views all stock transactions made by traders" do
+      create(:buy_transaction)
       get stock_transactions_path
       expect(response).to have_http_status(200)
       expect(response).to render_template(:index)
@@ -104,6 +104,7 @@ RSpec.describe "User Management", type: :request do
     end
 
     it "views all balance transactions made by traders" do
+      create(:deposit_transaction)
       get balance_transactions_path
       expect(response).to have_http_status(200)
       expect(response).to render_template(:index)
