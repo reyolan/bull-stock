@@ -7,38 +7,34 @@ RSpec.describe 'Searching of stock', type: :system do
 
   context 'when user is a trader' do
     context 'with approved status' do
-      it 'shows the searched stock and purchase stock link' do
-        VCR.use_cassette('msft_stock') do
-          sign_in approved_trader
+      it 'shows the searched stock and purchase stock link', vcr: { cassette_name: 'msft_stock' } do
+        sign_in approved_trader
 
-          visit new_search_stock_path
+        visit new_search_stock_path
 
-          fill_in 'symbol', with: 'MSFT'
+        fill_in 'symbol', with: 'MSFT'
 
-          click_on 'Purchase Stock'
+        click_on 'Purchase Stock'
 
-          expect(page).to have_text('Company Name')
-          expect(page).to have_text('Price')
-          expect(page).to have_css('input')
-        end
+        expect(page).to have_text('Company Name')
+        expect(page).to have_text('Price')
+        expect(page).to have_css('input')
       end
     end
 
     context 'with unapproved status' do
-      it 'shows the searched stock and admin approval notification' do
-        VCR.use_cassette('msft_stock') do
-          sign_in unapproved_trader
+      it 'shows the searched stock and admin approval notification', vcr: { cassette_name: 'msft_stock' } do
+        sign_in unapproved_trader
 
-          visit new_search_stock_path
+        visit new_search_stock_path
 
-          fill_in  'symbol', with: 'MSFT'
+        fill_in  'symbol', with: 'MSFT'
 
-          click_on 'Search Stock'
+        click_on 'Search Stock'
 
-          expect(page).to have_text('Company Name')
-          expect(page).to have_text('Price')
-          expect(page).to have_text('Please wait for admin approval')
-        end
+        expect(page).to have_text('Company Name')
+        expect(page).to have_text('Price')
+        expect(page).to have_text('Please wait for admin approval')
       end
     end
   end
