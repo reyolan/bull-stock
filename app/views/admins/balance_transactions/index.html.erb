@@ -9,26 +9,30 @@
     </div>
   </div>
   <div class='overflow-auto mt-2'>
-    <table class="min-w-full">
-      <tr class="border-b bg-blue-100 border-blue-200 text-xl">
-        <th scope="col" class="px-6 py-4 text-center">Time</th>
-        <th scope="col" class="px-6 py-4 text-center">Balance Transaction ID</th>
-        <th scope="col" class="px-6 py-4 text-center">Trader</th>
-        <th scope="col" class="px-6 py-4 text-center">Amount</th>
-        <th scope="col" class="px-6 py-4 text-center">Type</th>
-      </tr>
-      <tbody>
-        <% @balance_transactions.each do |t| %>
-          <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
-            <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap text-center"><%=local_time(t.created_at, '%Y-%m-%d %l:%M %p')%></td>
-            <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap text-center"><%=t.id%></td>
-            <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap text-center"><%=t.user.email%></td>
-            <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap text-center"><%=number_to_currency(t.amount)%></td>
-            <td class="text-sm <%=balance_to_red_or_green(t.transaction_type)%> font-medium px-6 py-4 whitespace-nowrap text-center"><%=t.transaction_type&.upcase%></td>
-          </tr>
-        <%end%>
-      </tbody>
-    </table>
+    <% if @balance_transactions.count > 0 %>
+      <table class="min-w-full">
+        <tr class="border-b bg-blue-100 border-blue-200 text-xl">
+          <th scope="col" class="px-6 py-4 text-center">Time</th>
+          <th scope="col" class="px-6 py-4 text-center">Balance Transaction ID</th>
+          <th scope="col" class="px-6 py-4 text-center">Trader</th>
+          <th scope="col" class="px-6 py-4 text-center">Amount</th>
+          <th scope="col" class="px-6 py-4 text-center">Type</th>
+        </tr>
+        <tbody>
+          <% @balance_transactions.each do |t| %>
+            <tr class="border-b bg-purple-100 border-purple-200 transition duration-300 ease-in-out hover:bg-blue-100">
+              <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap text-center"><%=local_time(t.created_at, '%Y-%m-%d %l:%M %p')%></td>
+              <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap text-center"><%=t.id%></td>
+              <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap text-center"><%=t.user.email%></td>
+              <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap text-center"><%=number_to_currency(t.amount)%></td>
+              <td class="text-sm <%=balance_to_red_or_green(t.transaction_type)%> font-medium px-6 py-4 whitespace-nowrap text-center"><%=t.transaction_type&.upcase%></td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    <% else %>
+      <p class='border-2 bg-blue-100 border-blue-400 text-xl text-center font-bold m-auto w-fit px-4 py-2 rounded-md'>There is currently no balance transactions.</p>
+    <% end %>
   </div>
   <%= paginate @balance_transactions, color: 'blue' %>
 </div>

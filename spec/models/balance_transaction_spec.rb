@@ -1,38 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe BalanceTransaction, type: :model do
+  let(:balance_transaction) { build_stubbed(:deposit_transaction) }
+
   it 'has a valid factory' do
-    expect(build(:deposit_transaction)).to be_valid
+    expect(balance_transaction).to be_valid
   end
 
-  let(:balance_transaction) { build(:deposit_transaction) }
+  describe '#amount' do
+    it 'is invalid with amount scaling to three or more' do
+      balance_transaction.amount = 2.225
+      expect(balance_transaction).to be_invalid
+    end
 
-  it 'is invalid without association to a user' do
-    balance_transaction = build(:deposit_transaction, user_id: nil)
-    balance_transaction.valid?
-    expect(balance_transaction.errors[:user]).to(include('must exist'))
-  end
+    it 'is invalid with negative amount' do
+      balance_transaction.amount = -12
+      expect(balance_transaction).to be_invalid
+    end
 
-  it 'is invalid with amount scaling to three or more' do
-    balance_transaction = build(:deposit_transaction, amount: 2.225)
-    balance_transaction.valid?
-    expect(balance_transaction.errors[:base]).to(include('You can only input amount up to scale of 2 (e.g. 20, 20.3, 20.25)'))
-  end
-
-  it 'is invalid with negative amount' do
-    balance_transaction = build(:deposit_transaction, amount: -12)
-    balance_transaction.valid?
-    expect(balance_transaction.errors[:base]).to(include('An input of negative amount is not possible'))
-  end
-
-  it 'is invalid with amount of zero' do
-    balance_transaction = build(:deposit_transaction, amount: 0)
-    balance_transaction.valid?
-    expect(balance_transaction.errors[:base]).to(include('Please input a valid amount'))
+    it 'is invalid with amount of zero' do
+      balance_transaction.amount = 0
+      expect(balance_transaction).to be_invalid
+    end
   end
 
   describe '.deposits' do
-    let(:deposits) { BalanceTransaction.deposits }
+    let(:deposits) { described_class.deposits }
     let(:deposit) { create(:deposit_transaction) }
     let(:yesterday_deposit) { create(:yesterday_deposit_transaction) }
     let(:withdraw) { create(:withdraw_transaction) }
@@ -41,7 +34,7 @@ RSpec.describe BalanceTransaction, type: :model do
       expect(deposits).to(include(deposit, yesterday_deposit))
     end
 
-    it 'has a descending order based on created_at' do
+    it 'orders descendingly based on created_at' do
       expect(deposits).to(eq([deposit, yesterday_deposit]))
     end
 
@@ -51,16 +44,16 @@ RSpec.describe BalanceTransaction, type: :model do
   end
 
   describe '.withdrawals' do
-    let(:withdrawals) { BalanceTransaction.withdrawals }
+    let(:withdrawals) { described_class.withdrawals }
     let(:deposit) { create(:deposit_transaction) }
     let(:withdraw) { create(:withdraw_transaction) }
     let(:yesterday_withdraw) { create(:yesterday_withdraw_transaction) }
 
-    it 'includes balance transactions with withdrawal type' do
+    it 'includes balance transactions with withdraw transaction type' do
       expect(withdrawals).to(include(withdraw, yesterday_withdraw))
     end
 
-    it 'orders the collection in descending order based on created_at attribute' do
+    it 'orders the collection descendingly based on created_at attribute' do
       expect(withdrawals).to(eq([withdraw, yesterday_withdraw]))
     end
 
@@ -73,8 +66,22 @@ RSpec.describe BalanceTransaction, type: :model do
     let(:today_transaction) { create(:withdraw_transaction) }
     let(:yesterday_transaction) { create(:yesterday_withdraw_transaction) }
 
-    it 'orders the collection in descending order based on created_at attribute' do
-      expect(BalanceTransaction.all).to(eq([today_transaction, yesterday_transaction]))
+    it 'orders the collection descendingly based on created_at attribute' do
+      expect(described_class.all).to(eq([today_transaction, yesterday_transaction]))
+    end
+  end
+
+  describe '#deposit_type' do
+    it 'returns balance transaction with deposit as the transaction type' do
+      balance_transaction.deposit_type
+      expect(balance_transaction.transaction_type).to(eq('deposit'))
+    end
+  end
+
+  describe '#withdraw_type' do
+    it 'returns balance transaction with withdraw as the transaction type' do
+      balance_transaction.withdraw_type
+      expect(balance_transaction.transaction_type).to(eq('withdraw'))
     end
   end
 end
