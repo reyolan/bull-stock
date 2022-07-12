@@ -7,8 +7,8 @@ class Iex::IexQuoteLogoRequester
     client = IEX::Api::Client.new
     quote = client.quote(@symbol)
     logo = client.logo(@symbol)
-    OpenStruct.new(success?: true, quote:, logo:)
+    Struct.new(:success?, :quote, :logo).new(true, quote, logo)
   rescue IEX::Errors::SymbolNotFoundError => e
-    OpenStruct.new(success?: false, message: e.message)
+    Struct.new(:success?, :message).new(false, e.message)
   end
 end
