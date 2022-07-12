@@ -17,7 +17,7 @@ class Admins::TradersController < ApplicationController
 
   def create
     @trader = User.new(trader_params)
-    if @trader.save_trader
+    if @trader.save_approved_trader
       redirect_to traders_path, notice: 'Trader was successfully created.'
     else
       render :new
@@ -36,7 +36,8 @@ class Admins::TradersController < ApplicationController
 
   def destroy
     @trader.destroy
-    redirect_back(fallback_location: traders_url, notice: "Trader, #{@trader.email}, successfully deleted.")
+    UserMailer.with(user: @trader.email).account_deletion_email.deliver_later
+    redirect_back(fallback_location: traders_url, notice: "#{@trader.email}'s account has been successfully deleted.")
   end
 
   private
