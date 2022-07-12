@@ -1,14 +1,28 @@
-<div class="flex flex-row w-screen ">
-  <div class="bg-red-400 border-2">
-    <div class="text-slate-50">
-      <p class="text-5xl my-8">Let's Make</p>
-      <p class="text-5xl my-8">Better Life With</p>
-      <p class="text-5xl my-8"><em>BullStock</em> Trading!</p>
+<div class="w-full flex px-20 py-5">
+  <div class="bg-white rounded-full border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-2 flex flex-row w-fit">
+    <div class="mx-2">
+      <img class="w-10 h-10 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"/>
     </div>
     <div>
-      <p>Get real time monitoring of stock prices and grow your portfolio in this virtual trading platform!
-      </p>
+      <h5 class="mb-1 pr-10 text-xl font-medium text-gray-900 dark:text-white">ABC</h5>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Price</span>
     </div>
   </div>
-  <div class="bg-yellow-400 border-2 grid h-full place-items-center">SVG</div>
+</div>
+<div class="flex flex-row w-screen px-20">
+  <div>
+    <div class="text-slate-50 font-semibold text-7xl my-8">
+      <p>Let's Make</p>
+      <p>Life Better With</p>
+      <span>
+        <em class='font-bold text-green-400'>BullStock</em>
+        Trading!</span>
+    </div>
+    <div class="text-neutral-50 text-2xl my-8">
+      <p>Get real time monitoring of stock prices and grow your </p>
+      <p>portfolio in this virtual trading platform!</p>
+      <p class="my-10"><%= link_to "Start Investing", new_user_registration_path, class: "text-white bg-blue-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-2xl px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %></p>
+    </div>
+  </div>
+  <div><%= show_svg('undraw_investor.svg') %></div>
 </div>
