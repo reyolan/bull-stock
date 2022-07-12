@@ -5,21 +5,21 @@
 <% end %>
 <div class= 'bg-slate-100 max-w-lg m-auto p-6 rounded-md mt-4 text-center'>
   <div class='flex items-center justify-center gap-2'>
-    <%#= image_tag(@logo.url, size: '48')%>
-    <h1 class='text-center text-4xl font-bold'> <%= @quote.symbol %> </h1>
+    <%#= image_tag(@result.logo.url, size: '48')%>
+    <h1 class='text-center text-4xl font-bold'> <%= @result.quote.symbol %> </h1>
   </div>
   <div class='mt-2 bg-slate-200 grid grid-cols-2 gap-x-1 w-auto m-auto p-4 rounded-md'>
     <p class='text-xl text-right font-bold'>Company Name: </p>
-    <p class='text-left text-xl'><%= @quote.company_name %></p>
+    <p class='text-left text-xl'><%= @result.quote.company_name %></p>
     <p class='text-xl text-right font-bold'>Price: </p>
-    <p class='text-left text-xl'><%= number_to_currency(@quote.latest_price) %></p>
+    <p class='text-left text-xl'><%= number_to_currency(@result.quote.latest_price) %></p>
   </div>
   <% if current_user.approved? %>
     <div class='bg-slate-200 mt-4 p-2 rounded-md'>
       <p class='text-lg font-bold'>You currently have: <%=number_to_currency(current_user.changes[:balance]&.first || current_user.balance)%></p>
-      <p class='text-lg font-bold'>You can purchase a maximum of <%=max_share(@quote.latest_price, current_user.changes[:balance]&.first || current_user.balance)%> shares.</p>
+      <p class='text-lg font-bold'>You can purchase a maximum of <%=max_share(@result.quote.latest_price, current_user.changes[:balance]&.first || current_user.balance)%> shares.</p>
       <%= form_with scope: :buy_transaction, url: buy_stock_transactions_path, class: 'mt-2' do |f| %>
-        <%= f.label :quantity, "Purchase share/s of #{@quote.symbol}:", class: 'text-xl'%>
+        <%= f.label :quantity, "Purchase share/s of #{@result.quote.symbol}:", class: 'text-xl'%>
         <%= f.number_field :quantity, step: 'any', class: 'rounded-lg border-slate-300 focus:border-green-600 focus:ring-green-600 mt-2 w-full text-center text-xl', placeholder: 'Number of shares to buy (e.g. 1, 2, 0.5, 1.5)' %>
         <%= f.submit "Purchase Stock", class: 'bg-green-500 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-green-600 mt-4 w-full' %>
       <% end %>

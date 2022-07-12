@@ -7,9 +7,10 @@ class Traders::SellStockTransactionsController < ApplicationController
 
   def new
     @stock = current_user.stocks.find_by!(symbol: params[:symbol])
-    request_iex_quote_and_logo(params[:symbol])
-    store_stock_quote_to_sell
+    @result = Iex::IexQuoteLogoRequester.new(params[:symbol]).perform
     @transaction = current_user.stock_transactions.build
+    session[:stock] = { company_name: @result.quote.company_name, symbol: @result.quote.symbol,
+                        unit_price: @result.quote.latest_price }
   end
 
   def create
@@ -26,24 +27,19 @@ class Traders::SellStockTransactionsController < ApplicationController
     redirect_to trader_stocks_url, success: "Successfully sold #{@transaction.quantity} share/s of #{@stock.company_name}.
                                              You received $#{@transaction.amount}."
   rescue ActiveRecord::RecordInvalid
-    request_iex_quote_and_logo(session[:stock]['symbol'])
-    store_stock_quote_to_sell
-    render :new
+    handle_record_invalid_exception
   end
 
   private
 
-  def request_iex_quote_and_logo(params)
-    client = IEX::Api::Client.new
-    @quote = client.quote(params)
-    @logo = client.logo(params)
-  end
-
-  def store_stock_quote_to_sell
-    session[:stock] = { company_name: @quote.company_name, symbol: @quote.symbol, unit_price: @quote.latest_price }
-  end
-
   def sell_transaction_params
     params.require(:sell_transaction).permit(:quantity).merge(session[:stock])
+  end
+
+  def handle_record_invalid_exception
+    @result = Iex::IexQuoteLogoRequester.new(session[:stock]['symbol']).perform
+    session[:stock] = { company_name: @result.quote.company_name, symbol: @result.quote.symbol,
+                        unit_price: @result.quote.latest_price }
+    render :new
   end
 end

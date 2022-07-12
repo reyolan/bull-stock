@@ -1,4 +1,4 @@
-class IexQuoteLogoRequester
+class Iex::IexQuoteLogoRequester
   def initialize(symbol)
     @symbol = symbol
   end
