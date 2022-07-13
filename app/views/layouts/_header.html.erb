@@ -10,7 +10,7 @@
     </div>
   <% end %>
   <span id="hamburger" class="lg:hidden text-white text-lg font-bold">&#9776;</span>
-  <ul id="list" class="hidden gap-0 <%= change_bg_if_admin_or_trader %> flex flex-col absolute top-0 right-0 mt-16 px-4 py-2 text-right lg:mr-0 lg:text-left lg:mt-0 lg:flex-row lg:gap-4 lg:flex lg:static">
+  <ul id="list" class="hidden gap-0 w-full lg:w-auto z-10 <%= change_bg_if_admin_or_trader %> flex flex-col absolute top-0 right-0 mt-16 px-4 py-2 text-right lg:mr-0 lg:text-left lg:mt-0 lg:flex-row lg:gap-4 lg:flex lg:static">
     <% if user_signed_in? %>
       <% if current_user.admin? %>
         <li><%= link_to "Traders", traders_path, class: "text-xl lg:text-lg #{change_text_color_if_admin_or_trader} font-medium" %></li>
