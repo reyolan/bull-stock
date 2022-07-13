@@ -15,14 +15,19 @@ RSpec.describe "User Management", type: :request do
       expect(response).to render_template(:index)
     end
 
-    it "creates a new user trader account and redirects to traders page" do
-      get new_trader_path
-      expect(response).to have_http_status(200)
-      expect(response).to render_template(:new)
-      create_trader_by_admin
-      expect(response).to redirect_to(traders_path)
-      follow_redirect!
-      expect(response.body).to include("Trader was successfully created.")
+
+    describe 'Creation of trader account'
+      context 'when user is an admin' do 
+        it "creates a new user trader account and redirects to traders page" do
+          get new_trader_path
+          expect(response).to have_http_status(200)
+          expect(response).to render_template(:new)
+          create_trader_by_admin
+          expect(response).to redirect_to(traders_path)
+          follow_redirect!
+          expect(response.body).to include("Trader was successfully created.")
+        end
+      end
     end
 
     it "does not render a different template" do
