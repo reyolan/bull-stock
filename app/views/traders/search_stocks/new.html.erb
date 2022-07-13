@@ -1,3 +1,4 @@
+<% provide(:title, "#{display_purchase_or_search} Stock")%>
 <div class= 'bg-slate-100 max-w-lg m-auto p-6 rounded-md mt-4 text-center'>
   <h1 class='text-center text-4xl font-bold'> <%= display_purchase_or_search %> </h1>
   <%= form_with url: search_stock_path, class: 'mt-2' do |form| %>

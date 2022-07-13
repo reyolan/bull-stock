@@ -1,3 +1,4 @@
+<% provide(:title, 'Buy Shares')%>
 <%= render 'shared/error_message', object: @transaction %>
 <% if @stock && @current_user_balance %>
   <%= render 'shared/error_message', object: @stock %>

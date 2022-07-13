@@ -1,3 +1,4 @@
+<% provide(:title, "Edit Trader")%>
 <%= render 'shared/error_message', object: @trader%>
 <%= form_with model: @trader, url: trader_path do |f| %>
   <h1 class='text-3xl font-bold text-center mb-4'>Edit Trader</h1>
