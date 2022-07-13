@@ -5,8 +5,6 @@ class Stock < ApplicationRecord
   before_save :total_amount
   after_save :destroy_stock_if_zero_quantity
 
-  # soft delete the stock
-  # use Discard gem
   scope :overall_amount, -> { sum(:amount) }
   scope :overall_shares, -> { sum(:quantity) }
   scope :asc_symbol, -> { order(:symbol) }
