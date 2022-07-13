@@ -21,7 +21,7 @@
       <%= form_with scope: :buy_transaction, url: buy_stock_transactions_path, class: 'mt-2' do |f| %>
         <%= f.label :quantity, "Purchase share/s of #{@result.quote.symbol}:", class: 'text-xl'%>
         <%= f.number_field :quantity, step: 'any', class: 'rounded-lg border-slate-300 focus:border-green-600 focus:ring-green-600 mt-2 w-full text-center text-xl', placeholder: 'Number of shares to buy (e.g. 1, 2, 0.5, 1.5)' %>
-        <%= f.submit "Purchase Stock", class: 'bg-green-500 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-green-600 mt-4 w-full' %>
+        <%= f.submit "Purchase Stock", class: 'text-white bg-green-500 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-green-600 mt-4 w-full' %>
       <% end %>
     <% else %>
       <p class='bg-red-400 text-center rounded-md p-4 text-xl font-bold my-4'> Please wait for admin approval to purchase a stock. </p>
