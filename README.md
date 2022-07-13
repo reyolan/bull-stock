@@ -42,7 +42,7 @@ Below is the ERD of the application:
 To get started with the app, clone the repo and access the created directory:
 
 ```
-$ git clone git@github.com:reyolan/punctual.git
+$ git clone git@github.com:reyolan/bull-stock.git
 $ cd bull-stock
 ```
 
