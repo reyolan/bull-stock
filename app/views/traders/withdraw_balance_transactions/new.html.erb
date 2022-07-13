@@ -1,3 +1,4 @@
+<% provide(:title, 'Withdraw')%>
 <%= render 'shared/error_message', object: @withdraw_transaction %>
 <% if @withdraw_transaction.errors.full_messages.empty? %>
   <%= render 'shared/error_message', object: current_user %>
