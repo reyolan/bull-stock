@@ -10,7 +10,7 @@
     </div>
   <% end %>
   <span id="hamburger" class="lg:hidden text-white text-lg font-bold">&#9776;</span>
-  <ul id="list" class="hidden gap-0 w-full lg:w-auto z-10 <%= change_bg_if_admin_or_trader %> flex flex-col absolute top-0 right-0 mt-16 px-4 py-2 text-right lg:mr-0 lg:text-left lg:mt-0 lg:flex-row lg:gap-4 lg:flex lg:static">
+  <ul id="list" class="hidden gap-0 w-full lg:w-auto z-10 <%= change_bg_if_admin_or_trader %> flex flex-col absolute top-0 right-0 mt-16 px-4 py-2 text-left lg:mr-0 lg:text-left lg:mt-0 lg:flex-row lg:gap-4 lg:flex lg:static">
     <% if user_signed_in? %>
       <% if current_user.admin? %>
         <li><%= link_to "Traders", traders_path, class: "text-xl lg:text-lg #{change_text_color_if_admin_or_trader} font-medium" %></li>
@@ -27,7 +27,7 @@
       <% end %>
       <li><%= link_to "Log out", destroy_user_session_path, class: "text-xl lg:text-lg #{change_text_color_if_admin_or_trader} font-medium" %></li>
     <% else %>
-      <li><%= link_to "Log In", new_user_session_path, class: "text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"%></li>
+      <li><%= link_to "Log In", new_user_session_path, class: "text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"%></li>
     <% end %>
   </ul>
 </nav>
