@@ -1,18 +1,24 @@
 <div class="w-full flex px-20 py-5">
-  <div class="bg-white rounded-full border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-2 flex flex-row w-fit">
-    <div class="mx-2">
-      <img class="w-10 h-10 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"/>
+  <% @list.each do |c| %>
+    <div class="bg-white rounded-full border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-2 flex flex-row w-60">
+      <div class="mx-2">
+      </div>
+      <div>
+        <h4 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><%=c.symbol%></h4>
+        <% if c.change_percent < 0 %>
+          <span class="text-sm text-red-500 dark:text-red-400"><%=c.change_percent_s%></span>
+        <%else%>
+          <span class="text-sm text-green-500 dark:text-green-400"><%=c.change_percent_s%></span>
+        <%end%>
+      </div>
     </div>
-    <div>
-      <h5 class="mb-1 pr-10 text-xl font-medium text-gray-900 dark:text-white">ABC</h5>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Price</span>
-    </div>
-  </div>
+  <%end%>
 </div>
 <div class="flex flex-row w-screen px-20">
   <div>
     <div class="text-slate-50 font-semibold text-7xl my-8">
       <p>Let's Make</p>
+      <p><%= @x %></p>
       <p>Life Better With</p>
       <span>
         <em class='font-bold text-green-400'>BullStock</em>
@@ -26,3 +32,4 @@
   </div>
   <div><%= show_svg('undraw_investor.svg') %></div>
 </div>
+<p><%= @list %></p>
