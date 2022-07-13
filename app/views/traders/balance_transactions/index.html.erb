@@ -3,18 +3,18 @@
     <div class='flex flex-wrap justify-between m-auto items-center gap-2'>
       <h1 class='font-bold text-3xl'> Balance Transactions </h1>
       <div class='flex flex-wrap gap-2 text-center'>
-        <%= link_to 'Stock Transactions', trader_stock_transactions_path, class: 'text-white bg-purple-500 rounded-md p-2 hover:bg-purple-600 text-lg'%>
-        <%= link_to 'DEPOSIT Transactions', deposit_balance_transactions_path, class: 'text-white bg-green-500 rounded-md p-2 hover:bg-green-600 text-lg'%>
-        <%= link_to 'WITHDRAW Transactions', withdraw_balance_transactions_path, class: 'text-white bg-red-400 rounded-md p-2 hover:bg-red-500 text-lg'%>
+        <%= link_to 'Stock Transactions', trader_stock_transactions_path, class: 'text-slate-100 font-medium bg-purple-500 rounded-md p-2 hover:bg-purple-600 text-lg'%>
+        <%= link_to 'DEPOSIT Transactions', deposit_balance_transactions_path, class: 'text-slate-100 font-medium bg-green-500 rounded-md p-2 hover:bg-green-600 text-lg'%>
+        <%= link_to 'WITHDRAW Transactions', withdraw_balance_transactions_path, class: 'text-slate-100 font-medium bg-red-400 rounded-md p-2 hover:bg-red-500 text-lg'%>
       </div>
     </div>
     <% if @balance_transactions.count.zero? %>
-      <h2 class='text-center font-bold text-3xl bg-blue-400 rounded w-fit m-auto p-4 rounded-md mt-4'>No Balance Transactions to show.</h2>
+      <h2 class='text-center font-bold text-3xl bg-purple-400 rounded w-fit m-auto p-4 rounded-md mt-4'>No Balance Transactions to show.</h2>
     <% else %>
       <div class='overflow-auto mt-2 mx-auto'>
-        <table class='bg-blue-100 w-full'>
+        <table class='bg-purple-100 w-full'>
           <thead>
-            <tr class='bg-blue-500 text-lg text-white'>
+            <tr class='bg-purple-500 text-lg text-white'>
               <th class='p-2'>Time</th>
               <th class='p-2'>Balance Transaction ID</th>
               <th class='p-2'>Amount</th>
@@ -26,7 +26,7 @@
           </tbody>
         </table>
       </div>
-      <%= paginate @balance_transactions, color: 'blue' %>
+      <%= paginate @balance_transactions, color: 'purple' %>
     <% end %>
   </div>
 </div>

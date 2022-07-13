@@ -26,7 +26,7 @@
     <% end %>
   </div>
 </div>
-<div class="flex flex-wrap w-screen justify-center my-8 px-4">
+<div class="flex flex-wrap justify-center mt-8 px-4">
   <div>
     <div class="text-slate-50 font-semibold text-5xl lg:text-7xl my-8">
       <p>Let's Make</p>
@@ -39,7 +39,9 @@
     <div class="text-neutral-50 text-2xl">
       <p>Get real time monitoring of stock prices and grow your </p>
       <p>portfolio in this virtual trading platform!</p>
-      <p class="mt-10"><%= link_to "Start Investing", new_user_registration_path, class: "text-white bg-blue-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-2xl px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %></p>
+      <% unless user_signed_in? %>
+        <p class="mt-10"><%= link_to "Start Investing", new_user_registration_path, class: "text-white bg-blue-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-2xl px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %></p>
+      <% end %>
     </div>
   </div>
   <div><%= show_svg('undraw_investor.svg') %></div>

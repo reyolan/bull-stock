@@ -1,6 +1,6 @@
 <% provide(:title, 'Login')%>
 <%= render "shared/error_message", object: resource %>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'bg-slate-100 max-w-lg m-auto p-6 rounded-md mt-4'}) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'bg-slate-200 max-w-lg m-auto p-6 rounded-md mt-4'}) do |f| %>
   <h2 class="font-bold text-4xl mb-4 text-center">Login</h2>
   <div>
     <%= f.label :email %>

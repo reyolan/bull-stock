@@ -26,7 +26,7 @@ module ApplicationHelper
 
   def change_text_color_if_admin_or_trader
     if current_user&.trader?
-      'text-green-200 hover:text-green-100'
+      'text-gray-300 hover:text-gray-100'
     else
       'text-blue-200 hover:text-blue-100'
     end
