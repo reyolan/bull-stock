@@ -4,6 +4,12 @@ class Iex::IexQuoteLogoRequester
   end
 
   def perform
+    request_quote_and_logo
+  end
+
+  private
+
+  def request_quote_and_logo
     client = IEX::Api::Client.new
     quote = client.quote(@symbol)
     logo = client.logo(@symbol)

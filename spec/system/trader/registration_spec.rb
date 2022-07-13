@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Trader registration', type: :system do
   context 'with valid details' do
-    it 'is successful with email confirmation', vcr: { cassette_name: 'most_active' } do
+    it 'is successful with email confirmation', vcr: { cassette_name: 'most_active', record: :new_episodes } do
       visit new_user_registration_path
 
       fill_in 'user_email', with: 'example@example.com'
