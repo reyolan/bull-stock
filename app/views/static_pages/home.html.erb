@@ -1,3 +1,34 @@
-<h1> BullStock </h1>
-<h2> Your one and only trading platform </h2>
-<h2> Recent News </h2>
+<div class="w-full flex px-20 py-5">
+  <% @list.each do |c| %>
+    <div class="bg-white rounded-full border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-2 flex flex-row w-60">
+      <div class="mx-2">
+      </div>
+      <div>
+        <h4 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><%=c.symbol%></h4>
+        <% if c.change_percent < 0 %>
+          <span class="text-sm text-red-500 dark:text-red-400"><%=c.change_percent_s%></span>
+        <%else%>
+          <span class="text-sm text-green-500 dark:text-green-400"><%=c.change_percent_s%></span>
+        <%end%>
+      </div>
+    </div>
+  <%end%>
+</div>
+<div class="flex flex-row w-screen px-20">
+  <div>
+    <div class="text-slate-50 font-semibold text-7xl my-8">
+      <p>Let's Make</p>
+      <p><%= @x %></p>
+      <p>Life Better With</p>
+      <span>
+        <em class='font-bold text-green-400'>BullStock</em>
+        Trading!</span>
+    </div>
+    <div class="text-neutral-50 text-2xl my-8">
+      <p>Get real time monitoring of stock prices and grow your </p>
+      <p>portfolio in this virtual trading platform!</p>
+      <p class="my-10"><%= link_to "Start Investing", new_user_registration_path, class: "text-white bg-blue-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-2xl px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %></p>
+    </div>
+  </div>
+  <div><%= show_svg('undraw_investor.svg') %></div>
+</div>

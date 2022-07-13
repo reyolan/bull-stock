@@ -11,10 +11,10 @@
     <%= vite_typescript_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render 'application/favicon' %>
   </head>
-  <body>
+  <body class="overflow-x-hidden">
     <div class='h-screen'>
       <%= render 'layouts/header' %>
-      <div class="bg-slate-200 min-h-[calc(100%-64px)] py-4">
+      <div class="bg-gradient-to-br from-gray-900 to-gray-600 bg-gradient-to-r min-h-[calc(100%-64px)] py-4">
         <%= render 'layouts/flash' %>
         <%= yield %>
       </div>

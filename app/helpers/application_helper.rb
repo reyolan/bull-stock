@@ -18,7 +18,7 @@ module ApplicationHelper
 
   def change_bg_if_admin_or_trader
     if !current_user || current_user&.trader?
-      'bg-green-600'
+      'bg-gray-800'
     else
       'bg-blue-600'
     end
@@ -39,4 +39,12 @@ module ApplicationHelper
   def balance_to_red_or_green(text)
     text == 'deposit' ? 'text-green-600' : 'text-red-600'
   end
+
+  def show_svg(path)
+  File.open("app/assets/images/#{path}", "rb") do |file|
+    raw file.read
+  end
+end
+
+
 end
