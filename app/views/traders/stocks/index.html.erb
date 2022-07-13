@@ -7,7 +7,7 @@
         <p class='hidden sm:inline'>|</p>
         <p>Overall Shares: <%= @number_of_shares %></p>
         <p class='hidden sm:inline'>|</p>
-        <%= link_to "#{display_purchase_or_search} Stock", new_search_stock_path, class: 'bg-green-400 rounded-md py-1 px-2 font-bold hover:bg-green-500 text-lg' %>
+        <%= link_to "#{display_purchase_or_search} Stock", new_search_stock_path, class: 'text-white bg-blue-500 rounded-md py-1 px-2 hover:bg-blue-600 text-lg' %>
       </div>
     </div>
     <% unless current_user.approved? %>
@@ -15,8 +15,8 @@
     <% end %>
     <% if current_user.stocks.count > 0 %>
       <div class='overflow-auto mt-2 mx-auto'>
-        <table class='bg-green-100 w-full'>
-          <tr class='bg-green-500 text-lg'>
+        <table class='bg-blue-100 w-full'>
+          <tr class='bg-blue-500 text-lg text-white'>
             <th class='p-2'>Symbol</th>
             <th class='p-2'>Company Name</th>
             <th class='p-2'>Quantity</th>

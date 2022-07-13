@@ -4,7 +4,7 @@
     <%= form.label :symbol, "Input the symbol you want to #{display_purchase_or_search.downcase}:", class: 'text-xl' %>
     <%= form.text_field :symbol, class: 'rounded-lg border-slate-300 focus:border-green-600 focus:ring-green-600 mt-2 w-full text-center text-xl', placeholder: "Symbol to #{display_purchase_or_search.downcase} (e.g. MSFT, AMZN)"  %>
     <div>
-      <%= form.submit "#{display_purchase_or_search} Stock", class: 'bg-green-500 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-green-600 mt-4 w-full' %>
+      <%= form.submit "#{display_purchase_or_search} Stock", class: 'text-white bg-green-500 p-2 rounded-md cursor-pointer font-medium text-lg hover:bg-green-600 mt-4 w-full' %>
     </div>
   <% end %>
   <hr class="border-black my-2">
