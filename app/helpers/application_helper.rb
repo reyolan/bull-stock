@@ -41,10 +41,16 @@ module ApplicationHelper
   end
 
   def show_svg(path)
-  File.open("app/assets/images/#{path}", "rb") do |file|
-    raw file.read
+    File.open("app/assets/images/#{path}", "rb") do |file|
+      raw file.read
+    end
   end
-end
 
-
+  def app_background
+    if current_user&.admin?
+      'bg-slate-200'
+    else
+      'bg-gradient-to-br from-gray-900 to-gray-600 bg-gradient-to-r'
+    end
+  end
 end
