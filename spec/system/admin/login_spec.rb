@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin login', type: :system do
-  let(:admin) { create(:admin) }
 
+  let(:admin) { create(:admin) }
   context 'with valid credentials' do
     it 'allows admin to sign in' do
       visit(new_user_session_path)
