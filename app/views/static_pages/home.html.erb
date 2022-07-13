@@ -1,20 +1,32 @@
-<div class="w-full flex px-20 py-5">
-  <% @list.each do |c| %>
-    <div class="bg-white rounded-full border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 mx-2 flex flex-row w-60">
-      <div class="mx-2">
-      </div>
-      <div>
-        <h4 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><%=c.symbol%></h4>
+<div class="relative flex overflow-x-hidden">
+  <div class="border border-gray-200 shadow-md bg-gray-800 border-gray-700 flex animate-marquee whitespace-nowrap">
+    <% @list.each do |c| %>
+      <div class='py-2 px-4 text-white flex items-center gap-4'>
+        <h4 class="text-xl font-medium text-gray-900 dark:text-white"><%=c.symbol%></h4>
+        <p class='font-medium text-lg'><%= c.latest_price %></p>
         <% if c.change_percent < 0 %>
-          <span class="text-sm text-red-500 dark:text-red-400"><%=c.change_percent_s%></span>
-        <%else%>
-          <span class="text-sm text-green-500 dark:text-green-400"><%=c.change_percent_s%></span>
+          <span class="text-lg text-red-500 dark:text-red-400"><%=c.change_percent_s%></span>
+        <% else %>
+          <span class="text-lg text-green-500 dark:text-green-400"><%=c.change_percent_s%></span>
         <%end%>
       </div>
-    </div>
-  <%end%>
+    <% end %>
+  </div>
+  <div class="border border-gray-200 shadow-md bg-gray-800 border-gray-700 flex absolute top-0 whitespace-nowrap animate-marquee2">
+    <% @list.each do |c| %>
+      <div class='py-2 px-4 text-white flex items-center gap-4'>
+        <h4 class="text-xl font-medium text-gray-900 dark:text-white"><%=c.symbol%></h4>
+        <p class='font-medium text-lg'><%= c.latest_price %></p>
+        <% if c.change_percent < 0 %>
+          <span class="text-lg text-red-500 dark:text-red-400"><%=c.change_percent_s%></span>
+        <% else %>
+          <span class="text-lg text-green-500 dark:text-green-400"><%=c.change_percent_s%></span>
+        <%end%>
+      </div>
+    <% end %>
+  </div>
 </div>
-<div class="flex flex-row w-screen px-20">
+<div class="flex flex-wrap w-screen justify-center my-8">
   <div>
     <div class="text-slate-50 font-semibold text-7xl my-8">
       <p>Let's Make</p>

@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .pause {
+    animation-play-state: paused;
+  }
+}
+
+div > svg {
+  width: 100%;
+  height: calc(700 / 593.1278) %;
+}
