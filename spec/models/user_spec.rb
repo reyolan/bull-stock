@@ -1,96 +1,96 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
   let(:trader) { build_stubbed(:approved_confirmed_trader) }
 
-  it 'has a valid factory' do
+  it "has a valid factory" do
     expect(trader).to(be_valid)
   end
 
-  describe '#email' do
+  describe "#email" do
     let(:registered_trader) { create(:approved_confirmed_trader) }
-    it 'is invalid without a value' do
+    it "is invalid without a value" do
       trader.email = nil
       expect(trader).to_not(be_valid)
     end
 
-    it 'is invalid with duplicate address' do
+    it "is invalid with duplicate address" do
       duplicate_trader_email = build_stubbed(:approved_confirmed_trader)
       duplicate_trader_email.email = registered_trader.email
       expect(duplicate_trader_email).to_not(be_valid)
     end
   end
 
-  describe '#password' do
-    it 'is invalid without a value' do
+  describe "#password" do
+    it "is invalid without a value" do
       trader.password = nil
       expect(trader).to_not(be_valid)
     end
 
-    it 'is invalid with less than 6 characters' do
-      trader.password = 'abcdef'
+    it "is invalid with less than 6 characters" do
+      trader.password = "abcdef"
       expect(trader).to_not(be_valid)
     end
   end
 
-  describe '#balance' do
-    it 'is invalid with negative value' do
+  describe "#balance" do
+    it "is invalid with negative value" do
       trader.balance = -123
       expect(trader).to_not(be_valid)
     end
   end
 
-  describe '.traders' do
+  describe ".traders" do
     let(:admin) { create(:admin) }
     let(:trader) { create(:approved_confirmed_trader) }
 
-    it 'includes users with trader role' do
+    it "includes users with trader role" do
       expect(described_class.traders).to(include(trader))
     end
 
-    it 'excludes users with admin role' do
+    it "excludes users with admin role" do
       expect(described_class.traders).to_not(include(admin))
     end
   end
 
-  describe '.pending_traders' do
+  describe ".pending_traders" do
     let(:unapproved_trader) { create(:unapproved_confirmed_trader) }
     let(:approved_trader) { create(:approved_confirmed_trader) }
     let(:admin) { create(:admin) }
 
-    it 'includes approved users' do
+    it "includes approved users" do
       expect(described_class.pending_traders).to(include(unapproved_trader))
     end
-    it 'excludes approved users' do
+    it "excludes approved users" do
       expect(described_class.pending_traders).to_not(include(approved_trader))
     end
-    it 'excludes users with admin role' do
+    it "excludes users with admin role" do
       expect(described_class.pending_traders).to_not(include(admin))
     end
   end
 
-  describe '.asc_traders' do
+  describe ".asc_traders" do
     let(:starts_with_t) { create(:approved_confirmed_trader) }
-    let(:starts_with_a) { create(:approved_confirmed_trader, email: 'abc@example.com') }
+    let(:starts_with_a) { create(:approved_confirmed_trader, email: "abc@example.com") }
 
-    it 'orders traders ascendingly based on email attribute' do
+    it "orders traders ascendingly based on email attribute" do
       expect(described_class.asc_traders).to(eq([starts_with_a, starts_with_t]))
     end
   end
 
-  describe '#save_approved_trader' do
+  describe "#save_approved_trader" do
     let(:unapproved_trader) { build(:unapproved_confirmed_trader) }
 
-    it 'saves user with approved attribute' do
+    it "saves user with approved attribute" do
       unapproved_trader.save_approved_trader
       expect(described_class.first.approved).to(be(true))
     end
   end
 
-  describe '#add_amount' do
+  describe "#add_amount" do
     let(:trader) { create(:trader_with_balance) }
 
-    it 'returns user with summed balance' do
+    it "returns user with summed balance" do
       amount_to_add = 200
       expected_balance = trader.balance + amount_to_add
       updated_trader = trader.add_amount(amount_to_add)
@@ -98,10 +98,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '#subtract_amount' do
+  describe "#subtract_amount" do
     let(:trader) { create(:trader_with_balance) }
 
-    it 'returns user with summed balance' do
+    it "returns user with summed balance" do
       amount_to_subtract = 200
       expected_balance = trader.balance + amount_to_subtract
       updated_trader = trader.add_amount(amount_to_subtract)
@@ -109,28 +109,28 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'after_initialize#set_default_role' do
-    it 'initializes new record to trader role' do
-      expect(User.new.role).to(eq('trader'))
+  describe "after_initialize#set_default_role" do
+    it "initializes new record to trader role" do
+      expect(User.new.role).to(eq("trader"))
     end
   end
 
-  describe 'dependent: :destroy' do
+  describe "dependent: :destroy" do
     let(:trader) { create(:approved_confirmed_trader) }
 
-    it 'destroys dependent stocks' do
+    it "destroys dependent stocks" do
       stock = create(:valid_stock, user: trader)
       trader.destroy
       expect(Stock.all).to_not(include(stock))
     end
 
-    it 'destroys dependent stock transactions' do
+    it "destroys dependent stock transactions" do
       stock_transaction = create(:buy_transaction, user: trader)
       trader.destroy
       expect(StockTransaction.all).to_not(include(stock_transaction))
     end
 
-    it 'destroys dependent balance transactions' do
+    it "destroys dependent balance transactions" do
       balance_transaction = create(:deposit_transaction, user: trader)
       trader.destroy
       expect(BalanceTransaction.all).to_not(include(balance_transaction))

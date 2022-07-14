@@ -23,13 +23,13 @@ class StockTransaction < ApplicationRecord
   private
 
   def stock_quantity_is_positive
-    errors.add(:base, 'Please input valid number of shares') if quantity.to_d.zero?
-    errors.add(:base, 'An input of negative share is not possible') if quantity.to_d.negative?
+    errors.add(:base, "Please input valid number of shares") if quantity.to_d.zero?
+    errors.add(:base, "An input of negative share is not possible") if quantity.to_d.negative?
   end
 
   def stock_quantity_scale_is_one
     unless quantity.to_d == quantity.to_d.round(1)
-      errors.add(:base, 'You can only input number of shares up to scale of 1 (e.g. 1, 2, 1.5, 2.5)')
+      errors.add(:base, "You can only input number of shares up to scale of 1 (e.g. 1, 2, 1.5, 2.5)")
     end
   end
 end

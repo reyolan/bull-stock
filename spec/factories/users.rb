@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
-    password { 'password' }
-    password_confirmation { 'password' }
+    password { "password" }
+    password_confirmation { "password" }
 
     trait :approved do
       approved { true }
@@ -20,12 +20,12 @@ FactoryBot.define do
     end
 
     trait :admin_email_role do
-      email { Faker::Internet.email(name: 'admin') }
+      email { Faker::Internet.email(name: "admin") }
       role { 0 }
     end
 
     trait :trader_email_role do
-      email { Faker::Internet.email(name: 'trader') }
+      email { Faker::Internet.email(name: "trader") }
       role { 1 }
     end
 

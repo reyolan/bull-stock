@@ -1,14 +1,14 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'View all stock transactions', type: :system do
+RSpec.describe "View all stock transactions", type: :system do
   let(:approved_trader) { create(:approved_confirmed_trader) }
   let(:unapproved_trader) { create(:unapproved_confirmed_trader) }
   let(:admin) { create(:admin) }
 
-  context 'when user is approved' do
+  context "when user is approved" do
     let!(:stock_transaction) { create(:buy_transaction, user: approved_trader) }
 
-    it 'shows all stock transactions' do
+    it "shows all stock transactions" do
       sign_in approved_trader
 
       visit trader_stock_transactions_path
@@ -19,19 +19,23 @@ RSpec.describe 'View all stock transactions', type: :system do
     end
   end
 
-  context 'when user is not approved' do
-    it 'raises a routing error' do
+  context "when user is not approved" do
+    it "shows a not found page" do
       sign_in unapproved_trader
 
-      expect { visit trader_stock_transactions_path }.to raise_error(ActionController::RoutingError)
+      visit trader_stock_transactions_path
+
+      expect(page).to have_text("The page you were looking for doesn't exist.")
     end
   end
 
-  context 'when user is an admin' do
-    it 'raises a routing error' do
+  context "when user is an admin" do
+    it "shows a not found page" do
       sign_in admin
 
-      expect { visit trader_stock_transactions_path }.to raise_error(ActionController::RoutingError)
+      visit trader_stock_transactions_path
+
+      expect(page).to have_text("The page you were looking for doesn't exist.")
     end
   end
 end

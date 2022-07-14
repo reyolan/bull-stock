@@ -9,8 +9,8 @@ class Traders::BuyStockTransactionsController < ApplicationController
     @result = Iex::IexQuoteLogoRequester.new(params[:symbol]).perform
     if @result.success?
       @transaction = current_user.stock_transactions.build
-      session[:stock] = { company_name: @result.quote.company_name, symbol: @result.quote.symbol,
-                          unit_price: @result.quote.latest_price }
+      session[:stock] = {company_name: @result.quote.company_name, symbol: @result.quote.symbol,
+                          unit_price: @result.quote.latest_price}
     else
       redirect_back(fallback_location: new_search_stock_url, danger: "#{@result.message}.")
     end
@@ -38,14 +38,14 @@ class Traders::BuyStockTransactionsController < ApplicationController
   end
 
   def existing_or_new_stock_of_current_user
-    current_user.stocks.find_by(symbol: session[:stock]['symbol'])&.buy_share(buy_transaction_params) ||
+    current_user.stocks.find_by(symbol: session[:stock]["symbol"])&.buy_share(buy_transaction_params) ||
       current_user.stocks.build(buy_transaction_params)
   end
 
   def handle_record_invalid_exception
-    @result = Iex::IexQuoteLogoRequester.new(session[:stock]['symbol']).perform
-    session[:stock] = { company_name: @result.quote.company_name, symbol: @result.quote.symbol,
-                        unit_price: @result.quote.latest_price }
+    @result = Iex::IexQuoteLogoRequester.new(session[:stock]["symbol"]).perform
+    session[:stock] = {company_name: @result.quote.company_name, symbol: @result.quote.symbol,
+                        unit_price: @result.quote.latest_price}
     render :new
   end
 end

@@ -3,8 +3,8 @@ FactoryBot.define do
     association :user, factory: :approved_confirmed_trader
     amount { 250 }
     quantity { 12 }
-    symbol { 'TEST' }
-    company_name { 'Test Company' }
+    symbol { "TEST" }
+    company_name { "Test Company" }
     unit_price { 144.12 }
 
     trait :buy_type do

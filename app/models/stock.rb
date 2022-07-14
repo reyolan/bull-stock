@@ -13,7 +13,7 @@ class Stock < ApplicationRecord
     params_bought_quantity = bought_stock[:quantity].to_d
     params_unit_price = bought_stock[:unit_price].to_d
     self.unit_price = average_price_per_share(new_quantity: params_bought_quantity,
-                                              new_price_per_share: params_unit_price)
+      new_price_per_share: params_unit_price)
     self.quantity = add_quantity(params_bought_quantity)
     self
   end
@@ -27,7 +27,7 @@ class Stock < ApplicationRecord
   private
 
   def quantity_is_positive_or_zero
-    errors.add(:base, 'Insufficient number of shares to sell') if quantity.negative?
+    errors.add(:base, "Insufficient number of shares to sell") if quantity.negative?
   end
 
   def destroy_stock_if_zero_quantity
