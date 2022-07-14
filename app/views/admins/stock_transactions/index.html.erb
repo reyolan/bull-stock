@@ -3,7 +3,7 @@
   <div class='flex flex-wrap justify-between gap-2'>
     <h1 class='font-bold text-3xl text-center'>Stock Transactions</h1>
     <div class='flex flex-wrap items-center gap-2'>
-      <%= search_form_for @q, url: balance_transactions_path, method: :get do |f| %>
+      <%= search_form_for @q, url: stock_transactions_path, method: :get do |f| %>
         <%= f.search_field :user_email_cont, placeholder: "Search trader", class: 'rounded-2xl border-slate-300 border text-sm focus:border-blue-600 focus:ring-blue-600' %>
       <% end %>
       <%= link_to "Balance Transactions", balance_transactions_path, class: "inline-block px-6 py-2 border-2 border-gray-800 text-gray-800 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out" %>
@@ -40,7 +40,7 @@
         </tbody>
       </table>
     <% else %>
-      <p class='border-2 bg-blue-100 border-blue-400 text-xl text-center font-bold m-auto w-fit px-4 py-2 rounded-md'>There is currently no stock transactions.</p>
+      <p class='border-2 bg-blue-100 border-blue-400 text-xl text-center font-bold m-auto w-fit px-4 py-2 rounded-md'>There are currently no stock transactions.</p>
     <% end %>
   </div>
   <%= paginate @stock_transactions, color: 'blue' %>
