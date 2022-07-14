@@ -32,10 +32,12 @@ RSpec.describe 'View all stocks', type: :system do
   end
 
   context 'when user is an admin' do
-    it 'raises a routing error' do
+    it 'shows a not found page' do
       sign_in admin
 
-      expect { visit trader_stocks_path }.to raise_error(ActionController::RoutingError)
+      visit trader_stocks_path
+
+      expect(page).to have_text("The page you were looking for doesn't exist.")
     end
   end
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'spec_helper'
 
-RSpec.describe "Admin adds a trader ", type: :request do
+RSpec.describe "Admin adds a trader", type: :request do
   let(:admin) { create(:admin) }
   let(:trader) { create(:approved_confirmed_trader) }
 
@@ -20,9 +20,10 @@ RSpec.describe "Admin adds a trader ", type: :request do
   end
 
   context 'when trader is logged in' do
-    it 'raises a routing error' do
+    it 'shows a not found page' do
       sign_in trader
-      expect{get new_trader_path}.to raise_error(ActionController::RoutingError)
+      get new_trader_path
+      expect(response.body).to include("The page you were looking for doesn't exist.")
     end
   end
 end

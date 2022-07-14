@@ -5,7 +5,7 @@ RSpec.describe 'Selling of stock', type: :system do
   let(:stock) { create(:valid_stock, user: approved_trader) }
 
   context 'with sufficient number of shares' do
-    it 'adds balance equivalent to the sold stock amount', vcr: { cassette_name: 'msft_stock' } do
+    it 'adds balance equivalent to the sold stock amount', vcr: { cassette_name: 'msft_stock', record: :new_episodes } do
       sign_in approved_trader
 
       visit new_sell_stock_transaction_path(stock.symbol)
@@ -19,7 +19,7 @@ RSpec.describe 'Selling of stock', type: :system do
   end
 
   context 'with invalid number of shares' do
-    it 'notifies the user that the input is invalid', vcr: { cassette_name: 'msft_stock' } do
+    it 'notifies the user that the input is invalid', vcr: { cassette_name: 'msft_stock', record: :new_episodes } do
       sign_in approved_trader
 
       visit new_sell_stock_transaction_path(stock.symbol)
@@ -34,10 +34,12 @@ RSpec.describe 'Selling of stock', type: :system do
   end
 
   context 'without ownership of shares' do
-    it 'raises record not found error' do
+    it 'shows a not found page' do
       sign_in approved_trader
 
-      expect { visit new_sell_stock_transaction_path('AMZN') }.to raise_error(ActiveRecord::RecordNotFound)
+      visit new_sell_stock_transaction_path('AMZN')
+
+      expect(page).to have_text("The page you were looking for doesn't exist.")
     end
   end
 end

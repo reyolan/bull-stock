@@ -7,7 +7,7 @@ RSpec.describe 'Buying of stock', type: :system do
 
   context 'when user is approved' do
     context 'with valid number of shares' do
-      it 'adds particular stock to the portfolio of user', vcr: { cassette_name: 'msft_stock' } do
+      it 'adds particular stock to the portfolio of user', vcr: { cassette_name: 'msft_stock', record: :new_episodes } do
         sign_in trader_with_balance
 
         visit new_buy_stock_transaction_path('MSFT')
@@ -32,7 +32,7 @@ RSpec.describe 'Buying of stock', type: :system do
   end
 
   context 'when user is not approved' do
-    it 'contains message to wait for approval', vcr: { cassette_name: 'msft_stock' } do
+    it 'contains message to wait for approval', vcr: { cassette_name: 'msft_stock', record: :new_episodes } do
       sign_in unapproved_trader
 
       visit new_buy_stock_transaction_path('MSFT')
@@ -43,10 +43,12 @@ RSpec.describe 'Buying of stock', type: :system do
   end
 
   context 'when user is an admin' do
-    it 'raises routing error' do
+    it 'shows a not found page' do
       sign_in admin
 
-      expect { visit new_buy_stock_transaction_path('MSFT') }.to raise_error(ActionController::RoutingError)
+      visit new_buy_stock_transaction_path('MSFT')
+
+      expect(page).to have_text("The page you were looking for doesn't exist.")
     end
   end
 end

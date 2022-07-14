@@ -37,17 +37,22 @@ RSpec.describe 'Deposit amount to increase balance', type: :system do
   end
 
   context 'when user is not approved' do
-    it 'raises a routing error' do
+    it 'shows a not found page' do
       sign_in unapproved_trader
-      expect { visit new_deposit_balance_transaction_path }.to raise_error(ActionController::RoutingError)
+
+      visit new_deposit_balance_transaction_path
+
+      expect(page).to have_text("The page you were looking for doesn't exist.")
     end
   end
 
   context 'when user is an admin' do
-    it 'raises a routing error' do
+    it 'shows a not found page' do
       sign_in admin
 
-      expect { visit new_deposit_balance_transaction_path }.to raise_error(ActionController::RoutingError)
+      visit new_deposit_balance_transaction_path
+
+      expect(page).to have_text("The page you were looking for doesn't exist.")
     end
   end
 end

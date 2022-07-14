@@ -19,10 +19,12 @@ RSpec.describe 'Edit trader', type: :system do
   end
 
   context 'when user is not an admin' do
-    it 'raises a routing error' do
+    it 'shows a not found page' do
       sign_in approved_trader
 
-      expect { visit edit_trader_path(approved_trader) }.to raise_error(ActionController::RoutingError)
+      visit edit_trader_path(approved_trader)
+
+      expect(page).to have_text("The page you were looking for doesn't exist.")
     end
   end
 end

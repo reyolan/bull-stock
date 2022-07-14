@@ -49,7 +49,7 @@ RSpec.configure do |config|
 
   # driven_by configuration
   config.before(:each, type: :system) do
-    driven_by :rack_test
+    driven_by :selenium
   end
 
 # The settings below are suggested to provide a good initial experience

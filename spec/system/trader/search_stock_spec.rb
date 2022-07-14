@@ -7,7 +7,7 @@ RSpec.describe 'Searching of stock', type: :system do
 
   context 'when user is a trader' do
     context 'with approved status' do
-      it 'shows the searched stock and purchase stock link', vcr: { cassette_name: 'msft_stock' } do
+      it 'shows the searched stock and purchase stock link', vcr: { cassette_name: 'msft_stock', record: :new_episodes } do
         sign_in approved_trader
 
         visit new_search_stock_path
@@ -23,7 +23,7 @@ RSpec.describe 'Searching of stock', type: :system do
     end
 
     context 'with unapproved status' do
-      it 'shows the searched stock and admin approval notification', vcr: { cassette_name: 'msft_stock' } do
+      it 'shows the searched stock and admin approval notification', vcr: { cassette_name: 'msft_stock', record: :new_episodes } do
         sign_in unapproved_trader
 
         visit new_search_stock_path
@@ -40,10 +40,12 @@ RSpec.describe 'Searching of stock', type: :system do
   end
 
   context 'when user is an admin' do
-    it 'raises a routing error' do
+    it 'shows a not found page' do
       sign_in admin
 
-      expect { visit new_search_stock_path }.to raise_error(ActionController::RoutingError)
+      visit new_search_stock_path
+
+      expect(page).to have_text("The page you were looking for doesn't exist.")
     end
   end
 end
