@@ -55,6 +55,9 @@ group :development, :test do
 
   # record HTTP interactions
   gem 'vcr'
+
+  # linter
+  gem 'standard'
 end
 
 group :development do
@@ -63,10 +66,6 @@ group :development do
 
   # Eager loading checker
   gem 'bullet'
-
-  # Linter
-  gem 'rubocop', '~> 1.30', require: false
-  gem 'rubocop-rails', require: false
 
   # .html.erb beautifier
   gem 'htmlbeautifier'
