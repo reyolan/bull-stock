@@ -18,17 +18,18 @@ class Admins::TradersController < ApplicationController
   def create
     @trader = User.new(trader_params)
     if @trader.save_approved_trader
-      redirect_to traders_path, notice: 'Trader was successfully created.'
+      redirect_to traders_path, notice: "Trader was successfully created."
     else
       render :new
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @trader.update(trader_update_params)
-      redirect_to traders_path(@trader), notice: 'Trader details was successfully updated.'
+      redirect_to traders_path(@trader), notice: "Trader details was successfully updated."
     else
       render :edit
     end

@@ -9,14 +9,14 @@ class Traders::SellStockTransactionsController < ApplicationController
     @stock = current_user.stocks.find_by!(symbol: params[:symbol])
     @result = Iex::IexQuoteLogoRequester.new(params[:symbol]).perform
     @transaction = current_user.stock_transactions.build
-    session[:stock] = { company_name: @result.quote.company_name, symbol: @result.quote.symbol,
-                        unit_price: @result.quote.latest_price }
+    session[:stock] = {company_name: @result.quote.company_name, symbol: @result.quote.symbol,
+                        unit_price: @result.quote.latest_price}
   end
 
   def create
     @transaction = current_user.stock_transactions.build(sell_transaction_params).sell
-    @stock = current_user.stocks.find_by!(symbol: session[:stock]['symbol'])
-                         .sell_share(sell_transaction_params)
+    @stock = current_user.stocks.find_by!(symbol: session[:stock]["symbol"])
+      .sell_share(sell_transaction_params)
     @current_user_balance = current_user.add_amount(@transaction.amount)
 
     ActiveRecord::Base.transaction do
@@ -37,9 +37,9 @@ class Traders::SellStockTransactionsController < ApplicationController
   end
 
   def handle_record_invalid_exception
-    @result = Iex::IexQuoteLogoRequester.new(session[:stock]['symbol']).perform
-    session[:stock] = { company_name: @result.quote.company_name, symbol: @result.quote.symbol,
-                        unit_price: @result.quote.latest_price }
+    @result = Iex::IexQuoteLogoRequester.new(session[:stock]["symbol"]).perform
+    session[:stock] = {company_name: @result.quote.company_name, symbol: @result.quote.symbol,
+                        unit_price: @result.quote.latest_price}
     render :new
   end
 end

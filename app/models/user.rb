@@ -6,15 +6,15 @@ class User < ApplicationRecord
   validate :balance_is_positive_or_zero
 
   enum role: %i[admin trader]
-  after_initialize :set_default_role, :if => :new_record?
+  after_initialize :set_default_role, if: :new_record?
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :confirmable, :lockable
+    :recoverable, :rememberable, :validatable,
+    :confirmable, :lockable
 
   scope :asc_traders, -> { order(:email).traders }
   scope :pending_traders, -> { where(approved: false).traders }
-  scope :traders, -> { where(role: '1') }
+  scope :traders, -> { where(role: "1") }
 
   def save_approved_trader
     self.approved = true
@@ -38,7 +38,7 @@ class User < ApplicationRecord
   private
 
   def balance_is_positive_or_zero
-    errors.add(:base, 'Insufficient balance for the input you entered') if balance.negative?
+    errors.add(:base, "Insufficient balance for the input you entered") if balance.negative?
   end
 
   def set_default_role

@@ -11,9 +11,9 @@ module Traders::SellStockTransactionsHelper
   def change_color_if_gain_or_lose
     profit = @stock.unit_price - @result.quote.latest_price
     if profit < 1
-      'text-red-500'
+      "text-red-500"
     else
-      'text-green-500'
+      "text-green-500"
     end
   end
 end

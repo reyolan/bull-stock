@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'spec_helper'
+require "rails_helper"
+require "spec_helper"
 
 RSpec.describe "Admin views trader account", type: :request do
   let(:admin) { create(:admin) }
@@ -8,13 +8,13 @@ RSpec.describe "Admin views trader account", type: :request do
 
   context "when admin is signed in" do
     it "views all traders that registered in the app" do
-        sign_in admin
-        get traders_path
-        expect(response).to have_http_status(200)
-        expect(response).to render_template(:index)
-        expect(response.body).to include("Traders")
-        expect(response.body).to include("#{trader1.email}")
-        expect(response.body).to include("#{trader2.email}")
+      sign_in admin
+      get traders_path
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:index)
+      expect(response.body).to include("Traders")
+      expect(response.body).to include(trader1.email.to_s)
+      expect(response.body).to include(trader2.email.to_s)
     end
   end
 end
