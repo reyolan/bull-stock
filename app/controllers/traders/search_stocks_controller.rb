@@ -1,8 +1,7 @@
 class Traders::SearchStocksController < ApplicationController
-  before_action :authenticate_trader
+  before_action :authorize_trader
 
-  def new
-  end
+  def new; end
 
   def create
     if params[:symbol] == ""

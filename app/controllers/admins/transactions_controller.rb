@@ -1,5 +1,5 @@
 class Admins::TransactionsController < ApplicationController
-  before_action :authenticate_admin
+  before_action :authorize_admin
 
   def index
     @q = StockTransaction.all.ransack(params[:q])

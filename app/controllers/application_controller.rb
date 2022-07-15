@@ -8,15 +8,15 @@ class ApplicationController < ActionController::Base
     current_user.admin? ? traders_path : trader_stocks_path
   end
 
-  def authenticate_trader
+  def authorize_trader
     raise ActionController::RoutingError, "Not Found" unless current_user.trader?
   end
 
-  def authenticate_admin
+  def authorize_admin
     raise ActionController::RoutingError, "Not Found" unless current_user.admin?
   end
 
-  def authenticate_approved_trader
+  def authorize_approved_trader
     raise ActionController::RoutingError, "Not Found" unless current_user.approved? && current_user.trader?
   end
 end

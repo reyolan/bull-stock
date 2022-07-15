@@ -1,5 +1,5 @@
 class Traders::SellStockTransactionsController < ApplicationController
-  before_action :authenticate_approved_trader
+  before_action :authorize_approved_trader
 
   def index
     @sell_transactions = current_user.stock_transactions.sell_list.page(params[:page])

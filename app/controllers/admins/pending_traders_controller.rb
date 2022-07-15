@@ -1,5 +1,5 @@
 class Admins::PendingTradersController < ApplicationController
-  before_action :authenticate_admin
+  before_action :authorize_admin
 
   def index
     @q = User.pending_traders.ransack(params[:q])
