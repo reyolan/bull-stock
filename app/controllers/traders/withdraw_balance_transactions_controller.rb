@@ -1,5 +1,5 @@
 class Traders::WithdrawBalanceTransactionsController < ApplicationController
-  before_action :authenticate_approved_trader
+  before_action :authorize_approved_trader
 
   def index
     @withdraw_transactions = current_user.balance_transactions.withdrawals.page(params[:page])

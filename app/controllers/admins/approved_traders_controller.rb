@@ -1,5 +1,5 @@
 class Admins::ApprovedTradersController < ApplicationController
-  before_action :authenticate_admin
+  before_action :authorize_admin
 
   def update
     trader = User.find(params[:id])

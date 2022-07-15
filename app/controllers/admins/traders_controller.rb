@@ -1,5 +1,5 @@
 class Admins::TradersController < ApplicationController
-  before_action :authenticate_admin
+  before_action :authorize_admin
   before_action :set_trader, only: %i[edit update show destroy]
 
   def index

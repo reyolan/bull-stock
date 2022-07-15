@@ -1,5 +1,5 @@
 class Traders::StocksController < ApplicationController
-  before_action :authenticate_trader
+  before_action :authorize_trader
 
   def index
     @stocks = current_user.stocks.asc_symbol
