@@ -89,6 +89,6 @@ You can then visit http://127.0.0.1:1080/ to see the e-mails received.
 email: admin@bullstock.com
 password: abcdef
 
-###
+### Trader
 email: approved.trader@bullstock.com
 password: abcdef
