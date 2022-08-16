@@ -83,6 +83,9 @@ $ mailcatcher
 
 You can then visit http://127.0.0.1:1080/ to see the e-mails received.
 
+## Note
+If error occurs, it is due to the lack of credentials. You can request the needed credentials from me.
+
 ## Test accounts
 
 ### Admin
